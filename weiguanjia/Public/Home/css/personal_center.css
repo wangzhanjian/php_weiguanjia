@@ -1,0 +1,71 @@
+/* 
+* @Author: wzj
+* @Date:   2016-11-17 21:46:50
+* @Last Modified by:   anchen
+* @Last Modified time: 2016-11-19 19:41:29
+*/
+.main_content{
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin: 30px auto;
+    box-shadow: 0 0 10px #555;
+}
+
+.left_nav{
+    height: 500px;
+    border: 1px solid #ddd;
+    width: 70%;
+    margin: 0 auto;
+    box-shadow: 0 0 10px #aaa;
+    padding: 20px 0;
+}
+
+.left_nav ul li{
+    text-align: center;
+}
+
+.left_nav li.active a{
+    color: #000;
+}
+
+
+.right_content{
+    height: 500px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0 0 10px #aaa;
+}
+
+.right_content .date{
+    height: 100px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    background-image: url(../images/date1.jpg);
+    background-size: 100% 100%;
+    padding: 35px 0 0 15px;
+}
+
+.right_content .content{
+    height: 340px;
+    border: 1px solid #ddd;
+    overflow: auto;
+}
+
+.right_content .content table{
+    margin: 100px auto 0 auto;
+}
+
+.right_content .content table td{
+    color: #8c8c8c;
+    height: 20px;
+    padding: 5px 10px;
+}
+.right_content .content table .t_head{
+    text-align: right;
+}
+
+.right_content .date span{
+    display: block;
+    line-height: 25px;
+    color: #fff;
+}
