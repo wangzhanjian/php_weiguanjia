@@ -6,7 +6,7 @@
  * Time: 15:14
  */
 
-namespace Home\Controller;
+namespace Admin\Controller;
 
 
 use Think\Controller;

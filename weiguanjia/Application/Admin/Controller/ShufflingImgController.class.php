@@ -5,8 +5,7 @@
  * Date: 2016/11/21
  * Time: 15:11
  */
-
-namespace Home\Controller;
+namespace Admin\Controller;
 
 
 use Think\Controller;
@@ -18,5 +17,7 @@ class ShufflingImgController extends Controller
     //删除
     Public function delete(){}
     //显示图片列表操作页面
-    Public function imgList(){}
+    Public function index(){
+        $this->display();
+    }
 }

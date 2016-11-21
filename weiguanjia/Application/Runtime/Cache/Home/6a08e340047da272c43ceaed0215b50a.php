@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,14 +14,12 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href=/weiguanjia/Public/Home/css/index.css>
-    <link rel="stylesheet" href=/weiguanjia/Public/Home/css/about_us.css>
-    <link rel="stylesheet" href=/weiguanjia/Public/Home/css/log_reg.css>
-    <link rel="stylesheet" href=/weiguanjia/Public/Home/css/personal_center.css>
-    <link rel="stylesheet" href=/weiguanjia/Public/Home/css/project_center.css>
-</head>
-<body>
-<!--navbar-->
+    <link rel="stylesheet" href="/Public/Home/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/Public/Home/css/personal_center.css" />
+    </head>
+    <body>
+    <!--navbar-->
+    <!--navbar-->
 <div class="row clearfix">
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -62,7 +60,6 @@
         </div>
     </nav>
 </div>
-
     <!--content-->
         <div class="container main_content">
             <div class="row clearfix">
@@ -109,7 +106,8 @@
                 </div>
             </div>
         </div>
-<!--footer-->
+    <!--footer-->
+    <!--footer-->
 <div class="row clearfix footer">
     <div class="col-sm-12 col-md-12 col-lg-12 column">
         <p class="text-center">
@@ -118,7 +116,5 @@
         <p class="text-center">冀 ICP 备 2016110.3485A</p>
     </div>
 </div>
-
-</body>
-<script type="text/javascript" src="/weiguanjia/Public/Home/js/project_center.js"></script>
+    </body>
 </html>

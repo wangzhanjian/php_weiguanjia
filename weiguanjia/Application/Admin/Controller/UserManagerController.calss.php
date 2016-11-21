@@ -6,7 +6,7 @@
  * Time: 15:16
  */
 
-namespace Home\Controller;
+namespace Admin\Controller;
 
 
 use Think\Controller;
@@ -14,7 +14,9 @@ use Think\Controller;
 class UserManagerController extends Controller
 {
     //显示用户及其基本信息列表
-    Public function index(){}
+    Public function index(){
+        $this->display();
+    }
     //显示服务器所有公众号信息列表
     Public function gzhList(){}
     //返回用户个数

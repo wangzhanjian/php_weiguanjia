@@ -8,7 +8,7 @@
     padding: 30px;
 }
 
-.log_reg_form{
+form{
     border: 1px solid #8c8c8c;
     padding: 50px 50px;
     margin: auto;
@@ -18,5 +18,17 @@
 }
 
 .checkbox label.right{
+    float: right;
+}
+
+.verify_code {
+    width: 70%;
+}
+
+.verify_img{
+    width: 25%;
+    height: 34px;
+    margin-top: -34px;
+    margin-bottom: -34px;
     float: right;
 }
