@@ -6,15 +6,19 @@
  * Time: 15:13
  */
 
-namespace Home\Controller;
+namespace Admin\Controller;
 
 
-class LatestDynamicController
+use Think\Controller;
+
+class LatestDynamicController extends Controller
 {
     //新增
     Public function add(){}
     //删除
     Public function delete(){}
     //显示动态列表操作页
-    Public function index(){}
+    Public function index(){
+        $this->display();
+    }
 }

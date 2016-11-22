@@ -73,7 +73,7 @@ class UserManagerController extends Controller
 
     }
 
-    //显示用户公众公众号信息页
+    //显示用户公众公众号信息列表页
     public function gzhList(){
         $this->display();
     }

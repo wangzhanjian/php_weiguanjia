@@ -1,11 +1,17 @@
- <!--content-->
+<include file="./Common:header" />
+    <import type='css' file="Home.css.log_reg" />
+    </head>
+    <body>
+        <!--navbar-->
+        <include file="./Common:top_navbar" />
+        <!--content-->
         <div class="container main_content">
             <div class="row clearfix">
                 <div class="col-sm-6 col-md-6 col-lg-6 column">
                     <img alt="140x140" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/140/140/default.jpg" />
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-6 column">
-                    <form class="log_reg_form" role="form">
+                    <form role="form">
                         <div class="form-group">
                              <label>用户名</label>
                                 <input type="text" class="form-control" name="username" id="username"/>
@@ -16,7 +22,8 @@
                         </div>
                         <div class="form-group">
                              <label>验证码</label>
-                                <input type="text" class="form-control" name="verify_code" id="verify_code" />
+                            <input type="text" class="form-control verify_code" name="verify_code" id="verify_code" />
+                            <img class="verify_img" src=""/>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-default btn-primary btn-block">登录</button>
@@ -30,3 +37,7 @@
                 </div>
             </div>
         </div>
+        <!--footer-->
+        <include file="./Common:footer" />
+    </body>
+</html>
