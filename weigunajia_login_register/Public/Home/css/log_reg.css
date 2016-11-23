@@ -1,0 +1,34 @@
+/* 
+* @Author: wzj
+* @Date:   2016-11-17 15:40:10
+* @Last Modified by:   anchen
+* @Last Modified time: 2016-11-19 19:35:02
+*/
+.main_content{
+    padding: 30px;
+}
+
+form{
+    border: 1px solid #8c8c8c;
+    padding: 50px 50px;
+    margin: auto;
+    width: 90%;
+    border-radius: 20px;
+    box-shadow: 0 0 10px #8c8c8c;
+}
+
+.checkbox label.right{
+    float: right;
+}
+
+.verify_code {
+    width: 70%;
+}
+
+.verify_img{
+    width: 25%;
+    height: 34px;
+    margin-top: -34px;
+    margin-bottom: -34px;
+    float: right;
+}
