@@ -1,61 +1,56 @@
-    <div class="main-wrap">
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>酒店后台管理</title>
+    <link rel="stylesheet" type="text/css" href="/php_weiguanjia/weiguanjia/Public/Admin/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/php_weiguanjia/weiguanjia/Public/Admin/css/main.css"/>
+    <script type="text/javascript" src="/php_weiguanjia/weiguanjia/Public/Admin/js/libs/modernizr.min.js"></script>
+    <script type="text/javascript" src="/php_weiguanjia/weiguanjia/Public/Admin/js/jquery-2.2.3.min.js"></script>
+</head>
+<div class="topbar-wrap white">
+<div class="topbar-inner clearfix">
+    <div class="topbar-logo-wrap clearfix">
+        <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">后台管理</a></h1>
+        <ul class="navbar-list clearfix">
+            <li><a class="on" href="index.html">首页</a></li>
+            <li><a href="#" target="_blank">网站首页</a></li>
+        </ul>
+    </div>
+    <div class="top-info-wrap">
+        <ul class="top-info-list clearfix">
+            <li><a href="http://www.jscss.me">管理员</a></li>
+            <li><a href="http://www.jscss.me">修改密码</a></li>
+            <li><a href="http://www.jscss.me">退出</a></li>
+        </ul>
+    </div>
+</div>
+</div>
+<div class="container clearfix">
+    <!--sidebar-->
+    <div class="sidebar-wrap">
+    <div class="sidebar-title">
+        <h1>菜单</h1>
+    </div>
+    <div class="sidebar-content">
+        <ul class="sidebar-list">
+            <li>
+                <a href="#"><i class="icon-font">&#xe018;</i>素材管理</a>
+                <ul class="sub-menu">
+                    <li><a href="/php_weiguanjia/weiguanjia/Admin/Newses/newsManager"><i class="icon-font">&#xe017;</i>图文消息管理</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+    <!--/sidebar-->
+    <!--main-->
+        <div class="main-wrap">
 
         <div class="crumb-wrap">
             <div class="crumb-list"><i class="icon-font"></i><a href="index.html">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">所有商务会议</span></div>
         </div>
         <div class="result-wrap">
-<<<<<<< HEAD
-            <form name="myform" id="myform" method="post" action="__ROOT__/Admin/ProjectDisplay/add">
-                <div class="result-title">
-                    <div class="result-list">
-                        <a href="#" class="addDisplay"><i class="icon-font"></i>新增项目</a>
-                        <div class="update" style="display: none">
-                            <div>
-                                <div>
-                                    <label>标题</label><input type="text" name="title">
-                                </div>
-                                <div>
-                                    <label>内容</label><textarea name="content"></textarea>
-                                </div>
-                                <div>
-                                    <input type="submit" name="submit" value="提交">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-                <div class="result-content">
-                    <table class="result-tab" width="100%">
-                        <tr>
-                            <th>ID</th>
-                            <th>标题</th>
-                            <th>发布时间</th>
-                            <th>操作</th>
-                        </tr>
-                        <volist name="list" id="vo">
-                        <tr>
-                            <td>{$vo.id}</td>
-                            <td>{$vo.title}</td>
-                            <td>{$vo.createtime}</td>
-                            <td>
-                                <a class="link-update" href="__ROOT__/Admin/ProjectDisplay/modify?id={$vo.id}">修改</a>
-                                <a class="link-del" href="__ROOT__/Admin/ProjectDisplay/delete?id={$vo.id}">删除</a>
-                            </td>
-                        </tr>
-                        </volist>
-                    </table>
-                    <div class="list-page">{$page}</div>
-                </div>
-        </div>
-    </div>
-    <script>
-        $('.addDisplay').on('click',function (event) {
-            event.preventDefault();//禁用a标签的默认动作（跳转）
-            $('.update').css("display","block");
-        })
-    </script>
-=======
             <form name="myform" id="myform" method="post">
                 <div class="result-title">
                     <div class="result-list">
@@ -113,4 +108,8 @@
             </form>
         </div>
     </div>
->>>>>>> 8b6e7cbfc96e6f1960d4d33868c34aab567979cd
+
+    <!--/main-->
+</div>
+</body>
+</html>
