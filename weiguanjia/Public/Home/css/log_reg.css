@@ -7,7 +7,15 @@
 .main_content{
     padding: 30px;
 }
+.main_content.login{
+    height:420px;
+}
 
+.main_content .left_img{
+    height:360px;
+    background-image: url('../images/log_reg.png');
+    background-size: 90% 110%;
+}
 form{
     border: 1px solid #8c8c8c;
     padding: 50px 50px;

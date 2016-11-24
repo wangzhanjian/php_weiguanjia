@@ -4,14 +4,12 @@ use Think\Controller;
 class IndexController extends Controller {
     //显示首页信息
     public function index(){
-
         $shufflingImg=$this->shufflingImg();
         $this->assign('shufflingImg',$shufflingImg);
         $latestDynamic=$this->latestDynamic();
         $this->assign('latestDynamic',$latestDynamic);
         $specialRecommendation=$this->specialRecommendation();
         $this->assign('specialRecommendation',$specialRecommendation);
-
         $this->display();
 
     }
@@ -30,7 +28,7 @@ class IndexController extends Controller {
     //获取最新动态资源
     protected function latestDynamic(){
         $dynamic=M('dynamic');
-        $data=$dynamic->where(1)->field('title,createtime')->order('Id desc')->limit(3)->select();
+        $data=$dynamic->where(1)->field('title,createtime')->order('Id desc')->limit(5)->select();
         return $data;
 
     }
@@ -38,7 +36,7 @@ class IndexController extends Controller {
     //获取特色推荐资源
     protected function specialRecommendation(){
         $recommendation=M('features');
-        $data=$recommendation->where(1)->field('title,createtime')->order('Id desc')->limit(3)->select();
+        $data=$recommendation->where(1)->field('title,createtime')->order('Id desc')->limit(5)->select();
         return $data;
 
     }

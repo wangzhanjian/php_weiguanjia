@@ -4,16 +4,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>微管家</title>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/Public/Home/css/bootstrap.css" />
 
     <!-- 可选的Bootstrap主题文件（一般不用引入）
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">-->
 
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入-->
+    <script type="text/javascript" src="/Public/Home/js/jquery3.js"></script>
 
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件-->
+    <script type="text/javascript" src="/Public/Home/js/bootstrap.js"></script>
     <link rel="stylesheet" href="/Public/Home/css/index.css">
     </head>
     <body>
@@ -32,32 +32,32 @@
             <div class="col-sm-8 col-md-8 col-lg-8 column">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="./index.html">首页</a>
+                        <li>
+                            <a href="/Home">首页</a>
                         </li>
                         <li>
-                            <a href="./project_center.html">项目中心</a>
+                            <a href="/Home/ProjectManager/centerPage">项目中心</a>
                         </li>
                         <li>
                             <a href="#">产品中心</a>
                         </li>
                         <li>
-                            <a href="./about_us.html">关于我们</a>
+                            <a href="/Home/Index/aboutUs">关于我们</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <?php if(!empty($nickname)): ?><li>
-                                <a href="./personal_center.html"><span class="glyphicon glyphicon-user"></span><?php echo ($nickname); ?></a>
+                                <a href="/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><?php echo ($nickname); ?></a>
                             </li>
                             <li>
                                 <a href="/Home/UserManager/userExit">退出</a>
                             </li>
                             <?php else: ?>
                             <li>
-                                <a href="./login.html">登录</a>
+                                <a href="/Home/UserManager/loginPage">登录</a>
                             </li>
                             <li>
-                                <a href="./register.html">注册</a>
+                                <a href="/Home/UserManager/registerPage">注册</a>
                             </li><?php endif; ?>
                     </ul>
                 </div>
@@ -79,7 +79,7 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img alt="" src="/Public/Home/images/default1.jpg" />
+                                <img alt="" src=/Public/<?php echo ($shufflingImg[0]['src']); ?> />
                                 <div class="carousel-caption">
                                     <h4>
                                         First Thumbnail label
@@ -90,7 +90,7 @@
                                 </div>
                             </div>
                             <div class="item">
-                                <img alt="" src="/Public/Home/images/default2.jpg" />
+                                <img alt="" src="/Public/<?php echo ($shufflingImg[1]['src']); ?>" />
                                 <div class="carousel-caption">
                                     <h4>
                                         Second Thumbnail label
@@ -101,7 +101,7 @@
                                 </div>
                             </div>
                             <div class="item">
-                                <img alt="" src="/Public/Home/images/default3.jpg" />
+                                <img alt="" src="/Public/<?php echo ($shufflingImg[2]['src']); ?>" />
                                 <div class="carousel-caption">
                                     <h4>
                                         Third Thumbnail label
@@ -125,21 +125,10 @@
                         </div>
                     </h4>
                     <ul class="list-unstyled nav">
-                        <li>
-                            <a href="">Lorem ipsum dolor sit amet</a>
-                        </li>
-                        <li>
-                            <a href="">Consectetur adipiscing elit</a>
-                        </li>
-                        <li>
-                            <a href="">Lorem ipsum dolor sit amet</a>
-                        </li>
-                        <li>
-                            <a href="">Consectetur adipiscing elit</a>
-                        </li>
-                         <li>
-                            <a href="">Consectetur adipiscing elit</a>
-                        </li>
+                        <?php if(is_array($latestDynamic)): $i = 0; $__LIST__ = $latestDynamic;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+                                <a href=""><?php echo ($vo['title']); ?> <span class="time"><?php echo (date("Y-m-d",time($vo['createtime']))); ?></span></a>
+                            </li><?php endforeach; endif; else: echo "" ;endif; ?>
+
                     </ul>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-6 column">
@@ -148,21 +137,9 @@
                         <a href="#"><span>>></span>更多</a></div>
                     </h4>
                     <ul class="list-unstyled nav">
-                        <li>
-                            <a href="">Lorem ipsum dolor sit amet</a>
-                        </li>
-                        <li>
-                            <a href="">Consectetur adipiscing elit</a>
-                        </li>
-                        <li>
-                            <a href="">Lorem ipsum dolor sit amet</a>
-                        </li>
-                        <li>
-                            <a href="">Consectetur adipiscing elit</a>
-                        </li>
-                         <li>
-                            <a href="">Consectetur adipiscing elit</a>
-                        </li>
+                        <?php if(is_array($specialRecommendation)): $i = 0; $__LIST__ = $specialRecommendation;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+                                <a href=""><?php echo ($vo['title']); ?><span class="time"><?php echo (date("Y-m-d",time($vo['createtime']))); ?></span></a>
+                            </li><?php endforeach; endif; else: echo "" ;endif; ?>
                     </ul>
                 </div>
             </div>
