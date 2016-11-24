@@ -27,12 +27,21 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="./login.html">登录</a>
-                        </li>
-                        <li>
-                            <a href="./register.html">注册</a>
-                        </li>
+                        <notempty name="nickname">
+                            <li>
+                                <a href="./personal_center.html"><span class="glyphicon glyphicon-user"></span>{$nickname}</a>
+                            </li>
+                            <li>
+                                <a href="__ROOT__/Home/UserManager/userExit">退出</a>
+                            </li>
+                            <else />
+                            <li>
+                                <a href="./login.html">登录</a>
+                            </li>
+                            <li>
+                                <a href="./register.html">注册</a>
+                            </li>
+                        </notempty>
                     </ul>
                 </div>
             </div>

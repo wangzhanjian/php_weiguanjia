@@ -67,7 +67,7 @@
                     <img alt="140x140" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/140/140/default.jpg" />
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-6 column">
-                        <form role="form">
+                        <form role="form" action="/Home/UserManager/register" method="post">
                             <div class="form-group">
                                  <label>用 户 名</label><input type="text" class="form-control" name="username" id="username" placeholder="请输入邮箱或手机" />
                             </div>
@@ -79,7 +79,7 @@
                             </div>
                             <div class="form-group">
                                  <label>验证码</label><input type="text" class="form-control verify_code" name="verify_code" id="verify_code" />
-                                <img class="verify_img" src=""/>
+                                <img class="verify_img" src="/Home/UserManager/getVerify"/>
                             </div>
                             <div class="form-group">
                                 <div class="checkbox">
@@ -101,5 +101,18 @@
         <p class="text-center">冀 ICP 备 2016110.3485A</p>
     </div>
 </div>
+
+        <!--隐藏提示信息-->
+        <div id="hidden_alert" style="visibility: hidden;">
+                <?php if(($result) != "ok"): echo ($result); endif; ?>
+        </div>
     </body>
+<script>
+    $(document).ready(function () {
+        $err=$('#hidden_alert').text();
+        if($err.len){
+            alert($err);
+        }
+    });
+</script>
 </html>

@@ -46,12 +46,19 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="./login.html">登录</a>
-                        </li>
-                        <li>
-                            <a href="./register.html">注册</a>
-                        </li>
+                        <?php if(!empty($nickname)): ?><li>
+                                <a href="./personal_center.html"><span class="glyphicon glyphicon-user"></span><?php echo ($nickname); ?></a>
+                            </li>
+                            <li>
+                                <a href="/Home/UserManager/userExit">退出</a>
+                            </li>
+                            <?php else: ?>
+                            <li>
+                                <a href="./login.html">登录</a>
+                            </li>
+                            <li>
+                                <a href="./register.html">注册</a>
+                            </li><?php endif; ?>
                     </ul>
                 </div>
             </div>

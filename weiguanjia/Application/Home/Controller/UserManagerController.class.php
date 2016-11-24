@@ -37,20 +37,16 @@ class UserManagerController extends Controller
         $username = I('post.username');
         $password = I('post.password');
         //数据库查找
-        if($this->check_verify()){
-            $users = M('user'); //实例化User对象
-            $data = $users->where(array(
-                'username'=>$username,
-                'password'    =>$password
-            ))->find();
-            if ($data){
-                $this->assign("nickname",$data['nickname']);
-                return $data['id'];
-            }else{
-                $this->assign('result','用户名密码输入错误');
-                return false;
-            }
+        $users = M('user'); //实例化User对象
+        $data = $users->where(array(
+            'username'=>$username,
+            'password'    =>$password
+        ))->find();
+        if ($data){
+            $this->assign("nickname",$data['nickname']);
+            return $data['id'];
         }else{
+            $this->error('用户名或密码错误！','loginPage',2);
             return false;
         }
     }
@@ -63,7 +59,7 @@ class UserManagerController extends Controller
     //注册处理
     public function register(){
         //检查用户注册信息是否正确
-        if ($this->checkInfo()&&$this->checkUserUnique()){
+        if ($this->checkUserUnique()&&$this->checkInfo()){
             //信息正确，倒入数据表
             $User = M('user'); //实例化User对象
             //写入数据库
@@ -96,7 +92,7 @@ class UserManagerController extends Controller
             'username'=>$username,
         ))->find();
         if ($data){
-            $this->assign('result','用户名已被注册');
+            $this->error('用户名已注册','registerPage',2);
             $this->display('loginPage');
             return false;
         }else{
@@ -114,7 +110,7 @@ class UserManagerController extends Controller
         if ($bool || $bools){
             return true;
         }else{
-            $this->assign('result','用户名输入错误');
+            $this->error('用户名格式不正确！','registerPage',2);
             return false;
         }
     }
@@ -123,12 +119,16 @@ class UserManagerController extends Controller
     protected function checkPswd(){
         $password = I('post.password');
         $affirm_password = I('post.affirm_password');
-        $pswd = "/(?!^\\d+$)(?!^[a-zA-Z]+$)(?!^[_#@]+$).{6,16}/";
-        $bool=preg_match($pswd,$password);
-        if ($bool&&$password==$affirm_password){
-            return true;
+        $rule = "/(?!^\\d+$)(?!^[a-zA-Z]+$)(?!^[_#@]+$).{6,16}/";
+        $bool=preg_match($rule,$password);
+        if ($bool){
+            if($password==$affirm_password){
+                return true;
+            }else{
+                $this->error('两次密码不一致','registerPage',2);
+            }
         }else{
-            $this->assign('result','密码输入错误');
+            $this->error('密码必须由数字和字符组成且长度为6-16位','registerPage',2);
             return false;
         }
     }
@@ -152,6 +152,7 @@ class UserManagerController extends Controller
         if($verify->check($code, $id='')){
             return true;
         }else{
+            $this->error('验证码不正确！','registerPage',2);
             $this->assign('result','验证码错误！');
             return false;
         }
@@ -159,7 +160,9 @@ class UserManagerController extends Controller
 
     //退出登录
     public function userExit(){
-
+        session('[destroy]');
+        $this->assign('nickname','');
+        $this->display('Index/index');
     }
 
     //记住密码

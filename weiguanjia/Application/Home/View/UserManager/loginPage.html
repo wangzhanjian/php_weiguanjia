@@ -21,11 +21,6 @@
                                 <input type="password" class="form-control" name="password" id="password" />
                         </div>
                         <div class="form-group">
-                             <label>验证码</label>
-                            <input type="text" class="form-control verify_code" name="verify_code" id="verify_code" />
-                            <img class="verify_img" src="__ROOT__/Home/UserManager/getVerify"/>
-                        </div>
-                        <div class="form-group">
                             <button type="submit" class="btn btn-default btn-primary btn-block">登录</button>
                         </div>
                         <div class="form-group">
@@ -39,20 +34,5 @@
         </div>
         <!--footer-->
         <include file="./Common:footer" />
-
-        <!--隐藏提示信息-->
-        <div id="hidden_alert" style="visibility: hidden;">
-            <neq name="result" value="ok">
-                {$result}
-            </neq>
-        </div>
     </body>
-<script>
-    $(document).ready(function () {
-        $err=$('#hidden_alert').text();
-        if($err.len){
-            alert($err);
-        }
-    });
-</script>
 </html>

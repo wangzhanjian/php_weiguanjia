@@ -48,12 +48,19 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="./login.html">登录</a>
-                        </li>
-                        <li>
-                            <a href="./register.html">注册</a>
-                        </li>
+                        <?php if(!empty($nickname)): ?><li>
+                                <a href="./personal_center.html"><span class="glyphicon glyphicon-user"></span><?php echo ($nickname); ?></a>
+                            </li>
+                            <li>
+                                <a href="/Home/UserManager/userExit">退出</a>
+                            </li>
+                            <?php else: ?>
+                            <li>
+                                <a href="./login.html">登录</a>
+                            </li>
+                            <li>
+                                <a href="./register.html">注册</a>
+                            </li><?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -67,7 +74,7 @@
                     <img alt="140x140" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/140/140/default.jpg" />
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-6 column">
-                    <form role="form">
+                    <form role="form" action="/Home/UserManager/login" method="post">
                         <div class="form-group">
                              <label>用户名</label>
                                 <input type="text" class="form-control" name="username" id="username"/>
@@ -75,11 +82,6 @@
                         <div class="form-group">
                              <label>密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
                                 <input type="password" class="form-control" name="password" id="password" />
-                        </div>
-                        <div class="form-group">
-                             <label>验证码</label>
-                            <input type="text" class="form-control verify_code" name="verify_code" id="verify_code" />
-                            <img class="verify_img" src=""/>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-default btn-primary btn-block">登录</button>

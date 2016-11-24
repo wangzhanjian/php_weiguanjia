@@ -48,12 +48,19 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="./login.html">登录</a>
-                        </li>
-                        <li>
-                            <a href="./register.html">注册</a>
-                        </li>
+                        <?php if(!empty($nickname)): ?><li>
+                                <a href="./personal_center.html"><span class="glyphicon glyphicon-user"></span><?php echo ($nickname); ?></a>
+                            </li>
+                            <li>
+                                <a href="/Home/UserManager/userExit">退出</a>
+                            </li>
+                            <?php else: ?>
+                            <li>
+                                <a href="./login.html">登录</a>
+                            </li>
+                            <li>
+                                <a href="./register.html">注册</a>
+                            </li><?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -87,16 +94,13 @@
                         <div class="content">
                             <table>
                                 <tr>
-                                    <td class="t_head">用户名</td><td>wzj</td>
-                                </tr>
-                                <tr>
-                                    <td class="t_head">邮&nbsp;&nbsp;&nbsp;箱</td><td>317619554@qq.com</td>
-                                </tr>
-                                <tr>
-                                    <td class="t_head">手&nbsp;&nbsp;&nbsp;机</td><td>15232160915</td>
-                                </tr>
-                                <tr>
+                                    <td class="t_head">昵 &nbsp;&nbsp;&nbsp;称</td>
+                                    <td>wzj</td>
                                     <td class="t_head" colspan="2"><a href="">修 改</a></td><td> </td>
+                                </tr>
+                                <tr>
+                                    <td class="t_head">注册号</td>
+                                    <td>317619554@qq.com</td>
                                 </tr>
                             </table>
                         </div>

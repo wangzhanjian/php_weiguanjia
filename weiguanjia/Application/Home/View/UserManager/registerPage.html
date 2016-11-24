@@ -37,20 +37,5 @@
         </div>
         <!--footer-->
         <include file="./Common:footer" />
-
-        <!--隐藏提示信息-->
-        <div id="hidden_alert" style="visibility: hidden;">
-                <neq name="result" value="ok">
-                    {$result}
-                </neq>
-        </div>
     </body>
-<script>
-    $(document).ready(function () {
-        $err=$('#hidden_alert').text();
-        if($err.len){
-            alert($err);
-        }
-    });
-</script>
 </html>
