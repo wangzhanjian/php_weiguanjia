@@ -8,24 +8,25 @@
 
 namespace Home\Controller;
 
-use Think\Controller;
 
-class ProjectManagerController extends Controller
+class ProjectManagerController extends BasisController
 {
     //显示项目中心主页面
     public function centerPage(){
+        $projectList=$this->projectList();
+        $this->assign('projectList',$projectList);
         $this->display();
     }
 
     //新建项目操作
     public function create(){
-        if(check_login()){
+        if($this->checkLogin()){
             $create=M('project');
             $data['user_id']=session('user_id');
             $create->create();
             $result=$create->add();
             if($result){
-                $this->success('添加成功', 'centerPage');
+                $this->configPrompt();
             } else {
                 error_log($result,3,'./Public/log/createlog.txt');
             }

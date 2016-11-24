@@ -155,11 +155,7 @@
             <span class="caret"></span>
             </a>
             <div class="list-group dropdown-menu gzh_list" role="menu" aria-labelledby="gzh_list">
-                <?php if(is_array($projectList)): $i = 0; $__LIST__ = $projectList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><a href="#"><?php echo ($vo['app_name']); ?></a><?php endforeach; endif; else: echo "" ;endif; ?>
-                <!--<a class="list-group-item active" role="menuitem" tabindex="-1" href="#">微享PHP</a>-->
-                    <!--<a class="list-group-item" role="menuitem" tabindex="-1" href="#">口袋书屋</a>-->
-                    <!--<a class="list-group-item" role="menuitem" tabindex="-1" href="#">每日一句</a>-->
-                    <!--<a class="list-group-item" role="menuitem" tabindex="-1" href="#">LeisureSquare</a>-->
+                <?php if(is_array($projectList)): $i = 0; $__LIST__ = $projectList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><a class="list-group-item" role="menuitem" tabindex="-1" href="#"><?php echo ($vo['app_name']); ?></a><?php endforeach; endif; else: echo "" ;endif; ?>
             </div>
             </div>
         </div>
