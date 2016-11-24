@@ -85,17 +85,20 @@
             </div>
             <label href="#" class="list-group-item active">项目管理</label>
             <a class="list-group-item" id="modal-347417" href="#modal-container-347417" data-toggle="modal">新建项目</a>
-            <a href="./project_center_gzh.html" class="list-group-item">查看公众号</a>
+            <a href="__ROOT__/Home/ProjectManager/gzhInfo" class="list-group-item">查看公众号</a>
             <div class="dropdown">
             <a href="#" class="list-group-item dropdown-toggle" id="gzh_list" data-toggle="dropdown" aria-expanded="false">
                     切换公众号
             <span class="caret"></span>
             </a>
             <div class="list-group dropdown-menu gzh_list" role="menu" aria-labelledby="gzh_list">
-                    <a class="list-group-item active" role="menuitem" tabindex="-1" href="#">微享PHP</a>
-                    <a class="list-group-item" role="menuitem" tabindex="-1" href="#">口袋书屋</a>
-                    <a class="list-group-item" role="menuitem" tabindex="-1" href="#">每日一句</a>
-                    <a class="list-group-item" role="menuitem" tabindex="-1" href="#">LeisureSquare</a>
+                <volist name="projectList" id="vo">
+                        <a href="#">{$vo['app_name']}</a>
+                </volist>
+                <!--<a class="list-group-item active" role="menuitem" tabindex="-1" href="#">微享PHP</a>-->
+                    <!--<a class="list-group-item" role="menuitem" tabindex="-1" href="#">口袋书屋</a>-->
+                    <!--<a class="list-group-item" role="menuitem" tabindex="-1" href="#">每日一句</a>-->
+                    <!--<a class="list-group-item" role="menuitem" tabindex="-1" href="#">LeisureSquare</a>-->
             </div>
             </div>
         </div>
@@ -115,7 +118,7 @@
                                     </h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form role="form" action="#" method="post">
+                                    <form role="form" action="__ROOT__/home/ProjectManager/create" method="post">
                                             <p class="help-block text-right create_help">
                                                 <a href="#">如何创建项目？</a>
                                             </p>
@@ -129,7 +132,7 @@
                                              <label>app_id</label><input type="text" class="form-control" name="app_id" id="app_id" />
                                         </div>
                                         <div class="form-group">
-                                             <label>app_secreat</label><input type="text" class="form-control" name="app_secreat" id="app_secreat" />
+                                             <label>app_secret</label><input type="text" class="form-control" name="app_secret" id="app_secret" />
                                         </div>
                                         <div class="form-group">
                                              <label>token</label><input type="text" class="form-control" name="token" id="token" />

@@ -10,21 +10,11 @@
                 <div class="col-sm-2 col-md-2 col-lg-2 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 column left_menu_gzh">
                             <h4><span class="glyphicon glyphicon-phone"></span> 公众号</h4>
                             <ul class="nav">
-                                <li>
-                                    <a href="#">微享PHP</a>
-                                </li>
-                                <li>
-                                    <a href="#">口袋书屋</a>
-                                </li>
-                                <li>
-                                    <a href="#">每日一句</a>
-                                </li>
-                                <li>
-                                    <a href="#">LeisureSquare</a>
-                                </li>
-                                <li>
-                                    <a id="modal-347417" href="#modal-container-347417" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span>新建项目</a>
-                                </li>
+                                <volist name="projectList" id="vo">
+                                    <li>
+                                        <a href="">{$vo['app_name']}</a>
+                                    </li>
+                                </volist>
                             </ul>
                 </div>
                 <div class="col-sm-7 col-md-7 col-lg-7 column right_content_gzh">
@@ -44,6 +34,7 @@
         </div>
 
         <!--create new project-->
+        <!--新建项目-->
         <div class="container">
             <div class="row clearfix">
                 <div class="col-md-12 column">
@@ -58,24 +49,24 @@
                                     </h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form role="form" action="#" method="post">
-                                            <p class="help-block text-right create_help">
-                                                <a href="#">如何创建项目？</a>
-                                            </p>
+                                    <form role="form" action="__ROOT__/home/ProjectManager/create" method="post">
+                                        <p class="help-block text-right create_help">
+                                            <a href="#">如何创建项目？</a>
+                                        </p>
                                         <div class="form-group">
-                                             <label>公众号原始id</label><input type="text" class="form-control" name="source_id" id="source_id" />
+                                            <label>公众号原始id</label><input type="text" class="form-control" name="source_id" id="source_id" />
                                         </div>
                                         <div class="form-group">
-                                             <label>公众号名称</label><input type="text" class="form-control" name="app_name" id="app_name" />
+                                            <label>公众号名称</label><input type="text" class="form-control" name="app_name" id="app_name" />
                                         </div>
                                         <div class="form-group">
-                                             <label>app_id</label><input type="text" class="form-control" name="app_id" id="app_id" />
+                                            <label>app_id</label><input type="text" class="form-control" name="app_id" id="app_id" />
                                         </div>
                                         <div class="form-group">
-                                             <label>app_secreat</label><input type="text" class="form-control" name="app_secreat" id="app_secreat" />
+                                            <label>app_secret</label><input type="text" class="form-control" name="app_secret" id="app_secret" />
                                         </div>
                                         <div class="form-group">
-                                             <label>token</label><input type="text" class="form-control" name="token" id="token" />
+                                            <label>token</label><input type="text" class="form-control" name="token" id="token" />
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="submit" class="btn btn-primary" id="create">创建</button>
