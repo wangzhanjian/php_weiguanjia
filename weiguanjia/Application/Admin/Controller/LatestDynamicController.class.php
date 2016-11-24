@@ -14,16 +14,19 @@ use Think\Page;
 
 class LatestDynamicController extends Controller
 {
+    protected $db;//定义数据库对象
+    Public function __construct(){
+        parent::__construct();
+        $this->db = M('dynamic');//连接数据库
+    }
     //新增
     Public function add(){
         $data['title'] = I('post.title');
         $data['content'] = I('post.content');
-        $data['createtime'] = time();
-        $db = M('dynamic');
-        $result = $db->data($data)->add();
+        $result = $this->db->data($data)->add();
         if($result){
             //添加成功时跳转回列表页
-            $this->success('添加成功', 'index');
+            $this->redirect('index');
         } else {
             //添加失败时返回上一页
             error_log($result,3,'./Public/log/log.txt');
@@ -32,9 +35,9 @@ class LatestDynamicController extends Controller
     }
     //删除
     Public function delete(){
-        $db = M('dynamic');
+//        $db = M('dynamic');
         $id = I('get.id');
-        $result=$db->where('id=%d',array($id))->delete();//删除
+        $result=$this->db->where('id=%d',array($id))->delete();//删除
         if($result){
             //删除成功时跳转回列表页
             $this->success('删除成功', 'index');
@@ -47,13 +50,13 @@ class LatestDynamicController extends Controller
     //修改
     public function modify(){
         $submit = I('post.submit');
-        $db = M('dynamic');
+//        $db = M('dynamic');
         if ($submit != NULL){
             $id = I('post.id');
             $data['title'] = I('post.title');
             $data['content'] = I('post.content');
             $data['createtime'] = time();
-            $result = $db->where('id=%d',array($id))->save($data);
+            $result = $this->db->where('id=%d',array($id))->save($data);
             if($result){
                 //修改成功时跳转回列表页
                 $this->success('修改成功', 'index');
@@ -64,17 +67,17 @@ class LatestDynamicController extends Controller
             }
         }
         $id = I("get.id");
-        $article = $db->where('id=%d',$id)->select();
+        $article = $this->db->where('id=%d',$id)->select();
         $this->assign('article',$article);
         $this->display();
     }
     //显示动态列表操作页
     Public function index(){
-        $db = M('dynamic');//连接数据库
-        $count = $db->count();
+//        $db = M('dynamic');//连接数据库
+        $count = $this->db->count();
         $Page = new Page($count,10);
         $show = $Page->show();//创建分页
-        $list = $db->order('Id')->field('Id,title,content,createtime')->limit($Page->firstRow.','.$Page->listRows)->select();
+        $list = $this->db->order('Id')->field('Id,title,content,createtime')->limit($Page->firstRow.','.$Page->listRows)->select();
         $this->assign('list',$list);
         $this->assign('page',$show);
         $this->display();

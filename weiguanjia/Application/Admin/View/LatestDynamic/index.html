@@ -4,7 +4,6 @@
             <div class="crumb-list"><i class="icon-font"></i><a href="index.html">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">所有商务会议</span></div>
         </div>
         <div class="result-wrap">
-<<<<<<< HEAD
             <form name="myform" id="myform" method="post" action="__ROOT__/Admin/LatestDynamic/add">
                 <div class="result-title">
                     <div class="result-list">
@@ -30,14 +29,16 @@
                         <tr>
                             <th>ID</th>
                             <th>标题</th>
+                            <th>内容</th>
                             <th>发布时间</th>
                             <th>操作</th>
                         </tr>
                         <volist name="list" id="vo">
-                        <tr>
-                            <td>{$vo.id}</td>
-                            <td>{$vo.title}</td>
-                            <td>{$vo.createtime}</td>
+                            <tr>
+                                <td>{$vo.id}</td>
+                                <td>{$vo.title}</td>
+                                <td>{$vo.content}</td>
+                                <td>{$vo.createtime}</td>
                             <td>
                                 <a class="link-update" href="__ROOT__/Admin/LatestDynamic/modify?id={$vo.id}">修改</a>
                                 <a class="link-del" href="__ROOT__/Admin/LatestDynamic/delete?id={$vo.id}">删除</a>
@@ -55,62 +56,3 @@
             $('.update').css("display","block");
         })
     </script>
-=======
-            <form name="myform" id="myform" method="post">
-                <div class="result-title">
-                    <div class="result-list">
-                        <a href="addNews.html"><i class="icon-font"></i>新增会议</a>
-                        <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
-                        <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
-                    </div>
-                </div>
-                <div class="result-content">
-                    <table class="result-tab" width="100%">
-                        <tr>
-                            <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
-                            <th>排序</th>
-                            <th>ID</th>
-                            <th>标题</th>
-                            <th>发布时间</th>
-                            <th>更新时间</th>
-                            <th>操作</th>
-                        </tr>
-                        <tr>
-                            <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
-                            <td>
-                                <input name="ids[]" value="59" type="hidden">
-                                <input class="common-input sort-input" name="ord[]" value="0" type="text">
-                            </td>
-                            <td>59</td>
-                            <td title="2015中国国际矿业大会组委会会议10月26日下午在津召开"><a target="_blank" href="#" title="2015中国国际矿业大会组委会会议10月26日下午在津召开">2015中国国际</a> …
-                            </td>
-                            <td>2016-09-05 21:11:01</td>
-                            <td>2016-09-06 09:11:01</td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
-                            <td>
-                                <input name="ids[]" value="59" type="hidden">
-                                <input class="common-input sort-input" name="ord[]" value="0" type="text">
-                            </td>
-                            <td>59</td>
-                            <td title="2015中国国际矿业大会组委会会议10月26日下午在津召开"><a target="_blank" href="#" title="2015中国国际矿业大会组委会会议10月26日下午在津召开">2015中国国际</a> …
-                            </td>
-                            <td>2016-09-05 21:11:01</td>
-                            <td>2016-09-06 09:11:01</td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                            </td>
-                        </tr>
-                    </table>
-                    <div class="list-page"> 2 条 1/1 页</div>
-                </div>
-            </form>
-        </div>
-    </div>
->>>>>>> 8b6e7cbfc96e6f1960d4d33868c34aab567979cd
