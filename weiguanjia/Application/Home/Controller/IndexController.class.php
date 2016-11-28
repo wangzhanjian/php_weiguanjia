@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
-class IndexController extends Controller {
+
+class IndexController extends BasisController {
     //显示首页信息
     public function index(){
         $shufflingImg=$this->shufflingImg();
@@ -10,12 +10,14 @@ class IndexController extends Controller {
         $this->assign('latestDynamic',$latestDynamic);
         $specialRecommendation=$this->specialRecommendation();
         $this->assign('specialRecommendation',$specialRecommendation);
-        $this->display();
+        $this->assignNickname();
+        $this->display('Index/index');
 
     }
 
     //显示关于我们静态页面
     function aboutUs(){
+        $this->assignNickname();
         $this->display();
     }
     //获取图片轮播资源

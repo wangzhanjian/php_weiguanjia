@@ -8,19 +8,12 @@
 
     <!-- 可选的Bootstrap主题文件（一般不用引入）
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">-->
-
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入-->
-    <script type="text/javascript" src="/Public/Home/js/jquery3.js"></script>
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件-->
-    <script type="text/javascript" src="/Public/Home/js/bootstrap.js"></script>
     <link rel="stylesheet" href="/Public/Home/css/index.css">
     <link rel="stylesheet" type="text/css" href="/Public/Home/css/log_reg.css" />
     </head>
     <body>
         <!--navbar-->
-        <!--navbar-->
-<div class="row clearfix">
+        <div class="row clearfix">
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 column">
@@ -49,7 +42,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <?php if(!empty($nickname)): ?><li>
-                                <a href="/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><?php echo ($nickname); ?></a>
+                                <a href="/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><span id="navbar_nickname"><?php echo ($nickname); ?></span></a>
                             </li>
                             <li>
                                 <a href="/Home/UserManager/userExit">退出</a>
@@ -96,8 +89,7 @@
             </div>
         </div>
         <!--footer-->
-        <!--footer-->
-<div class="row clearfix footer">
+        <div class="row clearfix footer">
     <div class="col-sm-12 col-md-12 col-lg-12 column">
         <p class="text-center">
             Copyright © 2011-2016 www.weiguanjia.com. All Rights Reserved software college of Hebei Normal University
@@ -106,4 +98,8 @@
     </div>
 </div>
     </body>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入-->
+<script type="text/javascript" src="/Public/Home/js/jquery3.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件-->
+<script type="text/javascript" src="/Public/Home/js/bootstrap.js"></script>
 </html>

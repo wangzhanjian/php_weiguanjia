@@ -30,13 +30,20 @@ form{
 }
 
 .verify_code {
-    width: 70%;
+    width: 50%;
 }
 
-.verify_img{
-    width: 25%;
+.verify_code_box{
+    width: 45%;
     height: 34px;
     margin-top: -34px;
     margin-bottom: -34px;
     float: right;
+}
+.verify_img{
+    height:100%;
+}
+
+.tip{
+    color:#f00;
 }

@@ -8,19 +8,12 @@
 
     <!-- 可选的Bootstrap主题文件（一般不用引入）
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">-->
-
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入-->
-    <script type="text/javascript" src="/Public/Home/js/jquery3.js"></script>
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件-->
-    <script type="text/javascript" src="/Public/Home/js/bootstrap.js"></script>
     <link rel="stylesheet" href="/Public/Home/css/index.css">
     <link rel="stylesheet" type="text/css" href="/Public/Home/css/project_center.css" />
     </head>
     <body>
         <!--navbar-->
-        <!--navbar-->
-<div class="row clearfix">
+        <div class="row clearfix">
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 column">
@@ -49,7 +42,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <?php if(!empty($nickname)): ?><li>
-                                <a href="/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><?php echo ($nickname); ?></a>
+                                <a href="/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><span id="navbar_nickname"><?php echo ($nickname); ?></span></a>
                             </li>
                             <li>
                                 <a href="/Home/UserManager/userExit">退出</a>
@@ -144,22 +137,22 @@
         <div class="list-group hidden_nav">
             <div>
                 <!--唤出隐藏导航栏标签-->
-                <a class="right right_label carousel-control" href="#" data-click-count="odd" data-slide="prev"><span class="glyphicon glyphicon-chevron-left glyphicon_left"></span></a>
+                <a class="right right_label carousel-control" href="javascript:void(0)" data-click-count="odd" data-slide="prev"><span class="glyphicon glyphicon-chevron-left glyphicon_left"></span></a>
             </div>
-            <label href="#" class="list-group-item active">项目管理</label>
+            <a href="javascript:void(0)" class="list-group-item active">项目管理</a>
             <a class="list-group-item" id="modal-347417" href="#modal-container-347417" data-toggle="modal">新建项目</a>
             <a href="/Home/ProjectManager/gzhInfo" class="list-group-item">查看公众号</a>
             <div class="dropdown">
-            <a href="#" class="list-group-item dropdown-toggle" id="gzh_list" data-toggle="dropdown" aria-expanded="false">
+            <a href="javascript:void(0)" class="list-group-item dropdown-toggle" id="gzh_list" data-toggle="dropdown" aria-expanded="false">
                     切换公众号
             <span class="caret"></span>
             </a>
             <div class="list-group dropdown-menu gzh_list" role="menu" aria-labelledby="gzh_list">
-                <?php if(is_array($projectList)): $i = 0; $__LIST__ = $projectList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><a href="#"><?php echo ($vo['app_name']); ?></a><?php endforeach; endif; else: echo "" ;endif; ?>
-                <!--<a class="list-group-item active" role="menuitem" tabindex="-1" href="#">微享PHP</a>-->
-                    <!--<a class="list-group-item" role="menuitem" tabindex="-1" href="#">口袋书屋</a>-->
-                    <!--<a class="list-group-item" role="menuitem" tabindex="-1" href="#">每日一句</a>-->
-                    <!--<a class="list-group-item" role="menuitem" tabindex="-1" href="#">LeisureSquare</a>-->
+                <?php if(empty($projectList)): ?><a class="list-group-item" role="menuitem" tabindex="-1" href="javascript:void(0)">您还没有创建项目</a>
+                    <?php else: ?>
+                    <?php if(is_array($projectList)): $i = 0; $__LIST__ = $projectList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo['app_name'] == $current_app_name): ?><a class="list-group-item active" role="menuitem" tabindex="-1" href="javascript:void(0)"><?php echo ($vo['app_name']); ?></a>
+                            <?php else: ?>
+                            <a class="list-group-item" role="menuitem" tabindex="-1" href="switching?app_name=<?php echo ($vo['app_name']); ?>"><?php echo ($vo['app_name']); ?></a><?php endif; endforeach; endif; else: echo "" ;endif; endif; ?>
             </div>
             </div>
         </div>
@@ -214,8 +207,7 @@
         </div>
 
         <!--footer-->
-        <!--footer-->
-<div class="row clearfix footer">
+        <div class="row clearfix footer">
     <div class="col-sm-12 col-md-12 col-lg-12 column">
         <p class="text-center">
             Copyright © 2011-2016 www.weiguanjia.com. All Rights Reserved software college of Hebei Normal University
@@ -224,5 +216,9 @@
     </div>
 </div>
     </body>
-    <script type="text/javascript" src="/Public/Home/js/project_center.js"></script>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入-->
+<script type="text/javascript" src="/Public/Home/js/jquery3.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件-->
+<script type="text/javascript" src="/Public/Home/js/bootstrap.js"></script>
+<script type="text/javascript" src="/Public/Home/js/project_center.js"></script>
 </html>
