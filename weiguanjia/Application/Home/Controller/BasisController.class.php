@@ -20,4 +20,8 @@ class BasisController extends Controller
            return false;
        }
     }
+
+    public function assignNickname(){
+        $this->assign('nickname',session('nickname'));
+    }
 }

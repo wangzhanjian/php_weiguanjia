@@ -4,23 +4,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>微管家</title>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/Public/Home/css/bootstrap.css" />
 
     <!-- 可选的Bootstrap主题文件（一般不用引入）
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">-->
-
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/Public/Home/css/index.css">
     <link rel="stylesheet" type="text/css" href="/Public/Home/css/personal_center.css" />
     </head>
     <body>
     <!--navbar-->
-    <!--navbar-->
-<div class="row clearfix">
+    <div class="row clearfix">
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 column">
@@ -34,32 +27,32 @@
             <div class="col-sm-8 col-md-8 col-lg-8 column">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="./index.html">首页</a>
+                        <li>
+                            <a href="/Home">首页</a>
                         </li>
                         <li>
-                            <a href="./project_center.html">项目中心</a>
+                            <a href="/Home/ProjectManager/centerPage">项目中心</a>
                         </li>
                         <li>
                             <a href="#">产品中心</a>
                         </li>
                         <li>
-                            <a href="./about_us.html">关于我们</a>
+                            <a href="/Home/Index/aboutUs">关于我们</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <?php if(!empty($nickname)): ?><li>
-                                <a href="./personal_center.html"><span class="glyphicon glyphicon-user"></span><?php echo ($nickname); ?></a>
+                                <a href="/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><span id="navbar_nickname"><?php echo ($nickname); ?></span></a>
                             </li>
                             <li>
                                 <a href="/Home/UserManager/userExit">退出</a>
                             </li>
                             <?php else: ?>
                             <li>
-                                <a href="./login.html">登录</a>
+                                <a href="/Home/UserManager/loginPage">登录</a>
                             </li>
                             <li>
-                                <a href="./register.html">注册</a>
+                                <a href="/Home/UserManager/registerPage">注册</a>
                             </li><?php endif; ?>
                     </ul>
                 </div>
@@ -74,13 +67,13 @@
                     <div class="left_nav">
                        <ul class="nav">
                             <li class="active">
-                                <a href="./personal_center.html">个人信息</a>
+                                <a href="info">个人信息</a>
                             </li>
                             <li>
-                                <a href="./modify_password.html">修改密码</a>
+                                <a href="modifyPasswordPage">修改密码</a>
                             </li>
                             <li>
-                                <a href="./personal_center_gzh.html">公众号</a>
+                                <a href="gzhList">公众号</a>
                             </li>
                         </ul>
                     </div>
@@ -95,12 +88,12 @@
                             <table>
                                 <tr>
                                     <td class="t_head">昵 &nbsp;&nbsp;&nbsp;称</td>
-                                    <td>wzj</td>
-                                    <td class="t_head" colspan="2"><a href="">修 改</a></td><td> </td>
+                                    <td id="td_nickname"><?php echo ($info["nickname"]); ?></td>
+                                    <td class="t_head" colspan="2"><button type="button" class="btn btn-xs btn-info" id="modify_nickname">修改</button></td><td> </td>
                                 </tr>
                                 <tr>
                                     <td class="t_head">注册号</td>
-                                    <td>317619554@qq.com</td>
+                                    <td><?php echo ($info["username"]); ?></td>
                                 </tr>
                             </table>
                         </div>
@@ -109,8 +102,7 @@
             </div>
         </div>
     <!--footer-->
-    <!--footer-->
-<div class="row clearfix footer">
+    <div class="row clearfix footer">
     <div class="col-sm-12 col-md-12 col-lg-12 column">
         <p class="text-center">
             Copyright © 2011-2016 www.weiguanjia.com. All Rights Reserved software college of Hebei Normal University
@@ -119,4 +111,39 @@
     </div>
 </div>
     </body>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入-->
+<script type="text/javascript" src="/Public/Home/js/jquery3.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件-->
+<script type="text/javascript" src="/Public/Home/js/bootstrap.js"></script>
+<script>
+    $(function () {
+        $('#modify_nickname').click(function () {
+
+            $('#td_nickname').html('<input type=text name=new_nickname value='+$('#td_nickname').text()+'>');
+            $(this).text('提交').attr('id','update_nickname').addClass('disabled');
+
+            $('[name=new_nickname]').change(function () {
+                $val=$(this).val();
+                if($val.length <=10){
+                    $('#update_nickname').removeClass('disabled').click(function () {
+                        $url='updateInfo';
+                        $data={"nickname":$val};
+                        $.get($url,$data,function (data) {
+                            if(data=='success'){
+                                $('#td_nickname').html($val);
+                                $('#navbar_nickname').text($val);
+                                $('#update_nickname').attr('id','modify_nickname').html('<del>&nbsp; 修改 &nbsp;</del>');
+                            }else{
+                                alert('修改失败！');
+                            }
+                        });
+                    });
+                }else{
+                    alert('昵称必须在10个字符以内！');
+                }
+            });
+        });
+
+    })
+</script>
 </html>
