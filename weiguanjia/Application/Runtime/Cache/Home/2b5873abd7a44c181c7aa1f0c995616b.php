@@ -4,16 +4,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>微管家</title>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/Public/Home/css/bootstrap.css" />
 
     <!-- 可选的Bootstrap主题文件（一般不用引入）
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">-->
-
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/Public/Home/css/index.css">
     <link rel="stylesheet" type="text/css" href="/Public/Home/css/personal_center.css" />
         <style type="text/css" media="screen">
@@ -24,8 +18,7 @@
     </head>
     <body>
     <!--navbar-->
-        <!--navbar-->
-<div class="row clearfix">
+        <div class="row clearfix">
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 column">
@@ -39,26 +32,33 @@
             <div class="col-sm-8 col-md-8 col-lg-8 column">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="./index.html">首页</a>
+                        <li>
+                            <a href="/Home">首页</a>
                         </li>
                         <li>
-                            <a href="./project_center.html">项目中心</a>
+                            <a href="/Home/ProjectManager/centerPage">项目中心</a>
                         </li>
                         <li>
                             <a href="#">产品中心</a>
                         </li>
                         <li>
-                            <a href="./about_us.html">关于我们</a>
+                            <a href="/Home/Index/aboutUs">关于我们</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="./login.html">登录</a>
-                        </li>
-                        <li>
-                            <a href="./register.html">注册</a>
-                        </li>
+                        <?php if(!empty($nickname)): ?><li>
+                                <a href="/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><span id="navbar_nickname"><?php echo ($nickname); ?></span></a>
+                            </li>
+                            <li>
+                                <a href="/Home/UserManager/userExit">退出</a>
+                            </li>
+                            <?php else: ?>
+                            <li>
+                                <a href="/Home/UserManager/loginPage">登录</a>
+                            </li>
+                            <li>
+                                <a href="/Home/UserManager/registerPage">注册</a>
+                            </li><?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -72,13 +72,13 @@
                     <div class="left_nav">
                        <ul class="nav">
                             <li>
-                                <a href="./personal_center.html">个人信息</a>
+                                <a href="info">个人信息</a>
                             </li>
                             <li>
-                                <a href="./modify_password.html">修改密码</a>
+                                <a href="modifyPasswordPage">修改密码</a>
                             </li>
                             <li class="active">
-                                <a href="./personal_center_gzh.html">公众号</a>
+                                <a href="gzhList">公众号</a>
                             </li>
                         </ul>
                     </div>
@@ -91,15 +91,11 @@
                         </div>
                         <div class="content">
                             <table>
-                                <tr>
-                                    <td class="t_head">微享PHP</td><td><a href="">详 情</a><a href="">开 发</a><a href="">删 除</a></td>
-                                </tr>
-                                <tr>
-                                    <td class="t_head">微享PHP</td><td><a href="">详 情</a><a href="">开 发</a><a href="">删 除</a></td>
-                                </tr>
-                                <tr>
-                                    <td class="t_head">微享PHP</td><td><a href="">详 情</a><a href="">开 发</a><a href="">删 除</a></td>
-                                </tr>
+                                <?php if(empty($gzh)): ?><td class="t_head"><h4>您还未创建项目</h4></td><td><a href="/Home/ProjectManager/centerPage">去项目中心</a> </td>
+                                    <?php else: ?>
+                                    <?php if(is_array($gzh)): $i = 0; $__LIST__ = $gzh;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+                                            <td class="t_head"><?php echo ($vo["app_name"]); ?></td><td><a href="">详 情</a><a href="/Home/ProjectManager/centerPage">开 发</a><a href="">删 除</a></td>
+                                        </tr><?php endforeach; endif; else: echo "" ;endif; endif; ?>
                             </table>
                         </div>
                     </div>
@@ -107,8 +103,7 @@
             </div>
         </div>
     <!--footer-->
-        <!--footer-->
-<div class="row clearfix footer">
+        <div class="row clearfix footer">
     <div class="col-sm-12 col-md-12 col-lg-12 column">
         <p class="text-center">
             Copyright © 2011-2016 www.weiguanjia.com. All Rights Reserved software college of Hebei Normal University

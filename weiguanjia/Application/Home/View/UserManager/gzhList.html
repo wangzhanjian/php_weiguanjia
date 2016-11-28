@@ -16,13 +16,13 @@
                     <div class="left_nav">
                        <ul class="nav">
                             <li>
-                                <a href="./personal_center.html">个人信息</a>
+                                <a href="info">个人信息</a>
                             </li>
                             <li>
-                                <a href="./modify_password.html">修改密码</a>
+                                <a href="modifyPasswordPage">修改密码</a>
                             </li>
                             <li class="active">
-                                <a href="./personal_center_gzh.html">公众号</a>
+                                <a href="gzhList">公众号</a>
                             </li>
                         </ul>
                     </div>
@@ -35,15 +35,15 @@
                         </div>
                         <div class="content">
                             <table>
-                                <tr>
-                                    <td class="t_head">微享PHP</td><td><a href="">详 情</a><a href="">开 发</a><a href="">删 除</a></td>
-                                </tr>
-                                <tr>
-                                    <td class="t_head">微享PHP</td><td><a href="">详 情</a><a href="">开 发</a><a href="">删 除</a></td>
-                                </tr>
-                                <tr>
-                                    <td class="t_head">微享PHP</td><td><a href="">详 情</a><a href="">开 发</a><a href="">删 除</a></td>
-                                </tr>
+                                <empty name="gzh">
+                                    <td class="t_head"><h4>您还未创建项目</h4></td><td><a href="__ROOT__/Home/ProjectManager/centerPage">去项目中心</a> </td>
+                                    <else />
+                                    <volist name="gzh" id="vo"  >
+                                        <tr>
+                                            <td class="t_head">{$vo.app_name}</td><td><a href="">详 情</a><a href="/Home/ProjectManager/centerPage">开 发</a><a href="">删 除</a></td>
+                                        </tr>
+                                    </volist>
+                                </empty>
                             </table>
                         </div>
                     </div>
