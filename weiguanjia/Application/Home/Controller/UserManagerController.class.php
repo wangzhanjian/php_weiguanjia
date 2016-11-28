@@ -195,7 +195,7 @@ class UserManagerController extends BasisController
 
     //忘记密码
     public function forgetPassword(){
-
+        $this->display();
     }
 
     //显示个人信息页面 ok
