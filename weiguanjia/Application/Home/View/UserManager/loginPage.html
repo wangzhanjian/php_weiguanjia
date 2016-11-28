@@ -5,13 +5,13 @@
         <!--navbar-->
         <include file="./Common:top_navbar" />
         <!--content-->
-        <div class="container main_content">
+        <div class="container main_content login">
             <div class="row clearfix">
-                <div class="col-sm-6 col-md-6 col-lg-6 column">
-                    <img alt="140x140" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/140/140/default.jpg" />
+                <div class="col-sm-6 col-md-6 col-lg-6 column left_img">
+
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-6 column">
-                    <form role="form">
+                    <form role="form" action="__ROOT__/Home/UserManager/login" method="post">
                         <div class="form-group">
                              <label>用户名</label>
                                 <input type="text" class="form-control" name="username" id="username"/>
@@ -19,11 +19,6 @@
                         <div class="form-group">
                              <label>密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
                                 <input type="password" class="form-control" name="password" id="password" />
-                        </div>
-                        <div class="form-group">
-                             <label>验证码</label>
-                            <input type="text" class="form-control verify_code" name="verify_code" id="verify_code" />
-                            <img class="verify_img" src=""/>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-default btn-primary btn-block">登录</button>
@@ -40,4 +35,5 @@
         <!--footer-->
         <include file="./Common:footer" />
     </body>
+<include file="./Common:bottom_js" />
 </html>

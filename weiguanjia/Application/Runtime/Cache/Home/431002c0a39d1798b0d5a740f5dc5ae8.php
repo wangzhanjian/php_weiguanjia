@@ -4,23 +4,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>微管家</title>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/Public/Home/css/bootstrap.css" />
 
     <!-- 可选的Bootstrap主题文件（一般不用引入）
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">-->
-
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/Public/Home/css/index.css">
     <link rel="stylesheet" type="text/css" href="/Public/Home/css/project_center.css" />
     </head>
     <body>
         <!--navbar-->
-        <!--navbar-->
-<div class="row clearfix">
+        <div class="row clearfix">
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 column">
@@ -34,26 +27,33 @@
             <div class="col-sm-8 col-md-8 col-lg-8 column">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="./index.html">首页</a>
+                        <li>
+                            <a href="/Home">首页</a>
                         </li>
                         <li>
-                            <a href="./project_center.html">项目中心</a>
+                            <a href="/Home/ProjectManager/centerPage">项目中心</a>
                         </li>
                         <li>
                             <a href="#">产品中心</a>
                         </li>
                         <li>
-                            <a href="./about_us.html">关于我们</a>
+                            <a href="/Home/Index/aboutUs">关于我们</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="./login.html">登录</a>
-                        </li>
-                        <li>
-                            <a href="./register.html">注册</a>
-                        </li>
+                        <?php if(!empty($nickname)): ?><li>
+                                <a href="/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><span id="navbar_nickname"><?php echo ($nickname); ?></span></a>
+                            </li>
+                            <li>
+                                <a href="/Home/UserManager/userExit">退出</a>
+                            </li>
+                            <?php else: ?>
+                            <li>
+                                <a href="/Home/UserManager/loginPage">登录</a>
+                            </li>
+                            <li>
+                                <a href="/Home/UserManager/registerPage">注册</a>
+                            </li><?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -137,21 +137,22 @@
         <div class="list-group hidden_nav">
             <div>
                 <!--唤出隐藏导航栏标签-->
-                <a class="right right_label carousel-control" href="#" data-click-count="odd" data-slide="prev"><span class="glyphicon glyphicon-chevron-left glyphicon_left"></span></a>
+                <a class="right right_label carousel-control" href="javascript:void(0)" data-click-count="odd" data-slide="prev"><span class="glyphicon glyphicon-chevron-left glyphicon_left"></span></a>
             </div>
-            <label href="#" class="list-group-item active">项目管理</label>
+            <a href="javascript:void(0)" class="list-group-item active">项目管理</a>
             <a class="list-group-item" id="modal-347417" href="#modal-container-347417" data-toggle="modal">新建项目</a>
-            <a href="./project_center_gzh.html" class="list-group-item">查看公众号</a>
+            <a href="/Home/ProjectManager/gzhInfo" class="list-group-item">查看公众号</a>
             <div class="dropdown">
-            <a href="#" class="list-group-item dropdown-toggle" id="gzh_list" data-toggle="dropdown" aria-expanded="false">
+            <a href="javascript:void(0)" class="list-group-item dropdown-toggle" id="gzh_list" data-toggle="dropdown" aria-expanded="false">
                     切换公众号
             <span class="caret"></span>
             </a>
             <div class="list-group dropdown-menu gzh_list" role="menu" aria-labelledby="gzh_list">
-                    <a class="list-group-item active" role="menuitem" tabindex="-1" href="#">微享PHP</a>
-                    <a class="list-group-item" role="menuitem" tabindex="-1" href="#">口袋书屋</a>
-                    <a class="list-group-item" role="menuitem" tabindex="-1" href="#">每日一句</a>
-                    <a class="list-group-item" role="menuitem" tabindex="-1" href="#">LeisureSquare</a>
+                <?php if(empty($projectList)): ?><a class="list-group-item" role="menuitem" tabindex="-1" href="javascript:void(0)">您还没有创建项目</a>
+                    <?php else: ?>
+                    <?php if(is_array($projectList)): $i = 0; $__LIST__ = $projectList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo['app_name'] == $current_app_name): ?><a class="list-group-item active" role="menuitem" tabindex="-1" href="javascript:void(0)"><?php echo ($vo['app_name']); ?></a>
+                            <?php else: ?>
+                            <a class="list-group-item" role="menuitem" tabindex="-1" href="switching?app_name=<?php echo ($vo['app_name']); ?>"><?php echo ($vo['app_name']); ?></a><?php endif; endforeach; endif; else: echo "" ;endif; endif; ?>
             </div>
             </div>
         </div>
@@ -171,12 +172,12 @@
                                     </h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form role="form" action="#" method="post">
+                                    <form role="form" action="/home/ProjectManager/create" method="post">
                                             <p class="help-block text-right create_help">
                                                 <a href="#">如何创建项目？</a>
                                             </p>
                                         <div class="form-group">
-                                             <label>公众号原始id</label><input type="text" class="form-control" name="source_id" id="source_id" />
+                                             <label>公众号原始id</label><input type="text" class="form-control" name="app_source_id" id="source_id" />
                                         </div>
                                         <div class="form-group">
                                              <label>公众号名称</label><input type="text" class="form-control" name="app_name" id="app_name" />
@@ -185,7 +186,7 @@
                                              <label>app_id</label><input type="text" class="form-control" name="app_id" id="app_id" />
                                         </div>
                                         <div class="form-group">
-                                             <label>app_secreat</label><input type="text" class="form-control" name="app_secreat" id="app_secreat" />
+                                             <label>app_secret</label><input type="text" class="form-control" name="app_secret" id="app_secret" />
                                         </div>
                                         <div class="form-group">
                                              <label>token</label><input type="text" class="form-control" name="token" id="token" />
@@ -206,8 +207,7 @@
         </div>
 
         <!--footer-->
-        <!--footer-->
-<div class="row clearfix footer">
+        <div class="row clearfix footer">
     <div class="col-sm-12 col-md-12 col-lg-12 column">
         <p class="text-center">
             Copyright © 2011-2016 www.weiguanjia.com. All Rights Reserved software college of Hebei Normal University
@@ -216,5 +216,9 @@
     </div>
 </div>
     </body>
-    <script type="text/javascript" src="/Public/Home/js/project_center.js"></script>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入-->
+<script type="text/javascript" src="/Public/Home/js/jquery3.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件-->
+<script type="text/javascript" src="/Public/Home/js/bootstrap.js"></script>
+<script type="text/javascript" src="/Public/Home/js/project_center.js"></script>
 </html>

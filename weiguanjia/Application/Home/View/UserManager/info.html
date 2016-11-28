@@ -11,13 +11,13 @@
                     <div class="left_nav">
                        <ul class="nav">
                             <li class="active">
-                                <a href="./personal_center.html">个人信息</a>
+                                <a href="info">个人信息</a>
                             </li>
                             <li>
-                                <a href="./modify_password.html">修改密码</a>
+                                <a href="modifyPasswordPage">修改密码</a>
                             </li>
                             <li>
-                                <a href="./personal_center_gzh.html">公众号</a>
+                                <a href="gzhList">公众号</a>
                             </li>
                         </ul>
                     </div>
@@ -31,16 +31,13 @@
                         <div class="content">
                             <table>
                                 <tr>
-                                    <td class="t_head">用户名</td><td>wzj</td>
+                                    <td class="t_head">昵 &nbsp;&nbsp;&nbsp;称</td>
+                                    <td id="td_nickname">{$info.nickname}</td>
+                                    <td class="t_head" colspan="2"><button type="button" class="btn btn-xs btn-info" id="modify_nickname">修改</button></td><td> </td>
                                 </tr>
                                 <tr>
-                                    <td class="t_head">邮&nbsp;&nbsp;&nbsp;箱</td><td>317619554@qq.com</td>
-                                </tr>
-                                <tr>
-                                    <td class="t_head">手&nbsp;&nbsp;&nbsp;机</td><td>15232160915</td>
-                                </tr>
-                                <tr>
-                                    <td class="t_head" colspan="2"><a href="">修 改</a></td><td> </td>
+                                    <td class="t_head">注册号</td>
+                                    <td>{$info.username}</td>
                                 </tr>
                             </table>
                         </div>
@@ -51,4 +48,36 @@
     <!--footer-->
     <include file="./Common:footer" />
     </body>
+<include file="./Common:bottom_js" />
+<script>
+    $(function () {
+        $('#modify_nickname').click(function () {
+
+            $('#td_nickname').html('<input type=text name=new_nickname value='+$('#td_nickname').text()+'>');
+            $(this).text('提交').attr('id','update_nickname').addClass('disabled');
+
+            $('[name=new_nickname]').change(function () {
+                $val=$(this).val();
+                if($val.length <=10){
+                    $('#update_nickname').removeClass('disabled').click(function () {
+                        $url='updateInfo';
+                        $data={"nickname":$val};
+                        $.get($url,$data,function (data) {
+                            if(data=='success'){
+                                $('#td_nickname').html($val);
+                                $('#navbar_nickname').text($val);
+                                $('#update_nickname').attr('id','modify_nickname').html('<del>&nbsp; 修改 &nbsp;</del>');
+                            }else{
+                                alert('修改失败！');
+                            }
+                        });
+                    });
+                }else{
+                    alert('昵称必须在10个字符以内！');
+                }
+            });
+        });
+
+    })
+</script>
 </html>

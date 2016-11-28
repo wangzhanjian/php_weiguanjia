@@ -1,0 +1,33 @@
+<div class="main-wrap">
+
+    <div class="crumb-wrap">
+        <div class="crumb-list"><i class="icon-font"></i><a href="index.html">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">最新动态</span></div>
+    </div>
+    <div class="result-wrap">
+        <form name="myform" id="myform" method="post" action="__ROOT__/Admin/SpecialRecommendation/add">
+            <div class="result-title">
+                <div class="result-list">
+                </div>
+            </div>
+        </form>
+        <div class="result-content">
+            <form method="post" name="dynamic" action="__ROOT__/Admin/SpecialRecommendation/modify">
+                <div>
+                    <div>
+                        <label>ID</label><input type="text" name="id" value="{$article.0.id}">
+                    </div>
+                    <div>
+                        <label>标题</label><input type="text" name="title" value="{$article.0.title}">
+                    </div>
+                    <br/>
+                    <div>
+                        <label>内容</label><textarea name="content">{$article.0.content}</textarea>
+                    </div>
+                    <div>
+                        <input type="submit" name="submit" value="提交">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

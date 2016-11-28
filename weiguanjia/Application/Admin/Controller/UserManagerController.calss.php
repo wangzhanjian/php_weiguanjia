@@ -15,16 +15,35 @@ class UserManagerController extends Controller
 {
     //显示用户及其基本信息列表
     Public function index(){
+        $db = M('User');//连接数据库
+        $count = $db->count();
+        $Page = new Page($count,10);
+        $show = $Page->show();//创建分页
+        $list = $db->order('Id')->field('username')->limit($Page->firstRow.','.$Page->listRows)->select();
+        $this->assign('list',$list);
+        $this->assign('page',$show);
+        $this->display();
         $this->display();
     }
     //显示服务器所有公众号信息列表
-    Public function gzhList(){}
+    Public function gzhList(){
+
+        $this->display();
+    }
     //返回用户个数
-    Public function userCount(){}
+    Public function userCount(){
+
+    }
     //返回公众号个数
-    Public function gzhCount(){}
+    Public function gzhCount(){
+
+    }
     //显示用户详情
-    Public function userInfo(){}
+    Public function userInfo(){
+
+    }
     //显示公众号详情
-    Public function gzhInfo(){}
+    Public function gzhInfo(){
+
+    }
 }

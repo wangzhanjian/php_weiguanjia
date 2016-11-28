@@ -81,21 +81,28 @@
         <div class="list-group hidden_nav">
             <div>
                 <!--唤出隐藏导航栏标签-->
-                <a class="right right_label carousel-control" href="#" data-click-count="odd" data-slide="prev"><span class="glyphicon glyphicon-chevron-left glyphicon_left"></span></a>
+                <a class="right right_label carousel-control" href="javascript:void(0)" data-click-count="odd" data-slide="prev"><span class="glyphicon glyphicon-chevron-left glyphicon_left"></span></a>
             </div>
-            <label href="#" class="list-group-item active">项目管理</label>
+            <a href="javascript:void(0)" class="list-group-item active">项目管理</a>
             <a class="list-group-item" id="modal-347417" href="#modal-container-347417" data-toggle="modal">新建项目</a>
-            <a href="./project_center_gzh.html" class="list-group-item">查看公众号</a>
+            <a href="__ROOT__/Home/ProjectManager/gzhInfo" class="list-group-item">查看公众号</a>
             <div class="dropdown">
-            <a href="#" class="list-group-item dropdown-toggle" id="gzh_list" data-toggle="dropdown" aria-expanded="false">
+            <a href="javascript:void(0)" class="list-group-item dropdown-toggle" id="gzh_list" data-toggle="dropdown" aria-expanded="false">
                     切换公众号
             <span class="caret"></span>
             </a>
             <div class="list-group dropdown-menu gzh_list" role="menu" aria-labelledby="gzh_list">
-                    <a class="list-group-item active" role="menuitem" tabindex="-1" href="#">微享PHP</a>
-                    <a class="list-group-item" role="menuitem" tabindex="-1" href="#">口袋书屋</a>
-                    <a class="list-group-item" role="menuitem" tabindex="-1" href="#">每日一句</a>
-                    <a class="list-group-item" role="menuitem" tabindex="-1" href="#">LeisureSquare</a>
+                <empty name="projectList">
+                    <a class="list-group-item" role="menuitem" tabindex="-1" href="javascript:void(0)">您还没有创建项目</a>
+                    <else />
+                    <volist name="projectList" id="vo">
+                        <if condition="$vo['app_name'] eq $current_app_name">
+                            <a class="list-group-item active" role="menuitem" tabindex="-1" href="javascript:void(0)">{$vo['app_name']}</a>
+                            <else />
+                            <a class="list-group-item" role="menuitem" tabindex="-1" href="switching?app_name={$vo['app_name']}">{$vo['app_name']}</a>
+                        </if>
+                    </volist>
+                </empty>
             </div>
             </div>
         </div>
@@ -115,12 +122,12 @@
                                     </h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form role="form" action="#" method="post">
+                                    <form role="form" action="__ROOT__/home/ProjectManager/create" method="post">
                                             <p class="help-block text-right create_help">
                                                 <a href="#">如何创建项目？</a>
                                             </p>
                                         <div class="form-group">
-                                             <label>公众号原始id</label><input type="text" class="form-control" name="source_id" id="source_id" />
+                                             <label>公众号原始id</label><input type="text" class="form-control" name="app_source_id" id="source_id" />
                                         </div>
                                         <div class="form-group">
                                              <label>公众号名称</label><input type="text" class="form-control" name="app_name" id="app_name" />
@@ -129,7 +136,7 @@
                                              <label>app_id</label><input type="text" class="form-control" name="app_id" id="app_id" />
                                         </div>
                                         <div class="form-group">
-                                             <label>app_secreat</label><input type="text" class="form-control" name="app_secreat" id="app_secreat" />
+                                             <label>app_secret</label><input type="text" class="form-control" name="app_secret" id="app_secret" />
                                         </div>
                                         <div class="form-group">
                                              <label>token</label><input type="text" class="form-control" name="token" id="token" />
@@ -152,5 +159,6 @@
         <!--footer-->
         <include file="./Common:footer" />
     </body>
-    <import type='js' file="Home.js.project_center" />
+<include file="./Common:bottom_js" />
+<import type='js' file="Home.js.project_center" />
 </html>
