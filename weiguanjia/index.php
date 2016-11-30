@@ -20,6 +20,9 @@ define('APP_DEBUG',True);
 // 定义应用目录
 define('APP_PATH','./Application/');
 
+//引入composer自动加载文件
+require './vendor/autoload.php';
+
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';
 

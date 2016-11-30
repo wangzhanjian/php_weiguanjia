@@ -18,7 +18,7 @@
 
         $('[name=username]').change(function(){
             if(check_username()){
-                $url='checkUserUniqueAjax';
+                $url='checkUserExistAjax';
                 $data={"username":$(this).val()};
                 $.post($url,$data,function (data) {
                     if(data=='已注册'){

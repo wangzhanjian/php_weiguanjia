@@ -41,8 +41,8 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <?php if(!empty($nickname)): ?><li>
-                                <a href="/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><span id="navbar_nickname"><?php echo ($nickname); ?></span></a>
+                        <?php if(!empty($GLOBAL_INFO)): ?><li>
+                                <a href="/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><span id="navbar_nickname"><?php echo ($GLOBAL_INFO['user_nickname']); ?></span></a>
                             </li>
                             <li>
                                 <a href="/Home/UserManager/userExit">退出</a>
@@ -70,11 +70,16 @@
                     <form role="form" action="/Home/UserManager/login" method="post">
                         <div class="form-group">
                              <label>用户名</label>
-                                <input type="text" class="form-control" name="username" id="username"/>
+                            <?php if(empty($remember_username)): ?><input type="text" class="form-control" name="username" />
+                                <?php else: ?>
+                                <input type="text" class="form-control" name="username" value="<?php echo ($remember_username); ?>"  /><?php endif; ?>
+
                         </div>
                         <div class="form-group">
                              <label>密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-                                <input type="password" class="form-control" name="password" id="password" />
+                            <?php if(empty($remember_password)): ?><input type="password" class="form-control" name="password" />
+                                <?php else: ?>
+                                <input type="password" class="form-control" name="password" value="<?php echo ($remember_password); ?>"/><?php endif; ?>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-default btn-primary btn-block">登录</button>

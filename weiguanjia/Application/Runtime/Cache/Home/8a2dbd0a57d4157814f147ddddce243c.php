@@ -41,8 +41,8 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <?php if(!empty($nickname)): ?><li>
-                                <a href="/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><span id="navbar_nickname"><?php echo ($nickname); ?></span></a>
+                        <?php if(!empty($GLOBAL_INFO)): ?><li>
+                                <a href="/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><span id="navbar_nickname"><?php echo ($GLOBAL_INFO['user_nickname']); ?></span></a>
                             </li>
                             <li>
                                 <a href="/Home/UserManager/userExit">退出</a>
@@ -126,7 +126,7 @@
                 $val=$(this).val();
                 if($val.length <=10){
                     $('#update_nickname').removeClass('disabled').click(function () {
-                        $url='updateInfo';
+                        $url='updateInfoAjax';
                         $data={"nickname":$val};
                         $.get($url,$data,function (data) {
                             if(data=='success'){
@@ -134,7 +134,7 @@
                                 $('#navbar_nickname').text($val);
                                 $('#update_nickname').attr('id','modify_nickname').html('<del>&nbsp; 修改 &nbsp;</del>');
                             }else{
-                                alert('修改失败！');
+                                alert(data);
                             }
                         });
                     });
