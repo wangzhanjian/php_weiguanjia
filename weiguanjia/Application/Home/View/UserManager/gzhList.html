@@ -40,7 +40,7 @@
                                     <else />
                                     <volist name="gzh" id="vo"  >
                                         <tr>
-                                            <td class="t_head">{$vo.app_name}</td><td><a href="">详 情</a><a href="/Home/ProjectManager/centerPage">开 发</a><a href="">删 除</a></td>
+                                            <td class="t_head">{$vo.app_name}</td><td><a href="">详 情</a><a href="/Home/ProjectManager/switching?app_name={$vo.app_name}">开 发</a><a href="gzhDel?app_name={$vo.app_name}">删 除</a></td>
                                         </tr>
                                     </volist>
                                 </empty>

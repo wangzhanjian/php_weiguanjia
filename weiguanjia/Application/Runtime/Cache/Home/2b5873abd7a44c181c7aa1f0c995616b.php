@@ -46,8 +46,8 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <?php if(!empty($nickname)): ?><li>
-                                <a href="/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><span id="navbar_nickname"><?php echo ($nickname); ?></span></a>
+                        <?php if(!empty($GLOBAL_INFO)): ?><li>
+                                <a href="/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><span id="navbar_nickname"><?php echo ($GLOBAL_INFO['user_nickname']); ?></span></a>
                             </li>
                             <li>
                                 <a href="/Home/UserManager/userExit">退出</a>
@@ -94,7 +94,7 @@
                                 <?php if(empty($gzh)): ?><td class="t_head"><h4>您还未创建项目</h4></td><td><a href="/Home/ProjectManager/centerPage">去项目中心</a> </td>
                                     <?php else: ?>
                                     <?php if(is_array($gzh)): $i = 0; $__LIST__ = $gzh;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-                                            <td class="t_head"><?php echo ($vo["app_name"]); ?></td><td><a href="">详 情</a><a href="/Home/ProjectManager/centerPage">开 发</a><a href="">删 除</a></td>
+                                            <td class="t_head"><?php echo ($vo["app_name"]); ?></td><td><a href="">详 情</a><a href="/Home/ProjectManager/switching?app_name=<?php echo ($vo["app_name"]); ?>">开 发</a><a href="gzhDel?app_name=<?php echo ($vo["app_name"]); ?>">删 除</a></td>
                                         </tr><?php endforeach; endif; else: echo "" ;endif; endif; ?>
                             </table>
                         </div>
@@ -112,4 +112,8 @@
     </div>
 </div>
     </body>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入-->
+<script type="text/javascript" src="/Public/Home/js/jquery3.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件-->
+<script type="text/javascript" src="/Public/Home/js/bootstrap.js"></script>
 </html>

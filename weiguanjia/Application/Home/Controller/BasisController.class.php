@@ -13,15 +13,8 @@ use Think\Controller;
 
 class BasisController extends Controller
 {
-    public function checkLogin(){
-       if(session('?user_id')) {
-           return true;
-       }else{
-           return false;
-       }
+    public function isLogin(){
+       return session('?'.C('SESSION_USER_ID'));
     }
 
-    public function assignNickname(){
-        $this->assign('nickname',session('nickname'));
-    }
 }

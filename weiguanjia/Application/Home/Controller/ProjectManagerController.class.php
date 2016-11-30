@@ -13,12 +13,11 @@ class ProjectManagerController extends BasisController
 {
     //显示项目中心主页面 ok
     public function centerPage(){
-        if($this->checkLogin()){
+        if($this->isLogin()){
             $this->centerPageInit();
             $this->display('ProjectManager/centerPage');
         }else{
             $this->error('请先登录！','/Home/UserManager/loginPage',2);
-            return false;
         }
     }
 
@@ -26,25 +25,25 @@ class ProjectManagerController extends BasisController
     protected function centerPageInit(){
         $projectList=$this->getProjectList();
         //检查有没有已保存项目信息
-        if(session('?app_info')){
-            $this->assign('current_app_name',session('app_info')['app_name']);
+        if(session(C('SESSION_APP_INFO'))){
+            $this->assign('current_app_name',session(C('SESSION_APP_INFO'))['app_name']);
         }else{
-            session('app_info',$projectList[0]);    //保存当前项目详细信息
+            session(C('SESSION_APP_INFO'),$projectList[0]);    //保存当前项目详细信息
             $this->assign('current_app_name',$projectList[0]['app_name']);
         }
-        $this->assignNickname();
+        $this->assign('GLOBAL_INFO',session());
         $this->assign('projectList',$projectList);
     }
 
     //新建项目操作 ok
     public function create(){
-        if($this->checkLogin()){
+        if($this->isLogin()){
             $project=D('Project');
             $data=I('post.');
-            $data['user_id']=session('user_id');
+            $data['user_id']=session(C('SESSION_USER_ID'));
             if($project->create($data)){
                 $project->add();
-                session('app_info',$data);              //将当前项目状态切换到新建的项目中
+                session(C('SESSION_APP_INFO'),$data);              //将当前项目状态切换到新建的项目中
                 $this->configPrompt();
             }else{
                 $this->error($project->getError(),'centerPage',2);
@@ -62,12 +61,7 @@ class ProjectManagerController extends BasisController
     //返回项目列表详细信息 ok
     protected function getProjectList(){
         $list=M('project');
-        $data=$list->where(array('user_id'=>session('user_id')))->select();
-        if($data){
-            return $data;
-        }else{
-            return false;
-        }
+        return $list->where(array('user_id'=>session('user_id')))->select();
     }
 
 
@@ -78,8 +72,7 @@ class ProjectManagerController extends BasisController
 
     //项目配置信息提示页面
     Protected function configPrompt(){
-        $this->assignNickname();
-        $this->assign('token',session('info')['token']);
+        $this->assign('GLOBAL_INFO',session());
         $this->display('configPrompt');
     }
 
@@ -90,12 +83,12 @@ class ProjectManagerController extends BasisController
 
     //项目切换 ok
     public function switching(){
-        if($this->checkLogin()){
+        if($this->isLogin()){
             $project=M('project');
-            $map=array('user_id'=>session('user_id'),'app_name'=>I('get.app_name'));
+            $map=array('user_id'=>session(C('SESSION_USER_ID')),'app_name'=>I('get.app_name'));
             $data=$project->where($map)->find();
             if($data){
-                session('app_info',$data);  //保存最新的项目信息
+                session(C('SESSION_APP_INFO'),$data);  //保存最新的项目信息
                 $this->centerPage();
             }else{
                 $this->error('项目切换失败！','centerPage',2);
@@ -103,7 +96,6 @@ class ProjectManagerController extends BasisController
         }else{
             $this->error('请先登录！','/home/UserManager/loginPage',2);
         }
-
     }
 
     //返回公众号app_secreat

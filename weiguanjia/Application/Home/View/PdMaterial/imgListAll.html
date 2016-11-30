@@ -1,0 +1,198 @@
+<include file="./Common:header" />
+        <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+        <script src="__PUBLIC__/Home/js/jquery-1.11.3.js"></script>
+
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+        <script src="__PUBLIC__/Home/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="__PUBLIC__/Home/css/index.css">
+        <link rel="stylesheet" href="__PUBLIC__/Home/css/project_center.css">
+        <style type="text/css" media="screen">
+            .material_menu_bar{
+                padding: 0;
+            }
+            .material_menu_bar .navbar{
+                border-style: none none solid none;
+
+            }
+            .material_menu_bar .collapse{
+                padding: 0;
+                background-color: #fff;
+            }
+            .material_menu_bar .navbar-nav .active a{
+                background-color: #fff;
+                border-bottom: 2px solid #0a0;
+            }
+            .material_menu_bar .navbar-nav .active a:hover{
+                background-color: #fff;
+            }
+            .material_menu_bar .navbar-header{
+                padding-left: 15px;
+                background-color: #fff;
+            }
+            .material_menu_bar .navbar-header .icon-bar{
+                width: 100%;
+                color: #ddd;
+            }
+            .image_content{
+                border:1px solid #ddd;
+                height: 500px;
+                overflow: auto;
+            }
+            .image_content_header{
+                padding: 5px 0;
+                line-height: 35px;
+            }
+            .image_content_header div{
+                padding:0;
+            }
+            .image_content_header a{
+                margin:0 10px;
+            }
+            .image_content_header .tip{
+                color: #888;
+            }
+            .image_content_body{
+                padding:5px 0;
+                border-top: 1px solid #ddd;
+            }
+            .image_content_body .cell{
+                margin-top: 10px;
+            }
+            .image_content .image_box{
+                border:1px solid #ddd;
+                padding:0;
+            }
+            .image_content .image_box p{
+                margin:0;
+                padding: 3px 10px;
+            }
+            .image_content .image_box button{
+                border-radius: 0px;
+                border-style: solid none none none;
+                width: 31%;
+            }
+            .image_menu{
+                border:1px solid #ddd;
+                border-style: solid solid solid none;
+                height: 500px;
+                overflow: auto;
+            }
+            .dropdown{
+                padding:0;
+                margin:0;
+            }
+        </style>
+    </head>
+    <body>
+    <include file="./Common:top_navbar" />
+        <!--content-->
+        <div class="container main_content">
+            <div class="row clearfix">
+                <include file="./Common:project_sidebar_wrap" />
+
+                <div class="col-sm-10 col-xs-8 column right_content">
+                    <h4>素材管理</h4>
+                    <div class="col-xs-12 column material_menu_bar">
+                        <nav class="navbar navbar-default" role="navigation">
+                            <div class="navbar-header">
+                                 <button type="button" class="navbar-toggle collapsed btn-block" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                            </div>
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                         <a href="#">图文消息</a>
+                                    </li>
+                                    <li  class="active">
+                                         <a href="#">图片</a>
+                                    </li>
+                                    <li>
+                                         <a href="#">语音</a>
+                                    </li>
+                                    <li>
+                                         <a href="#">视频</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-xs-12 column">
+                        <div class="col-xs-9 col-sm-9 col-md-10 column image_content">
+                            <div class="col-xs-12 column image_content_header">
+                                <div class="col-md-3 column">
+                                    <h5>group name</h5>
+                                </div>
+                                <div class="col-md-5 column">
+                                    <a href="">删除分组</a><a href="">清空</a>
+                                </div>
+                                <div class="col-md-4 column">
+                                    <span class="tip">大小不超过5M &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    <input class="hidden" id="file" name="file" type="file"/>
+                                    <button class="btn btn-success btn-sm" id="local_upload">本地上传</button>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 column image_content_body">
+                                <volist name="list['item']" id="vo">
+                                    <div class="col-xs-11 col-sm-5 col-md-3 column cell">
+                                        <div class="col-xs-12 column image_box">
+                                            <img src='{$vo.url}' width="100%" height="120px">
+                                            <p>{$vo.name}</p>
+                                            <button class="btn btn-default btn-sm" data-type="rename"><span class="glyphicon glyphicon-pencil"></span></button>
+                                            <button data-toggle="dropdown" class="btn btn-default btn-sm dropdown-toggle"><span class="glyphicon glyphicon-transfer"></span></button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="javascript:void(0)">化妆品</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">衣物</a>
+                                                </li>
+                                                <li class="divider">
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">其它</a>
+                                                </li>
+                                            </ul>
+                                            <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
+                                        </div>
+                                    </div>
+                                </volist>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-2 column image_menu">
+                            <ul class="nav">
+                                <li><a class="active" href="">全部图片</a></li>
+                                <li><a href="">化妆品</a></li>
+                                <li><a href="">衣物</a></li>
+                                <li><a href="">其他</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--footer-->
+        <div class="row clearfix footer">
+            <div class="col-sm-12 col-md-12 col-lg-12 column">
+            <p class="text-center">
+                 Copyright © 2011-2016 www.weiguanjia.com. All Rights Reserved software college of Hebei Normal University
+            </p>
+            <p class="text-center">冀 ICP 备 2016110.3485A</p>
+            </div>
+        </div>
+    </body>
+    <script>
+        $(function(){
+            $('#local_upload').click(function(){
+                $('#file').click();
+                $('#file').change(function(){
+                    alert($('#file').val());
+                });
+            });
+
+            $('[data-type=rename]').click(function(){
+                $oldName=$(this).parents('.image_box').find('p').text();
+                $newName=prompt('请输入图片名:',$oldName);
+                console.log($newName);
+            });
+        });
+    </script>
+</html>

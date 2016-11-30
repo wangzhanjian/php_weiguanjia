@@ -12,6 +12,7 @@
         <style type="text/css" media="screen">
             .main_content{
                 height: 450px;
+                padding-top: 30px;
             }
         </style>
     </head>
