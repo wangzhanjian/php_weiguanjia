@@ -8,46 +8,6 @@
         <div class="container main_content">
             <div class="row clearfix">
                 <include file="./Common:project_sidebar_wrap" />
-                <!--<div class="col-sm-2 col-md-2 col-lg-2 column left_menu">-->
-                    <!--<ul class="nav">-->
-                        <!--<li>-->
-                            <!--<span class="glyphicon glyphicon-th-large"></span> 功能-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="">群发功能</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="">自动回复</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="">自定义菜单</a>-->
-                        <!--</li>-->
-                         <!--<li>-->
-                            <!--<span class="glyphicon glyphicon-inbox"></span> 管理-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="">素材管理</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="">用户管理</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="">消息管理</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<span class="glyphicon glyphicon-dashboard"></span> 统计-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="">用户分析</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="">图文分析</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="">菜单分析</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
                 <div class="col-sm-10 col-md-10 col-lg-10 column right_content">
                     <ul>
                         <li>
@@ -79,84 +39,7 @@
             </div>
         </div>
         <!--hidden nav-->
-        <div class="list-group hidden_nav">
-            <div>
-                <!--唤出隐藏导航栏标签-->
-                <a class="right right_label carousel-control" href="javascript:void(0)" data-click-count="odd" data-slide="prev"><span class="glyphicon glyphicon-chevron-left glyphicon_left"></span></a>
-            </div>
-            <a href="javascript:void(0)" class="list-group-item active">项目管理</a>
-            <a class="list-group-item" id="modal-347417" href="#modal-container-347417" data-toggle="modal">新建项目</a>
-            <a href="__ROOT__/Home/ProjectManager/gzhInfo" class="list-group-item">查看公众号</a>
-            <div class="dropdown">
-            <a href="javascript:void(0)" class="list-group-item dropdown-toggle" id="gzh_list" data-toggle="dropdown" aria-expanded="false">
-                    切换公众号
-            <span class="caret"></span>
-            </a>
-            <div class="list-group dropdown-menu gzh_list" role="menu" aria-labelledby="gzh_list">
-                <empty name="projectList">
-                    <a class="list-group-item" role="menuitem" tabindex="-1" href="javascript:void(0)">您还没有创建项目</a>
-                    <else />
-                    <volist name="projectList" id="vo">
-                        <if condition="$vo['app_name'] eq $current_app_name">
-                            <a class="list-group-item active" role="menuitem" tabindex="-1" href="javascript:void(0)">{$vo['app_name']}</a>
-                            <else />
-                            <a class="list-group-item" role="menuitem" tabindex="-1" href="switching?app_name={$vo['app_name']}">{$vo['app_name']}</a>
-                        </if>
-                    </volist>
-                </empty>
-            </div>
-            </div>
-        </div>
-
-        <!--create new project-->
-        <div class="container">
-            <div class="row clearfix">
-                <div class="col-md-12 column">
-                    <div class="modal fade" id="modal-container-347417" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="dialog_mask">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h4 class="modal-title" id="myModalLabel">
-                                        请输入项目信息
-                                    </h4>
-                                </div>
-                                <div class="modal-body">
-                                    <form role="form" action="__ROOT__/home/ProjectManager/create" method="post">
-                                            <p class="help-block text-right create_help">
-                                                <a href="#">如何创建项目？</a>
-                                            </p>
-                                        <div class="form-group">
-                                             <label>公众号原始id</label><input type="text" class="form-control" name="app_source_id" id="source_id" />
-                                        </div>
-                                        <div class="form-group">
-                                             <label>公众号名称</label><input type="text" class="form-control" name="app_name" id="app_name" />
-                                        </div>
-                                        <div class="form-group">
-                                             <label>app_id</label><input type="text" class="form-control" name="app_id" id="app_id" />
-                                        </div>
-                                        <div class="form-group">
-                                             <label>app_secret</label><input type="text" class="form-control" name="app_secret" id="app_secret" />
-                                        </div>
-                                        <div class="form-group">
-                                             <label>token</label><input type="text" class="form-control" name="token" id="token" />
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="submit" class="btn btn-primary" id="create">创建</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-
+        <include file="./Common:project_hidden_nav" />
         <!--footer-->
         <include file="./Common:footer" />
     </body>

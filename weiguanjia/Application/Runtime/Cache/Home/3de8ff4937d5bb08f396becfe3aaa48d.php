@@ -46,8 +46,8 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <?php if(!empty($nickname)): ?><li>
-                                <a href="/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><span id="navbar_nickname"><?php echo ($nickname); ?></span></a>
+                        <?php if(!empty($GLOBAL_INFO)): ?><li>
+                                <a href="/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><span id="navbar_nickname"><?php echo ($GLOBAL_INFO['user_nickname']); ?></span></a>
                             </li>
                             <li>
                                 <a href="/Home/UserManager/userExit">退出</a>

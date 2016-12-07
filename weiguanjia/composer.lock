@@ -4,9 +4,64 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "30c3d97eaa307ed3a53b4f97c3a44257",
-    "content-hash": "03031aa44df7477059054a1a22a0c125",
+    "hash": "e187549219c008bf4be34c8f2c19a563",
+    "content-hash": "85f33055e3edac58a99278970b0bbe8c",
     "packages": [
+        {
+            "name": "curl/curl",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-mod/curl.git",
+                "reference": "7865e81196569c159fb5f30a17cb6c47faccc0c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/php-mod/curl/7865e81196569c159fb5f30a17cb6c47faccc0c4.zip",
+                "reference": "7865e81196569c159fb5f30a17cb6c47faccc0c4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "squizlabs/php_codesniffer": "~2.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Curl": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hassan Amouhzi",
+                    "email": "hassan@anezi.net",
+                    "homepage": "http://hassan.amouhzi.com"
+                },
+                {
+                    "name": "php-curl-class",
+                    "homepage": "https://github.com/php-curl-class"
+                },
+                {
+                    "name": "user52",
+                    "homepage": "https://github.com/user52"
+                }
+            ],
+            "description": "cURL class for PHP",
+            "homepage": "https://github.com/php-mod/curl",
+            "keywords": [
+                "curl",
+                "dot"
+            ],
+            "time": "2016-10-20 18:16:32"
+        },
         {
             "name": "nette/mail",
             "version": "v2.3.5",

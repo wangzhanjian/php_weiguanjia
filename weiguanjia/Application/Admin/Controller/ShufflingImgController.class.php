@@ -15,7 +15,6 @@ class ShufflingImgController extends Controller
 {
     //新增
     Public function add(){
-        header('Content-type:text/html;charset=utf8');
         $upload = new \Think\Upload();// 实例化上传类
         $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
         $upload->rootPath  =     './Public/Admin/ShufflingImg/'; // 设置附件上传根目录

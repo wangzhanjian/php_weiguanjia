@@ -1,0 +1,11 @@
+<xml>
+    <ToUserName><![CDATA[%s]]></ToUserName>
+    <FromUserName><![CDATA[%s]]></FromUserName>
+    <CreateTime>%s</CreateTime>
+    <MsgType><![CDATA[video]]></MsgType>
+    <Video>
+        <MediaId><![CDATA[%s]]></MediaId>
+        <Title><![CDATA[%s]]></Title>
+        <Description><![CDATA[%s]]></Description>
+    </Video>
+</xml>
