@@ -14,15 +14,15 @@
         <div class="row clearfix">
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 column">
+            <div class="col-xs-3 col-sm-3 col-md-2 column">
                 <div class="logo"></div>
             </div>
-            <div class="col-sm-2 col-md-2 col-lg-2 column">
+            <div class="col-sm-0 col-md-2 column">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 </div>
             </div>
-            <div class="col-sm-8 col-md-8 col-lg-8 column">
+            <div class="col-sm-9 col-md-8 column">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
@@ -164,9 +164,7 @@
         <!--boottom nav-->
         <div class="container bottom_bar">
             <div class="row clearfix">
-                <div class="col-sm-12 col-md-12 col-lg-12 column">
-                <div class="row clearfix">
-                    <div class="col-sm-3 col-md-3 col-lg-3 column">
+                <div class="col-xs-3 column">
                         <h4>
                             新手上路
                         </h4>
@@ -188,7 +186,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-sm-3 col-md-3 col-lg-3 column">
+                <div class="col-xs-3 column">
                         <h4>
                             商务合作
                         </h4>
@@ -201,7 +199,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-sm-3 col-md-3 col-lg-3 column">
+                <div class="col-xs-3 column">
                         <h4>
                             使用帮助
                         </h4>
@@ -217,7 +215,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-sm-3 col-md-3 col-lg-3 column">
+                <div class="col-xs-3 column">
                         <h4>
                             关于我们
                         </h4>
@@ -233,8 +231,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-                </div></div>
+            </div>
         </div>
         <div class="row clearfix footer">
     <div class="col-sm-12 col-md-12 col-lg-12 column">

@@ -58,13 +58,6 @@ class ProjectManagerController extends BasisController
 
     }
 
-    //返回项目列表详细信息 ok
-    protected function getProjectList(){
-        $list=M('project');
-        return $list->where(array('user_id'=>session('user_id')))->select();
-    }
-
-
     //返回项目信息详情
     public function info(){
 

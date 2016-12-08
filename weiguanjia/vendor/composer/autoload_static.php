@@ -6,6 +6,16 @@ namespace Composer\Autoload;
 
 class ComposerStaticInite0084fec5918da8d2c8163dbc7865857
 {
+    public static $prefixesPsr0 = array (
+        'C' => 
+        array (
+            'Curl' => 
+            array (
+                0 => __DIR__ . '/..' . '/curl/curl/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Nette\\ArgumentOutOfRangeException' => __DIR__ . '/..' . '/nette/utils/src/Utils/exceptions.php',
         'Nette\\Bridges\\MailDI\\MailExtension' => __DIR__ . '/..' . '/nette/mail/src/Bridges/MailDI/MailExtension.php',
@@ -59,6 +69,7 @@ class ComposerStaticInite0084fec5918da8d2c8163dbc7865857
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixesPsr0 = ComposerStaticInite0084fec5918da8d2c8163dbc7865857::$prefixesPsr0;
             $loader->classMap = ComposerStaticInite0084fec5918da8d2c8163dbc7865857::$classMap;
 
         }, null, ClassLoader::class);

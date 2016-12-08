@@ -1,5 +1,6 @@
 {
     "require": {
-        "nette/mail": "^2.3"
+        "nette/mail": "^2.3",
+        "curl/curl": "^1.5"
     }
 }
