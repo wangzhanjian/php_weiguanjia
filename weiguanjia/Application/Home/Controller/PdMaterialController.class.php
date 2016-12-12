@@ -17,6 +17,15 @@ use Wechat\MaterialManager;
 
 class PdMaterialController extends BasisController
 {
+    //设置该类使用的前置条件限制 ok
+    public function __construct()
+    {
+        parent::__construct();
+        if(!$this->isLogin()){  //用户使用该类的任何方法必须已经登录（前置条件）
+            $this->error('请先登录！','/Home/UserManager/loginPage',2);
+        }
+    }
+
     //显示图文素材管理页面 ok
     public function newsList(){
         $manager=new MaterialManager();
@@ -27,31 +36,40 @@ class PdMaterialController extends BasisController
         $this->display();
     }
 
-    //新建图文消息页面显示
+    //新建图文消息页面显示 ok
     public function addNewsPage(){
+        $this->assignProjectCenterCommonInfo();
         $this->display();
     }
-    //新建图文消息
-    public function addNews(){
-        dump(json_encode(I('post.')));
-        /*$manager=new MaterialManager();
-        $result=$manager->addPermanentNewsMaterial(I('post.news'));
+
+    //新建图文消息ajax接口 ok
+    public function addNewsAjax(){
+        $manager=new MaterialManager();
+        $result=$manager->addPermanentNewsMaterial(htmlspecialchars_decode(json_encode(I('post.'), JSON_UNESCAPED_UNICODE)));
         if(json_decode($result)->error){
-            echo $result;
             echo 'error';
         }else{
-            echo $result;
-        }*/
+            echo 'success';
+        }
     }
 
-    //显示该图文消息编辑页面
-    public function editNews(){
-
+    //显示该图文消息编辑页面 ok
+    public function editorNews(){
+        $manager=new MaterialManager();
+        $news=$manager->getPermanentMaterial(I('get.media_id'));
+        $this->assign('media_id',I('get.media_id'));
+        $this->assign('news',$news);
+        $this->assignProjectCenterCommonInfo();
+        $this->display();
     }
 
-    //更新图文消息
-    public function updateNews(){
-
+    //更新图文消息ajax接口 ok
+    public function updateNewsAjax(){
+        if($this->delete()){    //删除该图文素材
+            $this->addNewsAjax();
+        }else{      //重新创建该素材
+            echo 'error';
+        }
     }
 
     //显示图片素材管理页面 ok
@@ -102,12 +120,14 @@ class PdMaterialController extends BasisController
         $result=$manager->delPermanentMaterial(I('post.media_id'));
         if(json_decode($result)->errcode==0){
             echo 'success';
+            return true;
         }else{
             echo 'error';
+            return false;
         }
     }
 
-    //删除永久图片素材（批量）
+    //删除永久图片素材（批量）【待实现】
     public function delImgBatch(){
 
     }
@@ -183,7 +203,7 @@ class PdMaterialController extends BasisController
         $this->display();
     }
 
-    //添加视频操作 ok
+    //上传视频操作 ok
     public function addVideo(){
         //dump($_FILES);
         //dump($_POST);
@@ -225,5 +245,23 @@ class PdMaterialController extends BasisController
             echo $result;
             exit;
         }
+    }
+
+    //获取素材列表接口ajax ok
+    public function getMaterialListAjax(){
+        $manager=new MaterialManager();
+        $list=$manager->getPermanentMaterialList(I('get.type'),I('get.offset'),20);
+        if(json_decode($list)->error){
+            echo 'error';
+        }else{
+            echo $list;
+        }
+    }
+
+    //返回语音播放图片 ok
+    public function getVoiceDisplayImg(){
+        $img=file_get_contents('./Public/Home/images/voice_display.png');
+        header('Content-type:image/png');
+        echo $img;
     }
 }

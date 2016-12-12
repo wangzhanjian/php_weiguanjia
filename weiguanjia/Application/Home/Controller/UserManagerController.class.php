@@ -19,6 +19,7 @@ class UserManagerController extends BasisController
         if( cookie('remember_username') && cookie('remember_password') ){
             $this->assign('remember_username',cookie('remember_username'));
             $this->assign('remember_password',cookie('remember_password'));
+            $this->assign('remember_pswd','ok');
         }
         $this->display();
     }
@@ -30,6 +31,9 @@ class UserManagerController extends BasisController
             //判断是否记住密码并进行处理
             if(I('post.remember_password')=='on'){
                 $this->rememberPassword();
+            }else{
+                cookie('remember_username',null);
+                cookie('remember_password',null);
             }
             //设置session信息
             session(C('SESSION_USER_ID'),$info['id']);

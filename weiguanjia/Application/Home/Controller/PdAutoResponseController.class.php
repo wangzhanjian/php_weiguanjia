@@ -9,23 +9,12 @@
 namespace Home\Controller;
 
 
-use Think\Controller;
-
-class PdAutoResponseController extends Controller
+class PdAutoResponseController extends BasisController
 {
-    //开始消息自动回复功能
-    public function open(){
-
-    }
-
-    //关闭消息自动回复功能
-    public function close(){
-
-    }
-
     //显示被添加自动回复设置信息页面
     public function subscribeResponse(){
-
+        $this->assignProjectCenterCommonInfo();
+        $this->display();
     }
 
     //被添加自动回复设置

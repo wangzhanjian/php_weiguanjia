@@ -16,15 +16,15 @@
         <div class="row clearfix">
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 column">
+            <div class="col-xs-3 col-sm-3 col-md-2 column">
                 <div class="logo"></div>
             </div>
-            <div class="col-sm-2 col-md-2 col-lg-2 column">
+            <div class="col-sm-0 col-md-2 column">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 </div>
             </div>
-            <div class="col-sm-8 col-md-8 col-lg-8 column">
+            <div class="col-sm-9 col-md-8 column">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
@@ -86,7 +86,10 @@
                         </div>
                         <div class="form-group">
                             <div class="checkbox">
-                                <label><input type="checkbox" name="remember_password" />记住密码</label><label class="right"><a href="forgetPassword">? 忘记密码</a></label>
+                                <?php if(empty($remember_password)): ?><label><input type="checkbox" name="remember_password" />记住密码</label>
+                                    <?php else: ?>
+                                    <label><input type="checkbox" checked="true"  name="remember_password" />记住密码</label><?php endif; ?>
+                                <label class="right"><a href="forgetPassword">? 忘记密码</a></label>
                             </div>
                         </div>
                     </form>
