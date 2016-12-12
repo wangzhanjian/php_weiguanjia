@@ -1,0 +1,80 @@
+<include file="./Common:header" />
+<import type='css' file="Home.css.project_center" />
+<import type='css' file="Home.css.pd_material" />
+    </head>
+    <body>
+        <!--navbar-->
+        <include file="./Common:top_navbar" />
+        <!--content-->
+        <div class="container main_content">
+            <div class="row clearfix">
+                <!--项目开发左侧导航栏-->
+                <include file="./Common:project_sidebar_wrap" />
+                <!--项目开发右侧开发区-->
+                <div class="col-xs-8 col-sm-10 column right_content">
+                    <h4>素材管理</h4>
+                    <div class="col-md-12 column material_menu_bar">
+                        <nav class="navbar navbar-default" role="navigation">
+                            <div class="navbar-header">
+                                 <button type="button" class="navbar-toggle collapsed btn-block" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                            </div>
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                         <a href="newsList">图文消息</a>
+                                    </li>
+                                    <li>
+                                         <a href="imgList">图片</a>
+                                    </li>
+                                    <li class="active">
+                                         <a href="voiceList">语音</a>
+                                    </li>
+                                    <li>
+                                         <a href="videoList">视频</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-xs-12 column image_content_header">
+                        <div>
+                            <span class="tip">语音大小不超过5M，长度不超过60秒，支持mp3/wma/wav/amr格式 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <input class="hidden" id="voice_file" name="file" type="file"/>
+                            <button class="btn btn-success btn-sm" id="voice_upload">本地上传</button>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-success" id="progressBar">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 column voice_content" id="voice_list">
+                        <volist name="list['item']" id="vo">
+                            <div class="col-xs-12 col-sm-6 col-md-4 column cell">
+                                <div class="col-xs-12 column voice_box" data-id="{$vo['media_id']}">
+                                    <div class="col-xs-4 column">
+                                        <img src="__PUBLIC__/Home/images/voice_display.png" alt="点击播放" title="点击播放" width="100%" height="70"/>
+                                    </div>
+                                    <div class="col-xs-8 column">
+                                        <p data-type="file_name">{$vo['name']|strrchr='/'|substr=1,15}</p>
+                                        <p>{$vo['update_time']|date="Y-m-d",###}</p>
+                                    </div>
+                                    <button class="btn btn-default btn-sm" data-type="voice_download"> <span class="glyphicon glyphicon-download-alt"></span></button><button class="btn btn-default btn-sm" data-type="voice_del"><span class="glyphicon glyphicon-remove"></span></button>
+                                </div>
+                            </div>
+                        </volist>
+                        <a href="javascript:void(0)" class="load_more hidden" data-load="voice">加载更多…</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--hidden nav-->
+        <include file="./Common:project_hidden_nav" />
+        <!--footer-->
+        <include file="./Common:footer" />
+        <iframe class="hidden" id="iframe"></iframe>
+    </body>
+<include file="./Common:bottom_js" />
+<import type='js' file="Home.js.project_center" />
+<import type='js' file="Home.js.pd_material" />
+</html>

@@ -170,7 +170,7 @@ $(function () {
                         $('#progressBar').css('width','0%');
                         $time=new Date();
                         $json=JSON.parse($result);
-                        $ele='<tr> <td style="width:200px;height:100px;"> <video src="movie.ogg" width="150" hieght="100">Your browser does not support the video tag. </video> </td> <td>'+$('#title').val()+'</td> <td>'+$time.getFullYear()+'年'+($time.getMonth()+1)+'月'+$time.getDate()+' </td> <td data-id="'+$json.media_id+'"> <button class="btn btn-default btn-sm" data-type="video_download"> <span class="glyphicon glyphicon-download-alt"></span></button><button class="btn btn-default btn-sm" data-type="video_del"><span class="glyphicon glyphicon-remove"></span></button> </td> </tr>';
+                        $ele='<tr> <td style="width:200px;height:100px;"> <video src="movie.ogg" width="150" hieght="100">Your browser does not support the video tag. </video> </td> <td>'+$('#title').val().substr(0,15)+'</td> <td>'+$time.getFullYear()+'年'+($time.getMonth()+1)+'月'+$time.getDate()+' </td> <td data-id="'+$json.media_id+'"> <button class="btn btn-default btn-sm" data-type="video_download"> <span class="glyphicon glyphicon-download-alt"></span></button><button class="btn btn-default btn-sm" data-type="video_del"><span class="glyphicon glyphicon-remove"></span></button> </td> </tr>';
                         $('tbody').prepend($ele);
                         video_del_event();  //为新添加的元素添加删除事件
                         alert('上传成功！');
@@ -329,11 +329,13 @@ $(function () {
 
 //控制加载更多连接的显示
 function check_load_more(ele) {
-    if(ele='tbody'){        // 视频表格
-        $childNum=$(ele).children().length;
+    if(ele=='tbody'){        // 视频表格
+        $childNum=$(ele.toString()).children().length;
     }else{                  //其它列表
-        $childNum=$(ele).children().length-1;
+        $childNum=$(ele.toString()).children().length-1;
     }
+    console.log($(ele));
+    console.log($childNum);
     if($childNum>=20 && $childNum%20==0){
         $('.load_more').removeClass('hidden');
     }else{

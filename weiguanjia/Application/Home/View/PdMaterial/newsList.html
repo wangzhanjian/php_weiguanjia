@@ -1,0 +1,119 @@
+<include file="./Common:header" />
+<import type='css' file="Home.css.project_center" />
+<import type='css' file="Home.css.pd_material" />
+    </head>
+    <body>
+        <!--navbar-->
+        <include file="./Common:top_navbar" />
+        <!--content-->
+        <div class="container main_content">
+            <div class="row clearfix">
+                <!--项目开发左侧导航栏-->
+                <include file="./Common:project_sidebar_wrap" />
+                <!--项目开发右侧开发区-->
+                <div class="col-xs-8 col-sm-10 column right_content">
+                    <h4>素材管理</h4>
+                    <div class="col-md-12 column material_menu_bar">
+                        <nav class="navbar navbar-default" role="navigation">
+                            <div class="navbar-header">
+                                 <button type="button" class="navbar-toggle collapsed btn-block" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                            </div>
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                                <ul class="nav navbar-nav">
+                                    <li class="active">
+                                         <a href="newsList">图文消息</a>
+                                    </li>
+                                    <li>
+                                         <a href="imgList">图片</a>
+                                    </li>
+                                    <li>
+                                         <a href="voiceList">语音</a>
+                                    </li>
+                                    <li>
+                                         <a href="videoList">视频</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-xs-6 column">
+                        <p>图文消息(共{$list['total_count']}条)</p>
+                    </div>
+                    <div class="col-xs-3 col-xs-offset-3 column">
+                        <a href="addNewsPage" target="_blank"><button class="btn btn-success" type=""><span class="glyphicon glyphicon-plus" style="color:#fff;"></span> 新建图文素材</button></a>
+                    </div>
+                    <div class="col-xs-12 column news_content" id="news_list">
+                        <volist name="list['item']" id="vo">
+                            <!--多图文素材输出-->
+                            <if condition="$vo['content']['news_item'][1]">
+                                <div class="col-xs-10 col-sm-6 col-md-4 column cell">
+                                    <div class="col-xs-12 column news_box">
+                                        <div class="news_header_more">
+                                            <h5>{$vo['update_time']|date="y-m-d",###}</h5>
+                                        </div>
+                                        <div class="col-xs-12 column news_body">
+                                            <volist name="vo['content']['news_item']" id="val">
+                                                <if condition="$i eq 1">
+                                                    <a href="{$val['url']}" target="_blank"><div class="first data_box">
+                                                        <img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl={$val['thumb_url']}" width="100%" height="120px">
+                                                        <h5 class="sm">{$val['title']|substr=0,15}</h5>
+                                                    </div></a>
+                                                    <else/>
+                                                    <a href="{$val['url']}" target="_blank"><div class="col-xs-12 column data_box">
+                                                        <div class="col-xs-8 column">
+                                                            <h5>{$val['title']|substr=0,15}</h5>
+                                                        </div>
+                                                        <div class="col-xs-4 column">
+                                                            <if condition="$val['thumb_url']">
+                                                                <img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl={$val['thumb_url']}" width="100%" height="70">
+                                                            <else/>
+                                                                <img src="" width="100%" height="70">
+                                                            </if>
+                                                        </div>
+                                                    </div></a>
+                                                </if>
+                                            </volist>
+                                        </div>
+                                        <div class="col-xs-12 column news_footer" data-id="{$vo['media_id']}">
+                                            <a href="editorNews?media_id={$vo['media_id']}"><button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></a><button class="btn btn-default btn-sm" data-type="news_del"><span class="glyphicon glyphicon-remove"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <else />        <!--单图文素材输出-->
+                                <div class="col-xs-10 col-sm-6 col-md-4 column cell">
+                                    <div class="col-xs-12 column news_box">
+                                        <div class="news_header_single">
+                                            <h5>{$vo['update_time']|date="y-m-d",###}</h5>
+                                        </div>
+                                        <div class="col-xs-12 column news_body">
+                                            <a href="{$vo['content']['news_item'][0]['url']}" target="_blank"><div class="col-xs-12 column data_box">
+                                                <p>{$vo['content']['news_item'][0]['title']|substr=0,15}</p>
+                                                <if condition="$vo['content']['news_item'][0]['thumb_url']">
+                                                    <img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl={$vo['content']['news_item'][0]['thumb_url']}" width="100%" height="150px">
+                                                <else/>
+                                                    <img src="" width="100%" height="150px">
+                                                </if>
+                                                    <p>{$vo['content']['news_item'][0]['digest']}</p>
+                                            </div></a>
+                                        </div>
+                                        <div class="col-xs-12 column news_footer" data-id="{$vo['media_id']}">
+                                            <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-default btn-sm" data-type="news_del"><span class="glyphicon glyphicon-remove"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </if>
+                        </volist>
+                        <a href="javascript:void(0)" class="load_more" data-load="news">加载更多…</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--hidden nav-->
+        <include file="./Common:project_hidden_nav" />
+        <!--footer-->
+        <include file="./Common:footer" />
+    </body>
+<include file="./Common:bottom_js" />
+<import type='js' file="Home.js.project_center" />
+<import type='js' file="Home.js.pd_material" />
+</html>

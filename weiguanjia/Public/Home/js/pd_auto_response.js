@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    //选择素材后界面元素更新
+    //选择素材后界面元素更新 ok
     $('.modal-content').find('.modal-footer').find('[data-type=ensure]').click(function() {
         $data=$('.modal-content').find('[data-selected=selected]').clone();
         $data.append('<button class="btn btn-default btn-sm btn-block" style="border-radius:0;border-style:solid none none none;"><span class="glyphicon glyphicon-remove"></span> 移除</button>');
@@ -50,7 +50,7 @@ $(document).ready(function() {
         $(this).attr('data-dismiss', 'modal');
     });
 
-    //音乐缩略图选择后的处理
+    //音乐缩略图选择后的处理 ok
     $('.modal-content').find('.modal-footer').find('[data-type=thumb_ensure]').click(function(){
         $src=$('.modal-content').find('[data-selected=selected]').find('img').attr('src');
         $media_id=$('.modal-content').find('[data-selected=selected]').find('img').attr('data-id');
@@ -64,8 +64,116 @@ $(document).ready(function() {
         });
     });
 
-    //视频上传处理
+    //视频上传处理 ok
+    $('#add_video').click(function () {
+        if(!$('#title').val()){
+            alert('视频标题不能为空！');
+        }else if(!$('#introduction').val().length){
+            alert('视频描述不能为空！');
+        }else if(!$('#video_file').val().length){
+            alert('视频文件不能为空！');
+        }else{
+            $(this).attr('data-dismiss','modal');
+            var xhr = new XMLHttpRequest();
+            var filesObj = document.getElementById('video_file').files[0];
+            var formData = new FormData();
+            formData.append('title',$('#title').val());
+            formData.append('introduction',$('#introduction').val());
+            formData.append('files', filesObj);
+            xhr.open("POST", '/Home/PdMaterial/addVideo', true);
+            //设定下载progress事件的处理函数，该事件在数据下载时触发
+            xhr.onprogress = updateProgress;
+            //设定上传progress事件的处理函数，该事件在数据上传时触发
+            xhr.upload.onprogress = updateProgress;
+            var progressBar = document.getElementById('progressBarVideo');
+            function updateProgress(event){
+                //判断服务器是否提供数据长度信息
+                if(event.lengthComputable){
+                    //计算得到进度数值
+                    var percentComplete = event.loaded/event.total;
+                    //在控制台记录进度数值
+                    //console.log(percentComplete);
+                    //更改进度条进度
+                    progressBar.style.width = percentComplete*100+'%';
+                }
+            }
+            xhr.send(formData);
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState==4 && xhr.status==200){
+                    $result= xhr.responseText;
+                    console.log($result);
+                    if($result=='error'){
+                        $('#progressBar').css('width','0%');
+                        alert('上传失败！');
+                    }else{
+                        //将进度条清零
+                        $('#progressBar').css('width','0%');
+                        $date=new Date();
+                        $json=JSON.parse($result);
+                        $ele=$('<div class="col-xs-12 column cell" data-type="data_box_cell"><div class="col-xs-12 column data_box_video" data-id="'+$json.media_id+'"><div class="col-xs-4 column"><video src="#" width="150" hieght="100"></video></div><div class="col-xs-4 column" name="title">'+$('#title').val()+'</div><div class="col-xs-4 column">'+$date.getFullYear()+'年'+$date.getMonth()+'月'+$date.getDate()+'日'+'</div></div></div>');
+                        $ele.css('opacity', '1.0');
+                        //为元素添加删除按钮
+                        $ele.append('<button class="btn btn-default btn-sm btn-block" style="border-radius:0;border-style:solid none none none;"><span class="glyphicon glyphicon-remove"></span> 移除</button>');
+                        $('.tab-pane.active').empty().append($ele);
+                        //为新上传的元素添加删除事件
+                        $('.tab-pane.active').find('button').click(function () {
+                            $tpl_mat = $('[data-type=sel_mat_model]').clone().css('display', 'block').attr('data-type', '');
+                            $tpl_upl = $('[data-type=upload_model]').clone().css('display', 'block').attr('data-type', '');
+                            //修正进度条和链接操作
+                            $tpl_upl.find('a').text('本地上传').attr({
+                                'href':'#modal-add-video',
+                                'data-toggle':'modal',
+                                'onclick':null
+                            });
+                            $tpl_upl.find('.progress-bar').attr('id','progressBarVideo');
+                            //更改界面元素
+                            $('.tab-pane.active').empty();
+                            $('.tab-pane.active').append($tpl_mat).find('[data-toggle=modal]').attr('href', '#modal-container-video');
+                            $('.tab-pane.active').append($tpl_upl);
+                        });
+                    }
+                }
+            }
+        }
+    });
 
+    //保存信息
+    $('#save').click(function () {
+        $type=
+        $responseType=$('.tab-pane.active').attr('id').substr(6);
+        switch ($responseTypetype){
+            case 'text':
+                $data={'content':$('.tab-pane.active').find('textarea').val()};
+                break;
+            case 'image':
+                $data={'media_id':$('.tab-pane.active').find('img').attr('data-id')};
+                break;
+            case 'voice':
+                $data={'media_id':$('.tab-pane.active').find('.data_box_voice').attr('data-id')};
+                break;
+            case 'music':
+                $data={
+                    'title':$('.tab-pane.active').find('[name="title"]').val(),
+                    'description':$('.tab-pane.active').find('[name="description"]').val(),
+                    'music_url':$('.tab-pane.active').find('[name="music_url"]').val(),
+                    'hq_music_url':$('.tab-pane.active').find('[name="hq_music_url"]').val(),
+                    'thumb_media_id':$('.tab-pane.active').find('img').attr('data-id')
+                };
+                break;
+            case 'video':
+                $data={
+                'media_id':$('.tab-pane.active').find('.data_box_video').attr('data-id'),
+                'title':$('.tab-pane.active').find('[name="title"]').text(),
+                'description':''
+                };
+                console.log($data);
+                break;
+            case 'news':
+                $data={'media_id':$('.tab-pane.active').find('.news_footer').attr('data-id')};
+                break;
+        }
+
+    });
 });
 
 //获取素材 ok
@@ -107,7 +215,7 @@ function get_material_from_wechat($type,$offset) {
                             break;
                         case 'video':
                             $date=new Date($list.item[$i].update_time*1000);
-                            $ele='<div class="col-xs-12 column cell" data-type="data_box_cell" onclick="add_select_animate(this)"><div class="col-xs-12 column data_box_video" data-id="'+$list.item[$i].media_id+'"><div class="col-xs-4 column"><video src="#" width="150" hieght="100"></video></div><div class="col-xs-4 column">'+$list.item[$i].name.substr(0,15)+'</div><div class="col-xs-4 column">'+$date.getFullYear()+'年'+$date.getMonth()+'月'+$date.getDate()+'日'+'</div></div></div>';
+                            $ele='<div class="col-xs-12 column cell" data-type="data_box_cell" onclick="add_select_animate(this)"><div class="col-xs-12 column data_box_video" data-id="'+$list.item[$i].media_id+'"><div class="col-xs-4 column"><video src="#" width="150" hieght="100"></video></div><div class="col-xs-4 column" name="title">'+$list.item[$i].name+'</div><div class="col-xs-4 column">'+$date.getFullYear()+'年'+$date.getMonth()+'月'+$date.getDate()+'日'+'</div></div></div>';
                             $('.modal-body').find('.video_list').append($ele);
                             break;
                         case 'news':
@@ -182,7 +290,7 @@ function upload_file(ele) {
         $type='image';
     }
     $('#file').click();     //打开文件选择窗口
-    $('#file').change(function () {     //如果发生文件选择事件
+    $('#file').change(function () { //如果发生文件选择事件
         if ($(this).val().length) {       //如果选择的文件名不为空
             var xhr = new XMLHttpRequest();
             var filesObj = document.getElementById('file').files[0];
@@ -241,9 +349,10 @@ function upload_file(ele) {
                                     $tpl_upl.find('.progress-bar').attr('id','progressBarImage');
                                     break;
                                 case 'voice':
+                                    $tpl_upl.find('a').text('本地上传');
                                     $tpl_upl.find('.progress-bar').attr('id','progressBarVoice');
                                     break;
-                                case 'music':
+                                /*case 'music':
                                     $tpl_upl.find('.progress-bar').attr('id','progressBarThumb');
                                     break;
                                 case 'video':
@@ -255,7 +364,7 @@ function upload_file(ele) {
                                         'target':'_blank'
                                     });
                                     $tpl_upl.find('.progress').hide();
-                                    break;
+                                    break;*/
                             }
                             $('.tab-pane.active').empty();
                             $('.tab-pane.active').append($tpl_mat).find('[data-toggle=modal]').attr('href', '#modal-container-' + $where);

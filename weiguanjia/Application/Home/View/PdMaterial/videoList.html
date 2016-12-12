@@ -1,0 +1,149 @@
+<include file="./Common:header" />
+<import type='css' file="Home.css.project_center" />
+<import type='css' file="Home.css.pd_material" />
+     </head>
+    <body>
+        <!--navbar-->
+        <include file="./Common:top_navbar" />
+        <!--content-->
+        <div class="container main_content">
+            <div class="row clearfix">
+                <!--项目开发左侧导航栏-->
+                <include file="./Common:project_sidebar_wrap" />
+                <!--项目开发右侧开发区-->
+                <div class="col-xs-8 col-sm-10 column right_content">
+                    <h4>素材管理</h4>
+                    <div class="col-md-12 column material_menu_bar">
+                        <nav class="navbar navbar-default" role="navigation">
+                            <div class="navbar-header">
+                                 <button type="button" class="navbar-toggle collapsed btn-block" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                            </div>
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                         <a href="newsList">图文消息</a>
+                                    </li>
+                                    <li>
+                                         <a href="imgList">图片</a>
+                                    </li>
+                                    <li>
+                                         <a href="voiceList">语音</a>
+                                    </li>
+                                    <li class="active">
+                                         <a href="#">视频</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-xs-12 column image_content_header">
+                        <div>
+                            <a id="modal-347417" style="color:#fff;" href="#modal-add-video" data-toggle="modal"><button class="btn btn-success right"><span class="glyphicon glyphicon-plus" style="color:#fff;"></span>添加视频</button></a>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-success" id="progressBar">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 column voice_content">
+                        <table class="table video_table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        视频
+                                    </th>
+                                    <th>
+                                        名称
+                                    </th>
+                                    <th>
+                                        创建时间
+                                    </th>
+                                    <th>
+                                        操作
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <volist name="list['item']" id="vo">
+                                <tr>
+                                    <td style="width:200px;height:100px;">
+                                        <video src="movie.ogg" width="150" hieght="100">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </td>
+                                    <td>
+                                        {$vo['name']|substr=0,15}
+                                    </td>
+                                    <td>
+                                        {$vo['update_time']|date="y-m-d",###}
+                                    </td>
+                                    <td data-id="{$vo['media_id']}">
+                                        <button class="btn btn-default btn-sm" data-type="video_download"> <span class="glyphicon glyphicon-download-alt"></span></button><button class="btn btn-default btn-sm" data-type="video_del"><span class="glyphicon glyphicon-remove"></span></button>
+                                    </td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4"><a href="javascript:void(0)" class="load_more hidden" data-load="video">加载更多…</a></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--hidden nav-->
+        <include file="./Common:project_hidden_nav" />
+        <!--footer-->
+        <include file="./Common:footer" />
+        <!--add video-->
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="modal fade" id="modal-add-video" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="dialog_mask">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" id="myModalLabel">
+                                            添加视频
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div role="form">
+                                            <div class="form-group">
+                                                <label>标题</label><input type="text" class="form-control" name="title" id="title" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>视频描述</label><input type="text" class="form-control" name="introduction" id="introduction" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>视频文件</label><input type="file"  name="file" id="video_file" /><hr/>
+                                                <p class="help-block">
+                                                    视频不能超过20M，超过20M的视频可至<a href="http://v.qq.com/u/upload.html"> 腾讯视频</a>上传后添加，也可通过添加视频详情页链接以及公众号文章链接插入视频，视频时长不少于1秒，不多于10小时，支持大部分主流视频格式
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button class="btn btn-primary" id="add_video">保存</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <iframe class="hidden" id="iframe"></iframe>
+    </body>
+<include file="./Common:bottom_js" />
+<import type='js' file="Home.js.project_center" />
+<import type='js' file="Home.js.pd_material" />
+</html>
