@@ -905,7 +905,6 @@
         //当点击并非正在编辑的标签或提交按钮时，保存当前标签的修改
         $("li").not($(".active_menu")).add(".update").click(function () {
             var mes = $(".menu_responce:not('.hidden')").find(".mes").attr("message");
-            alert(mes);
             $(".active_menu").children("a").attr("message",mes);
         })
         //组成json串并上传
@@ -918,7 +917,6 @@
                     $name = $(this).children("a").text();
                     $button_type = $(this).children("a").attr("active_type");
                     $message = $(this).children("a").attr("message");
-                    alert($message);
                     switch ($button_type){
                         case "click":
                             $menu['button'][$n] = {

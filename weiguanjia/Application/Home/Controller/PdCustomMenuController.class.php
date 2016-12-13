@@ -28,7 +28,6 @@ class PdCustomMenuController extends BasisController
                 $menu[$i]["category"] = "botton";
             }
         }
-        dump($menu);
         $this->assign("menu",$menu);
         $this->display();
 }
