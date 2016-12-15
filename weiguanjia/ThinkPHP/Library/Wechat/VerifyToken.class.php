@@ -23,7 +23,7 @@ class VerifyToken
     private function checkSignature()
     {
         // you must define TOKEN by yourself
-        if (!defined("TOKEN")) {
+        if (!C('TOKEN')) {
             throw new Exception('TOKEN is not defined!');
         }
 
@@ -31,7 +31,7 @@ class VerifyToken
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
 
-        $token = TOKEN;
+        $token = C('TOKEN');
         $tmpArr = array($token, $timestamp, $nonce);
         // use SORT_STRING rule
         sort($tmpArr, SORT_STRING);

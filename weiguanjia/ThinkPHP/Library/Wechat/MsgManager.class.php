@@ -53,10 +53,7 @@ class MsgManager
         }
     }
 
-    /**
-     * @param $msgType [string] the type of response message
-     * @param $content [string] the content of response message
-     */
+    //response message to wechat server
     public function responseMsg($msgType,$content){
         $msgTpl = get_tpl_obj($msgType);    //get message template
         //news message handle
@@ -71,17 +68,17 @@ class MsgManager
             }
         }
         //others message handle
-        $resultStr = $this->setTplContent($msgTpl,$content);
+        $resultStr = $this->setTplContent($msgTpl,$msgType,$content);
         echo $resultStr;
     }
 
     //auto set tpl content
-    protected function setTplContent($tpl,$content){
+    protected function setTplContent($tpl,$type,$content){
         $autoContent=array(
             "{$this->_postObj->FromUserName}", //from username
             "{$this->_postObj->ToUserName}",    //to username
             time(), //create time
-            'text'  //message type
+            $type,  //message type
         );
         $finalContent=array_merge($autoContent,$content);
         $resultStr=xmlObj_traverse($tpl,$finalContent);

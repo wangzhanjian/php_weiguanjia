@@ -1,5 +1,10 @@
 $(document).ready(function() {
-
+    $('[data-type=event]').click(function () {
+        window.location.href='subscribeResponse';
+    });
+    $('[data-type=message]').click(function () {
+        window.location.href='msgResponse';
+    });
     //选择素材后界面元素更新 ok
     $('.modal-content').find('.modal-footer').find('[data-type=ensure]').click(function() {
         $data=$('.modal-content').find('[data-selected=selected]').clone();
@@ -139,17 +144,24 @@ $(document).ready(function() {
 
     //保存信息
     $('#save').click(function () {
-        $type=
-        $responseType=$('.tab-pane.active').attr('id').substr(6);
-        switch ($responseTypetype){
+        $type=$('button.active').attr('data-type');     //获取被回复的类型
+        $responseType=$('.tab-pane.active').attr('id').substr(6);   //获取回复类型
+        switch ($responseType){
             case 'text':
                 $data={'content':$('.tab-pane.active').find('textarea').val()};
                 break;
             case 'image':
-                $data={'media_id':$('.tab-pane.active').find('img').attr('data-id')};
+                $data={
+                    'title':$('.tab-pane.active').find('p').text(),
+                    'media_id':$('.tab-pane.active').find('img').attr('data-id'),
+                    'url':$('.tab-pane.active').find('img').attr('src')
+            };
                 break;
             case 'voice':
-                $data={'media_id':$('.tab-pane.active').find('.data_box_voice').attr('data-id')};
+                $data={
+                    'media_id':$('.tab-pane.active').find('.data_box_voice').attr('data-id'),
+                    'title':$('.tab-pane.active').find('[data-type=file_name]').text()
+            };
                 break;
             case 'music':
                 $data={
@@ -157,7 +169,8 @@ $(document).ready(function() {
                     'description':$('.tab-pane.active').find('[name="description"]').val(),
                     'music_url':$('.tab-pane.active').find('[name="music_url"]').val(),
                     'hq_music_url':$('.tab-pane.active').find('[name="hq_music_url"]').val(),
-                    'thumb_media_id':$('.tab-pane.active').find('img').attr('data-id')
+                    'thumb_media_id':$('.tab-pane.active').find('img').attr('data-id'),
+                    'thumb_url':$('.tab-pane.active').find('img').attr('src')
                 };
                 break;
             case 'video':
@@ -166,13 +179,48 @@ $(document).ready(function() {
                 'title':$('.tab-pane.active').find('[name="title"]').text(),
                 'description':''
                 };
-                console.log($data);
                 break;
             case 'news':
                 $data={'media_id':$('.tab-pane.active').find('.news_footer').attr('data-id')};
                 break;
         }
+        if($type=='event'){
+            $data.type=$type;
+            $data.event=$('button.active').attr('data-key');
+            $data.event_key='wgj_default';
+        }else{
+            $data.type='keyword';
+            $data.keyword='wgj_default';
+            $data.rule='wgj_default';
+        }
+        $data.response_type=$responseType;
+        console.log($data);
+        $.post('setResponse',$data,function (data) {
+            console.log(data);
+            alert('保存成功！');
+        })
 
+    });
+
+    //删除设置信息（被添加和消息自动回复） ok
+    $('#delete').click(function () {
+        $type=$('button.active').attr('data-type');     //获取被回复的类型
+        console.log($type);
+        $responseType=$('.tab-pane.active').attr('id').substr(6);   //获取回复类型
+        $data=new Object();
+        if($type=='event'){
+            $data.type='event';
+            $data.event='subscribe';
+            $data.keyword='wgj_default';
+        }else{
+            $data.type='keyword';
+            $data.keyword='wgj_default';
+            $data.rule='wgj_default';
+        }
+        $.post('delResponse',$data,function (data) {
+            console.log(data);
+            alert("删除成功！");
+        })
     });
 });
 
@@ -206,7 +254,7 @@ function get_material_from_wechat($type,$offset) {
                             break;
                         case 'voice':
                             $date=new Date($list.item[$i].update_time*1000);
-                            $ele='<div class="col-xs-6 column cell" data-type="data_box_cell" onclick="add_select_animate(this)"><div class="col-xs-12 column data_box_voice" data-id="'+$list.item[$i].media_id+'"><div class="col-xs-4 column"><img src="/Home/PdMaterial/getVoiceDisplayImg" onmouseover="image_scale_animate(this,1.1)" onmouseleave="image_scale_animate(this,1.0)" onclick="voice_listen_online(this)" alt="点击播放" title="点击播放" width="100%" height="70"/> </div> <div class="col-xs-8 column"><p data-type="file_name"></p>'+$list.item[$i].name.substr($list.item[$i].name.lastIndexOf('/')+1,15)+'<p>'+$date.getFullYear()+'年'+$date.getMonth()+'月'+$date.getDate()+'日'+'</p></div></div></div>';
+                            $ele='<div class="col-xs-6 column cell" data-type="data_box_cell" onclick="add_select_animate(this)"><div class="col-xs-12 column data_box_voice" data-id="'+$list.item[$i].media_id+'"><div class="col-xs-4 column"><img src="/Home/PdMaterial/getVoiceDisplayImg" onmouseover="image_scale_animate(this,1.1)" onmouseleave="image_scale_animate(this,1.0)" onclick="voice_listen_online(this)" alt="点击播放" title="点击播放" width="100%" height="70"/> </div> <div class="col-xs-8 column"><p data-type="file_name">'+$list.item[$i].name.substr($list.item[$i].name.lastIndexOf('/')+1,15)+'</p><p>'+$date.getFullYear()+'年'+$date.getMonth()+'月'+$date.getDate()+'日'+'</p></div></div></div>';
                             $('.modal-body').find('.voice_list').append($ele);
                             break;
                         case 'thumb':
@@ -397,4 +445,82 @@ function voice_listen_online(ele) {
     $('#iframe').attr('src','/Home/PdMaterial/voiceDisplay?media_id='+$(ele).parents('.data_box_voice').attr('data-id'));
 }
 
+//获取数据回复数据
+function get_data_from_tab_pane(){
+    $responseType=$('.tab-pane.active').attr('id').substr(6);
+    switch ($responseTypetype){
+        case 'text':
+            $data={'content':$('.tab-pane.active').find('textarea').val()};
+            break;
+        case 'image':
+            $data={'media_id':$('.tab-pane.active').find('img').attr('data-id')};
+            break;
+        case 'voice':
+            $data={'media_id':$('.tab-pane.active').find('.data_box_voice').attr('data-id')};
+            break;
+        case 'music':
+            $data={
+                'title':$('.tab-pane.active').find('[name="title"]').val(),
+                'description':$('.tab-pane.active').find('[name="description"]').val(),
+                'music_url':$('.tab-pane.active').find('[name="music_url"]').val(),
+                'hq_music_url':$('.tab-pane.active').find('[name="hq_music_url"]').val(),
+                'thumb_media_id':$('.tab-pane.active').find('img').attr('data-id')
+            };
+            break;
+        case 'video':
+            $data={
+                'media_id':$('.tab-pane.active').find('.data_box_video').attr('data-id'),
+                'title':$('.tab-pane.active').find('[name="title"]').text(),
+                'description':''
+            };
+            console.log($data);
+            break;
+        case 'news':
+            $data={'media_id':$('.tab-pane.active').find('.news_footer').attr('data-id')};
+            break;
+    }
+    return $data;
+}
+
+//元素移除操作
+function remove_event() {
+    //更新素材选择区的状态
+    $('.modal-content').find('[data-selected=selected]').attr('data-selected', '');
+    $('.modal-content').find('.modal-footer').find('[data-type=ensure]').addClass('disabled');
+    $('.modal-content').find('.modal-footer').find('[data-type=thumb_ensure]').addClass('disabled');
+    //克隆模板
+    $tpl_mat=$('[data-type=sel_mat_model]').clone().css('display', 'block').attr('data-type', '');
+    $tpl_upl=$('[data-type=upload_model]').clone().css('display', 'block').attr('data-type', '');
+    //修正进度条和链接操作
+    $where=$('.tab-pane.active').attr('id').substr(6);
+    switch ($where){
+        case 'image':
+            $tpl_upl.find('.progress-bar').attr('id','progressBarImage');
+            break;
+        case 'voice':
+            $tpl_upl.find('.progress-bar').attr('id','progressBarVoice');
+            break;
+        case 'music':
+            $tpl_upl.find('.progress-bar').attr('id','progressBarThumb');
+            break;
+        case 'video':
+            $tpl_upl.find('a').text('本地上传').attr({
+                'href':'#modal-add-video',
+                'data-toggle':"modal",
+                'onclick':null
+            });
+            $tpl_upl.find('.progress-bar').attr('id','progressBarVideo');
+            break;
+        case 'news':
+            $tpl_upl.find('a').text('新建图文').attr({
+                'href':'/Home/PdMaterial/addNewsPage',
+                'target':'_blank'
+            });
+            $tpl_upl.find('.progress').hide();
+            break;
+        }
+        $('.tab-pane.active').empty();
+        $('.tab-pane.active').append($tpl_mat).find('[data-toggle=modal]').attr('href', '#modal-container-'+$where);
+        $('.tab-pane.active').append($tpl_upl);
+}
 
