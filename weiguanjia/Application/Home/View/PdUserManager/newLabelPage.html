@@ -1,0 +1,138 @@
+<include file="./Common:header" />
+<import type='css' file="Home.css.wx_users" />
+</head>
+<body>
+<!--navbar-->
+<include file="./Common:top_navbar" />
+
+<!--content-->
+<br/><br/>
+<div class="container">
+    <div class="row clearfix">
+        <!--左边-->
+        <div class="col-md-3 column">
+            <div class="panel-group" id="panel-15351">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="panel-title" href="index">用户管理</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--右边-->
+        <div class="col-md-9 column">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="page-header">
+                        <h3>
+                            &nbsp;标签
+                        </h3>
+                        <a id="modal-87020" href="#modal-container-87020" role="button" class="btn" data-toggle="modal">
+                            <button type="button" class="btn btn-default btn-primary">新建标签</button></a>
+
+                        <div class="modal fade" id="modal-container-87020" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <form class="form-horizontal" role="form" action="createLabel" method="post">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="myModalLabel">
+                                                新建标签
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label type="text" class="col-sm-2 control-label">标签名：</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" name="labelname"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                            <button type="submit" class="btn btn-primary" value="submit">保存</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                        <volist name="labels" id="label">
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <form class="form-horizontal" role="form" action="labelPage" method="post">
+                                    <div class="caption">
+                                        <h3>
+                                            {$label.name}
+                                        </h3>
+                                        <p>
+                                            <input class="hidden" type="text" name="group_id" value="{$label.id}"/>
+                                            <input class="hidden" type="text" name="group_name" value="{$label.name}"/>
+                                            <input class="hidden" type="submit">
+                                            <a class="btn btn-primary in_group" href="javascript:void(0)">
+                                                进入分组</a>
+                                            <input class="hidden" type="text" name="delete_id" value="{$label.id}"/>
+                                            <input class="hidden" type="submit">
+                                            <a class="btn del_group" href="javascript:void(0)" value="{$label.id}">移除分组</a>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        </volist>
+                </div>
+            </div>
+            <!--<div id="page">-->
+                <!--<ul class="pagination">-->
+                    <!--<li>-->
+                        <!--<a href="#">上一页</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="#">1</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="#">2</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="#">3</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="#">4</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="#">5</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="#">下一页</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            </div>
+        </div>
+    </div>
+</div>
+<br/><br/>
+
+<!--footer-->
+<include file="./Common:footer" />
+</body>
+<include file="./Common:bottom_js" />
+<script>
+    $(".in_group").click(function () {
+        $(this).siblings("input").trigger("click");
+    })
+    $(".del_group").click(function(){
+        $openid = $.(this).attr("value");
+        alert($openid);
+        $openid_post = {
+            "openid" : $openid
+        }
+        $.post("deleteLabel",$openid_post,function (data) {
+            alert("1");
+//            console.log(data);
+        })
+    })
+</script>

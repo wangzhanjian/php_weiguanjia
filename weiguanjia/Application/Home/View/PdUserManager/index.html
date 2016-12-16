@@ -1,0 +1,223 @@
+<include file="./Common:header" />
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery-1.11.3.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script type="text/javascript" src="__PUBLIC__/Home/js/bootstrap.min.js"></script>
+<import type='css' file="Home.css.wx_users" />
+</head>
+<body>
+<!--navbar-->
+<include file="./Common:top_navbar" />
+<!--content-->
+<br/><br/>
+<div class="container">
+    <div class="row clearfix">
+        <!--左边-->
+        <div class="col-md-3 column">
+            <div class="panel-group" id="panel-15351">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="panel-title" href="index">用户管理</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--右边-->
+        <div class="col-md-9 column">
+
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="page-header">
+                        <h3>
+                            &nbsp;用户列表
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-4 column">
+                    <div class="row clearfix">
+                        <div class="col-md-6 column">
+                            <a href="newLabelPage">
+                                <button type="submit" class="btn btn-default btn-block btn-primary">标签管理</button>
+                            </a>
+                        </div>
+                        <br/><br/><br/>
+                    </div>
+                </div>
+                <!--<div id="portrait">-->
+                    <!--<form class="navbar-form navbar-left" role="search">-->
+                        <!--<div class="form-group">-->
+                            <!--<input type="text" class="form-control" />-->
+                        <!--</div> <button type="submit" class="btn btn-default">查找</button>-->
+                    <!--</form>-->
+                <!--</div>-->
+            </div>
+            <volist name="userinfo" id="info">
+                <div class="row clearfix">
+                    <div class="col-md-2 column">
+                        <img alt="140x140" src="{$info.headimgurl}" />
+                    </div>
+                    <div class="col-md-7 column">
+                        <h4>
+                            {$info.nickname}<small>{$info.remark}</small>
+                        </h4>
+                        <p>
+                            <em>所在地：</em>  <small>{$info.country} {$info.province} {$info.city}</small>
+                        </p>
+                        标签：<small>可修改用户的标签</small>
+                        <div class="lab">
+                            <form action="__ROOT__/Home/PdUserManager/changeLabel" method="post">
+                                <select name="lab" class="label-select" now-label="{$info.tagid_list.0}" openid="{$info.openid}">
+                                    <volist name="userlabel" id="label">
+                                        <option value="{$label.id}">{$label.name}</option>
+                                    </volist>
+                                </select>
+                            </form>
+                        </div>
+                        <span class="label label-success"></span>
+                        <hr/>
+                    </div>
+                    <div class="col-md-3 column">
+                        <br/>
+                        <a id="modal-383143" href="#{$info.openid}" role="button" class="btn btn-block btn-primary user-info" data-toggle="modal">
+                            <button type="button" class="btn btn-default btn-block btn-primary">用户信息
+                            </button>
+                        </a>
+                        <button type="button" class="btn btn-default btn-danger btn-block" onclick="add_black_user_list(this)">加入黑名单</button>
+
+
+                        <div class="modal fade" id="{$info.openid}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" id="myModalLabel">
+                                            {$info.nickname} 的用户信息
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body" >
+                                        <!--奇怪版-->
+                                        <table border="0" >
+                                            <tr>
+                                                <td>性别：</td>
+                                                <td>{$info.sex}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>地区:</td>
+                                                <td>{$info.country}</td>
+                                            </tr>
+                                            <tr>
+                                                <if condition="$info.province neq null ">省:  {$info.province}
+                                                <td>省: </td>
+                                                <td>{$info.province}</td>
+                                                </if>
+                                            </tr>
+                                            <tr>
+                                                <if condition="$info.city neq null ">
+                                                    <td>市:</td>
+                                                    <td>{$info.city}</td>
+                                                </if>
+                                            </tr>
+                                            <tr>
+                                                <td>关注时间：</td>
+                                                <td>{$info.subscribe_time}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>备注：</td>
+                                                <td><input type="text" value="{$info.remark}" class="remark"></td>
+                                            </tr>
+                                            <!--杂乱版-->
+                                            <!--性别： {$info.sex} <br/>-->
+                                            <!--地区： {$info.country}<br/>-->
+                                            <!--<if condition="$info.province neq null ">省:  {$info.province}<br/>-->
+                                            <!--</if>-->
+                                            <!--<if condition="$info.city neq null ">市:  {$info.city}<br/>-->
+                                            <!--</if>-->
+                                            <!--关注时间：{$info.subscribe_time}<br/>-->
+                                            <!--备注：<input type="text" value="{$info.remark}" class="remark"><br/>-->
+                                            </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary save" data-dismiss="modal">保存</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </volist>
+        </div>
+    </div>
+</div>
+<br/><br/>
+<!--footer-->
+<include file="./Common:footer" />
+</body>
+<include file="./Common:bottom_js" />
+<script>
+    $(".label-select").change(function () {
+        $label_now = {
+            "label":$(this).attr("now-label"),
+            "label-now":$(this).find("option:selected").attr("value"),
+            "openid":$(this).attr("openid")
+        };
+        $(this).attr("now-label",$(this).val());
+        $.post("changeLabel",$label_now,function (data) {
+
+        })
+    })
+    $(document).ready(function () {
+        $(".label-select").each(function () {
+            $(this).val($(this).attr("now-label"));
+        })
+    })
+    $(".save").click(function () {
+        $openid = $(this).parents(".modal").attr("id");
+        $remark = $(this).parents(".modal-footer").siblings(".modal-body").find(".remark").val();
+        $remark_post = {
+            "openid" : $openid,
+            "remark" : $remark
+        }
+        $.post("alias",$remark_post,function (data) {
+            console.log(data);
+        })
+    })
+    function add_black_user_list(ele) {
+        $(ele).addClass("active-button");
+        $openid = $(ele).parent(".column").prev().find(".label-select").attr("openid");
+        $openid_json = {
+            "openid":$openid
+        }
+        $.post("shieldUsers",$openid_json,function (data) {
+            console.log(data);
+            if (data == "success"){
+                $(".active-button").text("取消拉黑用户");
+                $(".active-button").attr("onclick","rem_black_user_list(this)");
+                $(".active-button").removeClass("active-button");
+            }else {
+                alert("拉黑失败");
+                $(".active-button").removeClass("active-button");
+            }
+        })
+    }
+
+    function rem_black_user_list(ele) {
+        $(ele).addClass("active-button");
+        $openid = $(ele).parent(".column").prev().find(".label-select").attr("openid");
+        $openid_json = {
+            "openid":$openid
+        }
+        $.post("undoUsers",$openid_json,function (data) {
+            if (data == "success"){
+                $(".active-button").text("加入黑名单");
+                $(".active-button").attr("onclick","add_black_user_list(this)");
+                $(".active-button").removeClass("active-button");
+            }else {
+                alert("取消拉黑失败")
+                $(".active-button").removeClass("active-button");
+            }
+        })
+    }
+</script>

@@ -1,0 +1,113 @@
+<include file="./Common:header" />
+<import type='css' file="Home.css.wx_users" />
+</head>
+<body>
+<!--navbar-->
+<include file="./Common:top_navbar" />
+
+<!--content-->
+<br/><br/>
+<div class="container">
+    <div class="row clearfix">
+        <!--左边-->
+        <div class="col-md-3 column">
+            <div class="panel-group" id="panel-15351">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="panel-title" href="index">用户管理</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--右边-->
+        <div class="col-md-9 column">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="page-header">
+                        <h3>
+                            &nbsp;{$labelname.group_name}
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-4 column">
+                    <div class="row clearfix">
+                        <div class="col-md-6 column">
+                            <a href="newLabelPage">
+                                <button type="submit" class="btn btn-default btn-block btn-primary">标签管理</button>
+                            </a>
+                        </div>
+                        <div class="col-md-6 column">
+                            <button type="button" class="btn btn-danger btn-default btn-block">删除分组</button>
+                        </div>
+                        <br/><br/><br/>
+                    </div>
+                </div>
+                <!--<div id="portrait">-->
+                    <!--<form class="navbar-form navbar-left" role="search">-->
+                        <!--<div class="form-group">-->
+                            <!--<input type="text" class="form-control" />-->
+                        <!--</div> <button type="submit" class="btn btn-default">查找</button>-->
+                    <!--</form>-->
+                <!--</div>-->
+            </div>
+            <div class="row">
+                <volist name="userinfo['user_info_list']" id="val">
+                    <div class="users">
+                        <div class="thumbnail">
+                            <img alt="300x200" src="{$val.headimgurl}" />
+                            <div class="caption">
+                                <h4>
+                                    {$val.nickname}
+                                </h4><br/>
+                                <p>
+                                    <a class="btn" href="javascript:void(0)" value="{$val.tagid_list}">从分组移除</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </volist>
+            </div>
+            <div id="page">
+                <ul class="pagination">
+                    <li>
+                        <a href="#">上一页</a>
+                    </li>
+                    <li>
+                        <a href="#">1</a>
+                    </li>
+                    <li>
+                        <a href="#">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                    <li>
+                        <a href="#">4</a>
+                    </li>
+                    <li>
+                        <a href="#">5</a>
+                    </li>
+                    <li>
+                        <a href="#">下一页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<br/><br/>
+<!--footer-->
+<include file="./Common:footer" />
+</body>
+<include file="./Common:bottom_js" />
+<script>
+    $(".del_group").click(function () {
+
+        $openid = $.(this).attr("value");
+        $.post("deleteLabel",$openid,function (data) {
+
+        })
+    })
+</script>
