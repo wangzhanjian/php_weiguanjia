@@ -1,200 +1,14 @@
     <include file="./Common:header" />
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script type="text/javascript" src="__PUBLIC__/Home/js/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Home/js/jquery3.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script type="text/javascript" src="__PUBLIC__/Home/js/bootstrap.min.js"></script>
     <import type='js' file="Home.js.project_center" />
-    <imoprt type="css" file="Home.css.project_center" />
-    <import type="css" file="Home.css.pc_auto_response" />
-    <import type="js" file="Home.js.pc_auto_response" />
-    <style type="text/css">
-        .tips_global{
-            color: #8d8d8d;
-        }
-        .menu_setting_area{
-            float: left;
-            margin: 14px 30px 0;
-        }
-        .menu_preview_area{
-            float: left;
-            width: 350px;
-            height: auto;
-        }
-        .mobile_menu_preview{
-            width: 320px;
-            height: auto;
-            border: 1px solid #e7e7eb;
-            margin-right: 10px;
-        }
-        .menu_form_area{
-            display: table-cell;
-            vertical-align: top;
-            float: none;
-            width: 550px;
-        }
-        .portable_editor{
-            padding-left: 12px;
-            width: auto;
-            height: auto;
-        }
-        .editor_inner {
-            height: auto;
-            min-height: 560px;
-            padding-bottom: 20px;
-            padding: 0 20px 5px;
-            background-color: #f4f5f9;
-            border: 1px solid #e7e7eb;
-        }
-        .menu_form_hd {
-            padding: 9px 0;
-            border-bottom: 1px solid #e7e7eb;
-        }
-        .global_info{
-            float: left;
-        }
-        .global_extra{
-            text-align: right;
-        }
-        .frm_label{
-            float: left;
-            width: 5em;
-            margin-top: .3em;
-            margin-right: 1em;
-            font-size: 14px;
-        }
-        .frm_controls {
-            display: table-cell;
-            vertical-align: top;
-            float: none;
-            width: auto;
-        }
-        .frm_control_group {
-            margin-top: 30px;
-            margin-bottom: 30px;
-            padding-bottom: 0;
-        }
-        .mobile_hd{
-            color: #fff;
-            text-align: center;
-            padding-top: 30px;
-            font-size: 15px;
-            width: auto;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            word-wrap: normal;
-            /*margin: 0 30px;*/
-            background: transparent url("__PUBLIC__/Home/images/bg_mobile_head_default2968da.png") no-repeat 0 0;
-        }
-        .pre_menu_list{
-            position: relative;
-            background: transparent url("__PUBLIC__/Home/images/bg_mobile_foot_default2968da.png") no-repeat 0 0;
-            bottom: -356px;
-            left: 0;
-            right: 0;
-            border: 1px solid #e7e7eb;
-            padding-left: 43px;
-            float: left;
-            width: 321px;
-        }
-        .menu_childlist{
-            display: none;
-        }
-        .menu_list{
-            display: block;
-            float: left;
-            width: 33.33%;
-            border-left: 1px solid #e7e7eb;
-
-        }
-        .menu_link:hover{
-            color: #222;
-            text-decoration:none;
-        }
-        .menu_link{
-            display: block;
-            width: auto;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            word-wrap: normal;
-            color: #616161;
-            text-decoration: none;
-            text-align: center;
-            line-height: 48px;
-        }
-        .menu_botton_select{
-            border: 1px solid #44b549;
-            line-height: 48px;
-            background-color: #fff;
-            color: #44b549;
-        }
-        .menu_childlist{
-            position: absolute;
-            bottom: 50px;
-            width: auto;
-            border: 1px solid #d0d0d0;
-            background-color: #fff;
-            text-align: center;
-            background-color: #fafafa;
-        }
-        .menu_childlist_li{
-            border: 1px solid #d0d0d0;
-            line-height: 45px;
-            cursor: pointer;
-            width: 93.984px;
-        }
-        .menu_childlist_li:hover{
-            background-color: #eee;
-        }
-        .menu_childlist_ul{
-            padding-left: 0px;
-        }
-        .child_select{
-            display: block;
-        }
-        .msg_sender_tips{
-            display: block;
-            color: #8d8d8d;
-            margin-top: 20px;
-        }
-        .frm_msg{
-            display: none;
-        }
-        .frm_controls p{
-            color: #8d8d8d;
-        }
-        .add_main_menu{
-            display: none;
-        }
-        .select_menu_active{
-            width: 172px;
-            height: 22px;
-            border-radius: 4px;
-        }
-        .frm_input{
-            border-radius: 4px;
-        }
-        .view{
-            display: none;
-            background-color: #fff;
-            padding: 16px 20px;
-            border: 1px solid #e7e7eb;
-        }
-        #urlText{
-            width: 330px;
-            border-radius: 0px;
-        }
-        .tab-pane{
-            background-color: #fff;
-        }
-        #panel-news{
-            border-top: 1px solid #ddd;
-        }
-        .menu_responce{
-            display: none;
-        }
-    </style>
+    <import type="css" file="Home.css.project_center" />
+    <import type="css" file="Home.css.pd_auto_response" />
+    <import type="js" file="Home.js.pd_auto_response" />
+    <import type="js" file="Home.js.pd_custom_menu" />
+    <import type="css" file="Home.css.custom_menu" />
 </head>
 <body>
 <!--navbar-->
@@ -208,42 +22,42 @@
             <!--手机区-->
             <div class="menu_preview_area">
                 <div class="mobile_menu_preview">
-                    <div class="mobile_hd tc">测试公众号</div>
+                    <div class="mobile_hd tc">{$GLOBAL_INFO.app_info.app_name}</div>
                     <div class="mobile_bd">
                         <ul class="pre_menu_list grid_line" id='menuList'>
                             <volist name="menu" id="main_menu">
                                 <li class="menu_list main_menu">
-                                    <a href="javascript:void(0);" class="menu_link {$main_menu.category} menu" active_type="{$main_menu.type}" message="{$main_menu.key}{$main_menu.url}"><span class="menu_botton">{$main_menu.name}</span></a>
+                                    <a href="javascript:void(0);" class="menu_link {$main_menu.category} menu" active_type="{$main_menu.type}" message="{$main_menu.key}{$main_menu.url}{$main_menu.media_id}"><span class="menu_button">{$main_menu.name}</span></a>
                                     <div class="menu_childlist">
                                         <ul class="menu_childlist_ul">
                                             <volist name="main_menu.sub_button" id="children_menu">
-                                                <li class="menu_childlist_li child_menu"><a href="javascript:void(0)" class="menu_link botton menu" active_type="{$children_menu.type}" message="{$children_menu.key}{$children_menu.url}"><span class="menu_botton child_botton">{$children_menu.name}</span></a></li>
+                                                <li class="menu_childlist_li child_menu"><a href="javascript:void(0)" class="menu_link button menu" active_type="{$children_menu.type}" message="{$children_menu.key}{$children_menu.url}" text=""><span class="menu_button child_button">{$children_menu.name}</span></a></li>
                                             </volist>
-                                            <li class="menu_childlist_li add_menu"><a href="javascript:void(0)" class="menu_link"><span class="menu_botton">+</span></a></li>
+                                            <li class="menu_childlist_li add_menu"><a href="javascript:void(0)" class="menu_link"><span class="menu_button">+</span></a></li>
                                         </ul>
                                     </div>
                                 </li>
                             </volist>
                             <!--<li class="menu_list main_menu">-->
-                                <!--<a href="javascript:void(0);" class="menu_link botton menu" active_type="text" message="文本回复"><span class="menu_botton">按钮1</span></a>-->
+                                <!--<a href="javascript:void(0);" class="menu_link button menu" active_type="text" message="文本回复"><span class="menu_button">按钮1</span></a>-->
                                 <!--<div class="menu_childlist">-->
                                     <!--<ul class="menu_childlist_ul">-->
-                                        <!--<li class="menu_childlist_li add_menu"><a href="javascript:void(0)" class="menu_link"><span class="menu_botton">+</span></a></li>-->
+                                        <!--<li class="menu_childlist_li add_menu"><a href="javascript:void(0)" class="menu_link"><span class="menu_button">+</span></a></li>-->
                                     <!--</ul>-->
                                 <!--</div>-->
                             <!--</li>-->
-                            <!--<li class="menu_list main_menu menu_botton_select active_menu">-->
-                                <!--<a href="javascript:void(0)" class="menu_link list menu"><span class="menu_botton">主菜单1</span></a>-->
+                            <!--<li class="menu_list main_menu menu_button_select active_menu">-->
+                                <!--<a href="javascript:void(0)" class="menu_link list menu"><span class="menu_button">主菜单1</span></a>-->
                                 <!--<div class="menu_childlist child_select">-->
                                     <!--<ul class="menu_childlist_ul">-->
-                                        <!--<li class="menu_childlist_li child_menu"><a href="javascript:void(0)" class="menu_link botton menu" active_type="view_limited" message="1"><span class="menu_botton child_botton">内容1</span></a></li>-->
-                                        <!--<li class="menu_childlist_li child_menu"><a href="javascript:void(0)" class="menu_link botton menu" active_type="media_id" message="2"><span class="menu_botton child_botton">内容2</span></a></li>-->
-                                        <!--<li class="menu_childlist_li add_menu"><a href="javascript:void(0)" class="menu_link"><span class="menu_botton">+</span></a></li>-->
+                                        <!--<li class="menu_childlist_li child_menu"><a href="javascript:void(0)" class="menu_link button menu" active_type="view_limited" message="1"><span class="menu_button child_button">内容1</span></a></li>-->
+                                        <!--<li class="menu_childlist_li child_menu"><a href="javascript:void(0)" class="menu_link button menu" active_type="media_id" message="2"><span class="menu_button child_button">内容2</span></a></li>-->
+                                        <!--<li class="menu_childlist_li add_menu"><a href="javascript:void(0)" class="menu_link"><span class="menu_button">+</span></a></li>-->
                                     <!--</ul>-->
                                 <!--</div>-->
                             <!--</li>-->
                             <li class="menu_list add_main_menu">
-                                <a href="javascript:void(0)" class="menu_link"><span class="menu_botton">+</span></a>
+                                <a href="javascript:void(0)" class="menu_link"><span class="menu_button">+</span></a>
                             </li>
                         </ul>
                     </div>
@@ -281,28 +95,28 @@
                                 <label class="frm_label">
                                     <strong class="title js_menuContent">菜单内容</strong>
                                 </label>
-                                <select class="select_menu_active">
+                                <select class="select_menu_active form-control">
                                     <option value="media_id">发送多媒体信息</option>
                                     <option value="view_limited">发送图文信息</option>
                                     <option value="view">跳转链接</option>
                                     <option value="click">发送文本信息</option>
-                                    <!-- <option value="scancode_waitmsg">调用扫一扫工具</option> -->
+                                    <option value="scancode_push">调用扫一扫工具</option>
                                 </select>
                             </div>
                         </div>
                         <!--发送多媒体信息-->
-                        <div class="tabbable edit_tabbable media_id menu_responce" id="tabs-635277">
+                        <div class="tabbable edit_tabbable media_id menu_response" id="tabs-635277">
                             <ul class="nav nav-tabs">
-                                <li>
+                                <li class="image active" media_type="image">
                                     <a href="#panel-image" data-toggle="tab"><span class="glyphicon glyphicon-picture"></span> 图片</a>
                                 </li>
-                                <li>
+                                <li class="voice" media_type="voice">
                                     <a href="#panel-voice" data-toggle="tab"><span class="glyphicon glyphicon-volume-up"></span> 语音</a>
                                 </li>
-                                <li>
+                                <li class="music" media_type="music">
                                     <a href="#panel-music" data-toggle="tab"><span class="glyphicon glyphicon-music"></span> 音乐</a>
                                 </li>
-                                <li>
+                                <li class="video" media_type="video">
                                     <a href="#panel-video" data-toggle="tab"><span class="glyphicon glyphicon-facetime-video"></span> 视频</a>
                                 </li>
                             </ul>
@@ -396,7 +210,7 @@
                             </div>
                         </div>
                         <!--发送图文消息-->
-                        <div class="col-xs-12 column tab-pane menu_responce" id="panel-news">
+                        <div class="col-xs-12 column tab-pane menu_response view_limited" id="panel-news">
                             <div class="col-xs-6 column material_select sl">
                                 <p class="text-center"><span class="glyphicon glyphicon-plus"></span></p>
                                 <p class="text-center"><a  href="#modal-container-news" onclick="get_material(this)" data-toggle="modal" data-type="select_from_material">从素材库选择</a></p>
@@ -407,7 +221,7 @@
                             </div>
                         </div>
                         <!-- 跳转链接 -->
-                        <div class="view menu_responce">
+                        <div class="view menu_response">
                             <form action="">
                                 <p class="menu_content_tips tips_global">订阅者点击该子菜单会跳到以下链接</p>
                                 <div class="frm_control_group">
@@ -424,10 +238,15 @@
                             </form>
                         </div>
                         <!-- 发送文本信息 -->
-                        <div class="click menu_responce">
+                        <div class="click menu_response">
                             <div class="tab-pane" id="panel-text">
                                 <textarea class="textarea" name="response_content"></textarea>
                             </div>
+                        </div>
+                        <!--扫一扫事件-->
+                        <div class="scancode_push menu_response">
+                            <img src="__PUBLIC__/Home/images/scanning.png" class="scanning">
+                            <button type="button" class="btn btn-default btn-success open"> &nbsp;&nbsp;保存&nbsp;&nbsp; </button>
                         </div>
                     </div>
                 </div>
@@ -435,7 +254,7 @@
             <!--保存键-->
             <div class="col-xs-12 column auto_res_btn">
                 <button type="button" class="btn btn-default btn-success update"> &nbsp;&nbsp;保存&nbsp;&nbsp; </button>
-                <button type="button" class="btn btn-default btn-success delete">&nbsp;&nbsp;删除&nbsp;&nbsp;</button>
+                <button type="button" class="btn btn-default btn-danger delete">&nbsp;&nbsp;删除&nbsp;&nbsp;</button>
             </div>
         </div>
     </div>
@@ -457,6 +276,8 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<!--hidden nav-->
+<include file="./Common:project_hidden_nav" />
 <!--footer-->
 <div class="row clearfix footer">
     <div class="col-sm-12 col-md-12 col-lg-12 column">
@@ -488,7 +309,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button data-type="ensure" class="btn btn-primary disabled">确定</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button data-type="ensure" class="btn btn-primary disabled determine">确定</button>
                             </div>
                         </div>
 
@@ -605,68 +426,11 @@
                             </div>
                             <div class="modal-body">
                                 <div class="col-xs-12 column news_list">
-                                    <!--<div class="col-xs-4 column cell" data-type="data_box_cell">
-                                        <div class="col-xs-12 column news_box">
-                                            <div class="news_header_more">
-                                                <h5>2016年10月28</h5>
-                                            </div>
-                                            <div class="col-xs-12 column news_body">
-                                                <div class="first data_box">
-                                                    <img src="" width="100%" height="120px">
-                                                    <p>title</p>
-                                                </div>
-                                                <div class="col-xs-12 column data_box">
-                                                    <div class="col-xs-8 column">
-                                                        <h5>title</h5>
-                                                    </div>
-                                                    <div class="col-xs-4 column">
-                                                        <img src="" width="100%" height="70">
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-12 column data_box">
-                                                    <div class="col-xs-8 column">
-                                                        <h5>title</h5>
-                                                    </div>
-                                                    <div class="col-xs-4 column">
-                                                        <img src="" width="100%" height="70px">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-4 column cell" data-type="data_box_cell">
-                                        <div class="col-xs-12 column news_box">
-                                            <div class="news_header_single">
-                                                <h5>2016年10月28</h5>
-                                            </div>
-                                            <div class="col-xs-12 column news_body">
-                                                <div class="col-xs-12 column data_box">
-                                                    <p>title</p>
-                                                    <img src="" width="100%" height="150px">
-                                                    <p>discription</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-4 column cell" data-type="data_box_cell">
-                                        <div class="col-xs-12 column news_box">
-                                            <div class="news_header_single">
-                                                <h5>2016年10月28</h5>
-                                            </div>
-                                            <div class="col-xs-12 column news_body">
-                                                <div class="col-xs-12 column data_box">
-                                                    <p>title</p>
-                                                    <img src="" width="100%" height="150px">
-                                                    <p>discription</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>-->
                                 </div>
                                 <a href="javascript:void(0)" class="load_more hidden" onclick="load_more(this)" data-load="news">加载更多…</a>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button data-type="ensure" class="btn btn-primary disabled">确定</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button data-type="ensure" class="btn btn-primary disabled news-select">确定</button>
                             </div>
                         </div>
 
@@ -738,266 +502,5 @@
 <input class="hidden" type="file" id="file"/>
 </div>
 </body>
-<script>
-    $(document).ready(function(){
-        //获取当前所有的key值
-        $(".pre_menu_list").find(".menu_link[active_type = 'click']").html()
-        //选中第一个菜单
-        $(".pre_menu_list").children(".main_menu:first").addClass("menu_botton_select active_menu");
-        $(".menu_botton_select").children(".menu_childlist").addClass("child_select");
-        //加载成功时右边的菜单名的显示
-        var title = $(".menu_botton_select").children(".menu_link").children(".menu_botton").html();
-        if (title == null){
-            $(".global_mod").add(".menu_form_bd").css("display","none");
-        }
-        $(".js_menu_name").val(title);
-        //判断是否显示添加主菜单
-        if ($(".pre_menu_list").children(".main_menu").size()<3) {
-            $(".add_main_menu").css("display","block");
-        };
-        //根据默认点击的菜单判断菜单编辑区显示的内容
-        var default_menu_class = $(".menu_botton_select").children(".menu_link").attr('class');
-        if (default_menu_class != null) {
-            if (default_menu_class.indexOf("botton") != -1) {
-                $(".tips_global").css("display", "none");
-                $(".menu_content").css("display", "block");
-                $(".tabbable").css("display", "block");
-            } else {
-                $(".tips_global").css("display", "block");
-                $(".menu_content").css("display", "none");
-                $(".tabbable").css("display", "none");
-            }
-        }
-        //根据默认点击的菜单的菜单类型显示对应内容
-        var default_menu_type = $(".menu_botton_select").children(".menu_link").attr("active_type");
-        $(".select_menu_active").val(default_menu_type);
-        $(".menu_responce").addClass("hidden");
-        $('.' + default_menu_type).removeClass("hidden").css("display", "block");
-        //当用户点击菜单时修改菜单的样式类，显示菜单
-        $('.pre_menu_list').on("click",'.main_menu',function() {
-        //当用户点击一级菜单时
-        $(this).addClass("menu_botton_select");
-        var elsebotton = $('.menu_list').not($(this));
-        //获取未被选择的一级菜单
-        $(elsebotton).removeClass("menu_botton_select");
-        $(this).children(".menu_childlist").addClass("child_select");
-        $(elsebotton).children(".menu_childlist").removeClass("child_select");
-    })
-        //添加子菜单
-        $(".pre_menu_list").on("click", ".add_menu", function () {
-            var count = $(this).siblings(".menu_childlist_li").size();
-            console.log(count);
-            if (count >= 5) {
-                $("#mymodal").modal("toggle");
-            } else {
-                $(".active_menu").removeClass("active_menu")
-                $(this).before("<li class='menu_childlist_li active_menu'><a href='javascript:void(0)' class='menu_link botton menu' active_type='text'><span class='menu_botton child_botton'>新建菜单</span></a></li>");
-                $(this).parents(".menu_list").children(".menu_link.botton.menu").attr("class", "menu_link list menu").trigger("click");
-                $(".global_info").text("新建菜单");
-                $(".js_menu_name").val("新建菜单");
-            }
-        })
-        //添加主菜单
-        $(".add_main_menu").click(function () {
-            $(this).before("<li class='menu_list main_menu'><a href='javascript:void(0);' class='menu_link botton menu'><span class='menu_botton'>新建菜单</span></a><div class='menu_childlist'><ul class='menu_childlist_ul'><li class='menu_childlist_li'><a href='javascript:void(0)' class='menu_link add_menu'><span class='menu_botton'>+</span></a></li></ul></div></li>");
-            if ($(".pre_menu_list").children(".main_menu").size() >= 3) {
-                $(".add_main_menu").css("display", "none");
-            }
-            ;
-        })
-        //点击菜单时在右侧编辑区显示当前菜单名称
-        $(".pre_menu_list").on('click', '.menu', function () {
-            $(".global_mod").add(".menu_form_bd").css("display","block");
-            var title = $(this).find("span").text();
-            $(this).parent("li").addClass("active_menu");
-            $(".menu_list").not($(this).parent("li")).removeClass("active_menu");
-            $(".menu_childlist_li").not($(this).parent("li")).removeClass("active_menu");
-            $(".global_info").text(title);
-            $(".js_menu_name").val(title);
-        })
-        //点击菜单时右侧动作区显示对应动作
-        $(".pre_menu_list").on('click','.menu',function () {
-            var type = $(this).attr("active_type");
-            $(".select_menu_active").val(type);
-            $(".menu_responce").addClass("hidden");
-            $('.'+type).removeClass("hidden").css("display","block");
-        })
-        //当点击有子菜单的主菜单时右侧只显示名称
-        $(".pre_menu_list").on('click', '.list', function () {
-            $(".tips_global").css("display", "block");
-            $(".menu_content").css("display", "none");
-            $(".tabbable").css("display", "none");
-            $(".menu_responce").css("display", "none");
-        })
-        //当点击子菜单或者无子菜单的主菜单时显示动作选择
-        $(".pre_menu_list").on('click', '.botton', function () {
-            $(".tips_global").css("display", "none");
-            $(".menu_content").css("display", "block");
-            $(".tabbable").css("display", "block");
-        })
-        //判断菜单名称长度
-        $(".js_menu_name").keyup(function () {
-            var str = $(this).val();
-            var len = 0;
-            for (var i = 0; i < str.length; i++) {
-                if (str[i].match(/[^\x00-\xff]/ig) != null) //全角
-                    len += 2;
-                else
-                    len += 1;
-            }
-            if (len > 8) {
-                $(".js_titleEorTips").css("display", "block");
-                $(".js_titleNolTips").css("display", "none");
-                $(this).css("border-color", "red");
-            } else {
-                if (len == 0) {
-                    $(".js_titlenoTips").css("display", "block");
-                    $(".js_titleNolTips").css("display", "none");
-                    $(this).css("border-color", "red");
-                } else {
-                    $(".dn").css("display", "none");
-                    $(".js_titleNolTips").css("display", "block");
-                    $(this).css("border-color", "#e7e7eb");
-                    $(".active_menu").children("a").children("span").text(str);
-                }
-            }
-            ;
-        })
-        //删除菜单操作
-        $("#jsDelBt").click(function () {
-            var last = $(".active_menu").siblings(".add_menu");
-            $("li").remove(".active_menu");
-            if ($(".pre_menu_list").children(".main_menu").size() < 3) {
-                $(".add_main_menu").css("display", "block");
-            };
-            if (last.siblings().size() == 0){
-                last.parents(".menu_list").children(".menu_link.list.menu").attr("class","menu_link botton menu");
-                last.parents(".menu_list").addClass("active_menu");
-                last.parents(".menu_list").children(".menu_link").trigger("click");
-            }
-            if (last.siblings().size != 0){
-                last.siblings('.menu_childlist_li:eq(0)').children(".menu_link").trigger("click");
-                console.log(last.siblings('.menu_childlist_li:eq(0)').text());
-            }
-        })
-        //根据选择修改右侧回复区的内容
-        $(".select_menu_active").change(function () {
-            var checkValue = $(this).val();
-            console.log(checkValue);
-            $(".active_menu").children("a").attr("active_type",checkValue);
-            $(".menu_responce").addClass("hidden");
-            $('.' + checkValue).removeClass("hidden").css("display", "block");
-        })
-        //删除所有菜单
-        $(".delete").click(function () {
-            $delete = new Object();
-            $delete['0'] = "delete";
-            $.post('__ROOT__/Home/PdCustomMenu/delete',$delete,function (data) {
-                console.log(data);
-            })
-        })
-        //跳转链接的输入框失去焦点时将内容保存到input里面
-        $("#urlText").blur(function () {
-            $(this).attr("message",$(this).val());
-        })
-        //文本回复的文本域失去焦点时将内容保存到数据库中
 
-        //当点击并非正在编辑的标签或提交按钮时，保存当前标签的修改
-        $("li").not($(".active_menu")).add(".update").click(function () {
-            var mes = $(".menu_responce:not('.hidden')").find(".mes").attr("message");
-            $(".active_menu").children("a").attr("message",mes);
-        })
-        //组成json串并上传
-        $(".update").click(function () {
-            $menu = new Object();
-            $n = 0;
-            $menu['button'] = Array();
-            $(".main_menu").each(function () {
-                if ($(this).children("a").attr("class").indexOf("botton") != -1){
-                    $name = $(this).children("a").text();
-                    $button_type = $(this).children("a").attr("active_type");
-                    $message = $(this).children("a").attr("message");
-                    switch ($button_type){
-                        case "click":
-                            $menu['button'][$n] = {
-                            "type":"click",
-                            "name":$name,
-                            "key":$message
-                        };
-                        break;
-                        case "media_id":
-                            $menu['button'][$n] = {
-                            "type":$button_type,
-                            "name":$name,
-                            "media_id":$message
-                        };
-                        break;
-                        case "view_limited":
-                            $menu['button'][$n] = {
-                            "type": $button_type,
-                            "name": $name,
-                            "media_id": $message
-                        };
-                        break;
-                        case "view":
-                            $menu['button'][$n] = {
-                            "type": $button_type,
-                            "name": $name,
-                            "url": $message
-                        };
-                        break;
-                    }
-                }else if ($(this).children("a").attr("class").indexOf("botton") == -1){
-                    $name = $(this).children("a").text();
-                    $menu['button'][$n] = {
-                        "name":$name,
-                        "sub_button":Array()
-                    }
-                    $i = 0;
-                    $(this).children(".menu_childlist").children(".menu_childlist_ul").find(".child_menu").each(function () {
-                        $name = $(this).children("a").text();
-                        $button_type = $(this).children("a").attr("active_type");
-                        $message = $(this).children("a").attr("message");
-                        switch ($button_type) {
-                            case "click":
-                                $menu['button'][$n]['sub_button'][$i] = {
-                                    "type": $button_type,
-                                    "name": $name,
-                                    "key": $message
-                                };
-                                break;
-                            case "media_id":
-                                $menu['button'][$n]['sub_button'][$i] = {
-                                    "type": $button_type,
-                                    "name": $name,
-                                    "media_id": $message
-                                };
-                                break;
-                            case "view_limited":
-                                $menu['button'][$n]['sub_button'][$i] = {
-                                    "type": $button_type,
-                                    "name": $name,
-                                    "media_id": $message
-                                };
-                                break;
-                            case "view":
-                                $menu['button'][$n]['sub_button'][$i] = {
-                                    "type": $button_type,
-                                    "name": $name,
-                                    "url": $message
-                                };
-                                break;
-                        }
-                        $i = $i+1;
-                    })
-                }
-                $n = $n+1;
-            })
-            console.log($menu);
-        $.post('__ROOT__/Home/PdCustomMenu/create',$menu,function (data) {
-            console.log(data);
-        });
-        })
-    })
-</script>
 </html>

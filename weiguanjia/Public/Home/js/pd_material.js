@@ -42,6 +42,7 @@ $(function () {
                 xhr.onreadystatechange = function(){
                     if(xhr.readyState==4 && xhr.status==200){
                         $result= xhr.responseText;
+                        console.log($result);
                         if($result=='error'){
                             $('#progressBar').css('width','0%');
                             alert('上传失败！');

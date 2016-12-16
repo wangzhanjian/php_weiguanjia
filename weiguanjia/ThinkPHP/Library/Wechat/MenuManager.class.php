@@ -16,12 +16,6 @@ class MenuManager extends AccessToken
         $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token={$accessToken}";
         $curl=new Curl();
         $curl->post($url,$menuInfo);
-        if ($curl->error) {
-            error_log($curl->error_message,3,"./log.txt");
-        }
-        else {
-            error_log($curl->response,3,"./log.txt");
-        }
         $curl->close();
         return true;
     }
