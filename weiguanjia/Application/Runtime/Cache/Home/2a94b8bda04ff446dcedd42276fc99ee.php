@@ -13,7 +13,7 @@
     <body>
         <div class="row clearfix">
     <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
+        <div class="container-fluid top_navbar">
             <div class="col-xs-3 col-sm-3 col-md-2 column">
                 <div class="logo"></div>
             </div>
@@ -58,7 +58,7 @@
         </div>
     </nav>
 </div>
-    <!--轮播图-->
+        <!--轮播图-->
         <div class="row clearfix">
                 <div class="col-sm-12 col-md-12 col-lg-12 column">
                     <div class="carousel slide" id="carousel-508571">
@@ -108,8 +108,8 @@
                     </div>
                 </div>
         </div>
-    <!--展示区-->
-        <div class="container show_panel">
+        <!--展示区-->
+        <div class="container-fluid show_panel">
             <div class="row clearfix">
                 <div class="col-sm-6 col-md-6 col-lg-6 column">
                     <h4>
@@ -162,9 +162,9 @@
             </div>-->
         </div>
         <!--boottom nav-->
-        <div class="container bottom_bar">
+        <div class="container-fluid bottom_bar">
             <div class="row clearfix">
-                <div class="col-xs-3 column">
+                <div class="col-xs-6 col-sm-3 column">
                         <h4>
                             新手上路
                         </h4>
@@ -186,7 +186,7 @@
                             </li>
                         </ul>
                     </div>
-                <div class="col-xs-3 column">
+                <div class="col-xs-6 col-sm-3 column">
                         <h4>
                             商务合作
                         </h4>
@@ -199,7 +199,7 @@
                             </li>
                         </ul>
                     </div>
-                <div class="col-xs-3 column">
+                <div class="col-xs-6 col-sm-3 column">
                         <h4>
                             使用帮助
                         </h4>
@@ -215,7 +215,7 @@
                             </li>
                         </ul>
                     </div>
-                <div class="col-xs-3 column">
+                <div class="col-xs-6 col-sm-3 column">
                         <h4>
                             关于我们
                         </h4>
@@ -233,6 +233,7 @@
                     </div>
             </div>
         </div>
+        <!--footer-->
         <div class="row clearfix footer">
     <div class="col-sm-12 col-md-12 col-lg-12 column">
         <p class="text-center">

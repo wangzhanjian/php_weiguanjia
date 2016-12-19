@@ -15,7 +15,7 @@
         <!--navbar-->
         <div class="row clearfix">
     <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
+        <div class="container-fluid top_navbar">
             <div class="col-xs-3 col-sm-3 col-md-2 column">
                 <div class="logo"></div>
             </div>
@@ -61,12 +61,12 @@
     </nav>
 </div>
         <!--content-->
-        <div class="container main_content login">
+        <div class="container-fluid main_content login">
             <div class="row clearfix">
-                <div class="col-sm-6 col-md-6 col-lg-6 column left_img">
+                <div class="col-xs-12 col-sm-6 column left_img">
 
                 </div>
-                <div class="col-sm-6 col-md-6 col-lg-6 column">
+                <div class="col-xs-12 col-sm-6 column">
                     <form role="form" action="/Home/UserManager/login" method="post">
                         <div class="form-group">
                              <label>用户名</label>

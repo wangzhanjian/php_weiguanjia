@@ -15,16 +15,16 @@
         <!--navbar-->
         <div class="row clearfix">
     <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 column">
+        <div class="container-fluid top_navbar">
+            <div class="col-xs-3 col-sm-3 col-md-2 column">
                 <div class="logo"></div>
             </div>
-            <div class="col-sm-2 col-md-2 col-lg-2 column">
+            <div class="col-sm-0 col-md-2 column">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 </div>
             </div>
-            <div class="col-sm-8 col-md-8 col-lg-8 column">
+            <div class="col-sm-9 col-md-8 column">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
@@ -61,12 +61,12 @@
     </nav>
 </div>
         <!--content-->
-        <div class="container main_content">
+        <div class="container-fluid main_content">
             <div class="row clearfix">
-                <div class="col-sm-6 col-md-6 col-lg-6 column left_img">
+                <div class="col-xs-12 col-sm-6 column left_img">
 
                 </div>
-                <div class="col-sm-6 col-md-6 col-lg-6 column">
+                <div class="col-xs-12 col-sm-6 column">
                         <form role="form" action="/Home/UserManager/register" method="post">
                             <div class="form-group">
                                  <label>用 户 名 <span class="username_tip tip"></span></label>

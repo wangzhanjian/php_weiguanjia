@@ -1,0 +1,112 @@
+<include file="./Common:header" />
+<import type='css' file="Home.css.project_center" />
+<import type='css' file="Home.css.pd_user_manager" />
+</head>
+<body>
+<!--navbar-->
+<include file="./Common:top_navbar" />
+<!--content-->
+<div class="container main_content">
+    <div class="row clearfix">
+        <!--项目开发左侧导航栏-->
+        <include file="./Common:project_sidebar_wrap" />
+        <!--项目开发右侧开发区-->
+        <div class="col-sm-10 col-xs-8 column right_content">
+            <h4>用户管理</h4>
+            <button href="index" class="btn btn-default btn-sm active">用户列表</button> | <button href="newLabelPage" class="btn btn-default btn-sm">标签管理</button>
+            <hr/>
+            <div class="col-md-12 column user_list">
+                <volist name="userinfo" id="info">
+                    <div class="col-xs-12 column list_cell">
+                        <div class="col-md-2 column">
+                                <img alt="140x140" src="{$info.headimgurl}" width="133px" height="133px" />
+                            </div>
+                        <div class="col-md-7 column">
+                                <h4>
+                                    {$info.nickname} <span class="user_info">【{$info.remark}】</span>
+                                </h4>
+                                <p>
+                                    所在地： <span class="user_info">{$info.country} {$info.province} {$info.city}</span>
+                                </p>
+                                <div class="col-md-2 column" style="padding:0;">
+                                    <p>标签：</p>
+                                </div>
+                                <div class="col-md-10 column">
+                                    <div class="lab">
+                                        <form action="__ROOT__/Home/PdUserManager/changeLabel" method="post">
+                                            <select name="lab" class="label-select" now-label="{$info.tagid_list.0}" openid="{$info.openid}">
+                                                <volist name="userlabel" id="label">
+                                                    <option value="{$label.id}">{$label.name}</option>
+                                                </volist>
+                                            </select>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="col-md-3 column">
+                            <br/>
+                            <a id="modal-383143" href="#{$info.openid}" role="button" class="btn btn-block btn-primary user-info" data-toggle="modal">用户信息</a>
+                            <button type="button" class="btn btn-default btn-danger btn-block" onclick="add_black_user_list(this)">加入黑名单</button>
+                            <div class="modal fade" id="{$info.openid}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                <h4 class="modal-title" id="myModalLabel">
+                                                    {$info.nickname} 的用户信息
+                                                </h4>
+                                            </div>
+                                            <div class="modal-body" >
+                                                <!--奇怪版-->
+                                                <table class="table  table-striped">
+                                                    <tr>
+                                                        <th>性别：</th>
+                                                        <td>{$info.sex}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>国家:</th>
+                                                        <td>{$info.country}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <if condition="$info.province neq null ">
+                                                            <th>省份: </th>
+                                                            <td>{$info.province}</td>
+                                                        </if>
+                                                    </tr>
+                                                    <tr>
+                                                        <if condition="$info.city neq null ">
+                                                            <th>市区:</th>
+                                                            <td>{$info.city}</td>
+                                                        </if>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>关注时间：</th>
+                                                        <td>{$info.subscribe_time}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>备注：</th>
+                                                        <td><input type="text" value="{$info.remark}" class="remark"></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary save" data-dismiss="modal">保存</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </volist>
+            </div>
+        </div>
+    </div>
+</div>
+<!--hidden nav-->
+<include file="./Common:project_hidden_nav" />
+<!--footer-->
+<include file="./Common:footer" />
+</body>
+<include file="./Common:bottom_js" />
+<import type='js' file="Home.js.project_center" />
+<import type='js' file="Home.js.pd_user_manager" />

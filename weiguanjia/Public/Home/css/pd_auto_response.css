@@ -1,0 +1,163 @@
+#close_auto_response_btn{
+    float: right;
+}
+.edit_tabbable{
+    margin-top: 20px;
+}
+.textarea{
+    width: 100%;
+    height: 200px;
+}
+.material_select{
+    width: 50%;
+    height: 200px;
+    float: left;
+    padding: 70px 15px;
+}
+.sl {
+     border-right: 1px solid #ddd;
+}
+.tab-content{
+    padding:0;
+}
+.tab-pane{
+    border: 1px solid #ddd;
+    border-style: none solid solid solid;
+    padding: 15px;
+}
+
+.auto_res_btn{
+    padding:15px;
+}
+.auto_res_btn button{
+    margin-right: 5%;
+}
+
+.btn-group .active{
+    background-color: #576477;
+    color: #fff;
+}
+.material_container .modal .modal-content{
+    width: 150%;
+    margin-left: -25%;
+}
+.material_container .modal .modal-body{
+    overflow: auto;
+    height: 400px;
+}
+
+.data_box_voice{
+    border:1px solid #ddd;
+    padding: 10px 0;
+    line-height: 25px;
+}
+.data_box_video{
+    border:1px solid #ddd;
+    padding: 10px 0;
+    line-height: 75px;
+}
+.data_box_img{
+    border:1px solid #ddd;
+    padding: 0;
+}
+
+.data_box_img p{
+    margin:0px;
+    line-height: 25px;
+}
+.cell{
+    margin-top: 10px;
+}
+
+.news_list{
+    padding: 5px 0;
+}
+.news_list .cell{
+    margin-top: 10px;
+}
+.news_box{
+    border:1px solid #ddd;
+}
+.news_body{
+    padding: 0;
+}
+.news_body .first p{
+    display: block;
+    background-color: #333;
+    opacity: 0.5;
+    margin-top: -20px;
+    color: #fff;
+    padding-left: 15px;
+}
+.news_body .first h5.sm{
+    display: block;
+    background-color: #333;
+    opacity: 0.5;
+    line-height: 20px;
+    margin: -21px 0 0 0;
+    color: #fff;
+    padding-left: 15px;
+}
+.news_body .data_box{
+    padding: 5px 0;
+    border-top:1px solid #ddd;
+}
+.news_body .data_box h5{
+    line-height: 50px;
+}
+.news_body .data_box div{
+    padding:0;
+}
+.news_footer{
+    display: none;
+}
+[data-type=data_box_cell]{
+    opacity: 0.5;
+}
+[data-type=data_box_cell] a{
+    color:#888;
+}
+.load_more{
+    clear: both;
+    display: block;
+    text-align: center;
+    width:100px;
+    margin: 0 auto;
+    padding: 10px 0;
+    color:#888;
+}
+.progress{
+    height: 5px;
+    margin:5px 0;
+}
+.add_rul{
+    padding:15px 0;
+}
+.add_rul button span{
+    color: #fff;
+}
+.rule_panel{
+    display: none;
+}
+.rule_panel .form-group{
+    height: 34px;
+}
+.rule_panel .form-group label{
+    line-height: 34px;
+}
+.rule_panel button{
+    margin-right: 5%;
+}
+.list_cell{
+    padding:0;
+}
+.delete_rule{
+    float:right;
+    margin-top:-4px;
+}
+.panel.cell label{
+    color:#888;
+}
+.panel.cell hr{
+    margin:5px 0;
+}

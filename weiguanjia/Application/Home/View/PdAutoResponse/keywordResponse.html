@@ -1,0 +1,605 @@
+<include file="./Common:header" />
+<import type='css' file="Home.css.project_center" />
+<import type='css' file="Home.css.pd_auto_response" />
+    </head>
+    <body>
+        <!--navbar-->
+        <include file="./Common:top_navbar" />
+        <!--content-->
+        <div class="container main_content">
+            <div class="row clearfix">
+                <include file="./Common:project_sidebar_wrap" />
+                <div class="col-sm-10 col-md-10 col-lg-10 column right_content">
+                    <h4>自动回复</h4>
+                    <div class="btn-group btn-group-sm">
+                        <if condition="$responseInfo.type eq 'event'">
+                            <button class="btn btn-default active" type="button" data-type="event" data-key="subscribe">被添加自动回复</button><button class="btn btn-default" type="button" data-type="message">消息自动回复</button> <button class="btn btn-default" type="button" data-type="keyword">关键词自动回复</button>
+                            <elseif condition="$responseInfo.type eq 'message'" />
+                            <button class="btn btn-default" type="button" data-type="event" data-key="subscribe">被添加自动回复</button><button class="btn btn-default active" type="button" data-type="message">消息自动回复</button> <button class="btn btn-default" type="button" data-type="keyword">关键词自动回复</button>
+                            <else />
+                            <button class="btn btn-default" type="button" data-type="event" data-key="subscribe">被添加自动回复</button><button class="btn btn-default" type="button" data-type="message">消息自动回复</button> <button class="btn btn-default active" type="button" data-type="keyword">关键词自动回复</button>
+                        </if>
+                    </div>
+                    <div class="add_rul">
+                        <button id="create_rul_btn" class="btn btn-default btn-success"><span class="glyphicon glyphicon-plus"></span> 添加规则</button>
+                    </div>
+                    <div class="panel panel-default rule_panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                新规则
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-xs-2 col-md-1 control-label">规则名</label>
+                                <div class="col-xs-9 col-md-10">
+                                    <input type="text" class="form-control" name="rulename" placeholder="规则名最多30个字" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-2 col-md-1 control-label">关键字</label>
+                                <div class="col-xs-9 col-md-10">
+                                    <input type="text" class="form-control" name="keyword" placeholder="多关键字请用 “|” 分隔，每个关键字不超过30字" />
+                                </div>
+                            </div>
+                            <div class="tabbable edit_tabbable" id="tabs-635277">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#panel-text" data-toggle="tab"><span class="glyphicon glyphicon-pencil"></span> 文字</a>
+                                    </li>
+                                    <li>
+                                        <a href="#panel-image" data-toggle="tab"><span class="glyphicon glyphicon-picture"></span> 图片</a>
+                                    </li>
+                                    <li>
+                                        <a href="#panel-voice" data-toggle="tab"><span class="glyphicon glyphicon-volume-up"></span> 语音</a>
+                                    </li>
+                                    <li>
+                                        <a href="#panel-music" data-toggle="tab"><span class="glyphicon glyphicon-music"></span> 音乐</a>
+                                    </li>
+                                    <li>
+                                        <a href="#panel-video" data-toggle="tab"><span class="glyphicon glyphicon-facetime-video"></span> 视频</a>
+                                    </li>
+                                    <li>
+                                        <a href="#panel-news" data-toggle="tab"><span class="glyphicon glyphicon-list-alt"></span> 图文</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="panel-text">
+                                        <textarea class="textarea" name="response_content"></textarea>
+                                    </div>
+                                    <div class="col-xs-12 column tab-pane" id="panel-image">
+                                        <div class="col-xs-6 column material_select sl">
+                                            <p class="text-center"><span class="glyphicon glyphicon-plus"></span></p>
+                                            <p class="text-center"><a  href="#modal-container-image" onclick="get_material(this)" data-toggle="modal" data-type="select_from_material">从素材库选择</a></p>
+                                        </div>
+                                        <div class="col-xs-6 column material_select">
+                                            <p class="text-center"><span class="glyphicon glyphicon-upload"></span></p>
+                                            <p class="text-center"><a href="javascript:void(0)" onclick="upload_file(this)">上传</a></p>
+                                            <div class="progress progress-striped">
+                                                <div class="progress-bar progress-success" id="progressBarImage">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 column tab-pane" id="panel-voice">
+                                        <div class="col-xs-6 column material_select sl">
+                                            <p class="text-center"><span class="glyphicon glyphicon-plus"></span></p>
+                                            <p class="text-center"><a  href="#modal-container-voice" onclick="get_material(this)" data-toggle="modal" data-type="select_from_material">从素材库选择</a></p>
+                                        </div>
+                                        <div class="col-xs-6 column material_select">
+                                            <p class="text-center"><span class="glyphicon glyphicon-upload"></span></p>
+                                            <p class="text-center"><a href="javascript:void(0)" onclick="upload_file(this)">本地上传</a></p>
+                                            <div class="progress progress-striped">
+                                                <div class="progress-bar progress-success" id="progressBarVoice">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 column tab-pane" id="panel-music">
+                                        <div class="form-horizontal" >
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">标题</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" name="title" placeholder="标题在15个字符以内（选填）"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">描述</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" name="description" placeholder="描述在30个字符以内（选填）" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">音乐链接url</label>
+                                                <div class="col-md-10">
+                                                    <input type="url" class="form-control" name="music_url" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">高质量音乐链接</label>
+                                                <div class="col-md-10">
+                                                    <input type="url" class="form-control" name="hq_music_url" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">音乐贴图</label>
+                                                <div class="col-md-2">
+                                                    <img class="thumb" src="" width="100%" height="70px;" />
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="col-md-3">
+                                                        <a  href="#modal-container-thumb" onclick="get_material(this)" style="line-height:28px;" data-toggle="modal" data-type="select_from_material">从素材库选择</a>
+                                                    </div>
+                                                    <button class="col-md-2 btn btn-success btn-sm upload" onclick="upload_file(this)">上传</button><br/><br/>
+                                                    <div class="progress progress-striped">
+                                                        <div class="progress-bar progress-success" id="progressBarThumb">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 column tab-pane" id="panel-video">
+                                        <div class="col-xs-6 column material_select sl">
+                                            <p class="text-center"><span class="glyphicon glyphicon-plus"></span></p>
+                                            <p class="text-center"><a  href="#modal-container-video" onclick="get_material(this)" data-toggle="modal" data-type="select_from_material">从素材库选择</a></p>
+                                        </div>
+                                        <div class="col-xs-6 column material_select">
+                                            <p class="text-center"><span class="glyphicon glyphicon-upload"></span></p>
+                                            <p class="text-center"><a href="#modal-add-video" data-toggle="modal">本地上传</a></p>
+                                            <div class="progress progress-striped">
+                                                <div class="progress-bar progress-success" id="progressBarVideo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 column tab-pane" id="panel-news">
+                                        <div class="col-xs-6 column material_select sl">
+                                            <p class="text-center"><span class="glyphicon glyphicon-plus"></span></p>
+                                            <p class="text-center"><a  href="#modal-container-news" onclick="get_material(this)" data-toggle="modal" data-type="select_from_material">从素材库选择</a></p>
+                                        </div>
+                                        <div class="col-xs-6 column material_select">
+                                            <p class="text-center"><span class="glyphicon glyphicon-upload"></span></p>
+                                            <p class="text-center"><a href="/Home/PdMaterial/addNewsPage" target="_blank">新建图文</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="row clearfix">
+                                <div class="col-sm-3 column">
+                                    <button type="button" class="btn btn-sm btn-success" id="set_keyword_response"> &nbsp;&nbsp;保 存&nbsp;&nbsp; </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 column list_cell">
+                        <div class="panel-group" id="panel-209920">
+                            <volist name="responseInfo" id="vo">
+                                <div class="panel panel-default cell">
+                                    <div class="panel-heading">
+                                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-209920" href="#panel-element-{$i}">规则名：<span>{$vo.rule}</span></a>
+                                        <button class="btn btn-default btn-sm delete_rule" onclick="delete_rule(this)">删除规则</button>
+                                    </div>
+                                    <if condition="$i eq 1">
+                                        <div id="panel-element-{$i}" class="panel-collapse in">
+                                        <else />
+                                            <div id="panel-element-{$i}" class="panel-collapse collapse">
+                                    </if>
+                                        <div class="panel-body">
+                                            <h4>关键字：</h4>
+                                            <label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <volist name="vo.keyword" id="v" key="k">
+                                                    <empty name="vo['keyword'][$k]">
+                                                        {$v.keyword}
+                                                        <else />
+                                                        {$v.keyword}&nbsp;|&nbsp;
+                                                    </empty>
+                                                </volist>
+                                            </label>
+                                            <hr/>
+                                            <switch name="vo.response_type" >
+                                                <case value="text">
+                                                    <h4>回复内容：</h4>
+                                                    <div class="col-xs-12 column">
+                                                        {$vo.content}
+                                                    </div>
+                                                </case>
+                                                <case value="image">
+                                                    <h4>回复内容：</h4>
+                                                    <div class="col-xs-12 column">
+                                                        <div class="col-sm-3 column cell" data-type="data_box_cell" style="opacity:1.0">
+                                                            <div class="col-sm-12 column data_box_img">
+                                                                <img src="{$vo.url}" height="117" width="100%" data-id="{$vo.media_id}"/>
+                                                                <p class="text-center">{$vo.title}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </case>
+                                                <case value="voice">
+                                                    <h4>回复内容</h4>
+                                                    <div class="col-xs-12 column">
+                                                        <div class="col-xs-6 column cell" data-type="data_box_cell" style="opacity: 1.0">
+                                                            <div class="col-xs-12 column data_box_voice" data-id="{$vo.media_id}">
+                                                                <div class="col-xs-4 column">
+                                                                    <img src="/Home/PdMaterial/getVoiceDisplayImg" onmouseover="image_scale_animate(this,1.1)" onmouseleave="image_scale_animate(this,1.0)" onclick="voice_listen_online(this)" alt="点击播放" title="点击播放" width="100%" height="70"/>
+                                                                </div>
+                                                                <div class="col-xs-8 column">
+                                                                    <p data-type="file_name">{$vo.title}</p>
+                                                                    <p>{$vo.time}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </case>
+                                                <case value="music">
+                                                    <h4>回复内容：</h4>
+                                                    <div class="col-xs-12 column">
+                                                        <p>标题：{$vo.title}</p>
+                                                        <p>描述：{$vo.description}</p>
+                                                        <p>音乐链接：{$vo.music_url}</p>
+                                                        <p>高品质音乐链接：{$vo.hq_music_url}</p>
+                                                        <p>音乐贴图：<img class="thumb" src="{$vo.thumb_url}" width="100px" height="70px;" data-id="{$vo.thumb_media_id}" /></p>
+                                                    </div>
+                                                </case>
+                                                <case value="video">
+                                                    <h4>回复内容：</h4>
+                                                    <div class="col-xs-12 column">
+                                                        <div class="col-xs-12 column cell" data-type="data_box_cell" style="opacity: 1.0">
+                                                            <div class="col-xs-12 column data_box_video" data-id="{$vo.media_id}">
+                                                                <div class="col-xs-4 column"><video src="#" width="150" hieght="100"></video></div>
+                                                                <div class="col-xs-4 column" name="title">{$vo.title}</div>
+                                                                <div class="col-xs-4 column">{$vo.time}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </case>
+                                                <case value="news">
+                                                    <h4>回复内容：</h4>
+                                                    <div class="col-xs-12 column">
+                                                        <if condition="$vo['msg']['news_item'][1]"><!--多图文素材输出-->
+                                                        <div class="col-xs-10 col-sm-6 col-md-4 column cell" data-type="data_box_cell" style="opacity: 1.0">
+                                                            <div class="col-xs-12 column news_box">
+                                                                <div class="news_header_more">
+                                                                    <h5>{$vo.time}</h5>
+                                                                </div>
+                                                                <div class="col-xs-12 column news_body">
+                                                                    <volist name="vo.msg.news_item" id="val">
+                                                                        <if condition="$i eq 1">
+                                                                            <a href="{$val['url']}" target="_blank"><div class="first data_box">
+                                                                                <img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl={$val['thumb_url']}" width="100%" height="120px">
+                                                                                <h5 class="sm">{$val['title']}</h5>
+                                                                            </div></a>
+                                                                            <else/>
+                                                                            <a href="{$val['url']}" target="_blank"><div class="col-xs-12 column data_box">
+                                                                                <div class="col-xs-8 column">
+                                                                                    <h5>{$val['title']}</h5>
+                                                                                </div>
+                                                                                <div class="col-xs-4 column">
+                                                                                    <if condition="$val['thumb_url']">
+                                                                                        <img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl={$val['thumb_url']}" width="100%" height="70">
+                                                                                        <else/>
+                                                                                        <img src="" width="100%" height="70">
+                                                                                    </if>
+                                                                                </div>
+                                                                            </div></a>
+                                                                        </if>
+                                                                    </volist>
+                                                                </div>
+                                                                <div class="col-xs-12 column news_footer" data-id="{$vo.media_id}"></div>
+                                                            </div>
+                                                        </div>
+                                                        <else />        <!--单图文素材输出-->
+                                                        <div class="col-xs-10 col-sm-6 col-md-4 column cell" data-type="data_box_cell" style="opacity: 1.0">
+                                                            <div class="col-xs-12 column news_box">
+                                                                <div class="news_header_single">
+                                                                    <h5>{$vo.time}</h5>
+                                                                </div>
+                                                                <div class="col-xs-12 column news_body">
+                                                                    <a href="{$vo.0.url}" target="_blank"><div class="col-xs-12 column data_box">
+                                                                        <p>{$vo.msg.news_item.0.title}</p>
+                                                                        <if condition="$vo['msg']['news_item'][0]['thumb_url']">
+                                                                            <img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl={$vo.msg.news_item.0.thumb_url}" width="100%" height="150px">
+                                                                            <else/>
+                                                                            <img src="" width="100%" height="150px">
+                                                                        </if>
+                                                                        <p>{$vo.msg.news_item.0.digest}</p>
+                                                                    </div></a>
+                                                                </div>
+                                                                <div class="col-xs-12 column news_footer" data-id="{$vo.media_id}"></div>
+                                                            </div>
+                                                        </div>
+                                                    </if>
+                                                    </div>
+                                                </case>
+                                                <default />
+                                            </switch>
+                                        </div>
+                                    </div>
+                            </div>
+                            </volist>
+                        </div>
+                    </div>
+            </div>
+            </div>
+        </div>
+
+        <!--hidden nav-->
+        <include file="./Common:project_hidden_nav" />
+        <!--从素材库选择图片弹窗-->
+        <div class="container material_container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="modal fade" id="modal-container-image" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="dialog_mask">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" >
+                                            选择图片
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-sm-12 column">
+                                            <div class="img_list"></div>
+                                            <a href="javascript:void(0)" class="load_more hidden" onclick="load_more(this)" data-load="image">加载更多…</a>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button data-type="ensure" class="btn btn-primary disabled">确定</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--从素材库选择语音弹窗-->
+        <div class="container material_container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="modal fade" id="modal-container-voice" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="dialog_mask">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" >
+                                            选择语音
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-xs-12 column voice_list">
+                                        </div>
+                                        <a href="javascript:void(0)" class="load_more hidden" data-load="voice" onclick="load_more(this)">加载更多…</a>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button data-type="ensure" class="btn btn-primary disabled">确定</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--从素材库选择音乐消息缩略图-->
+        <div class="container material_container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="modal fade" id="modal-container-thumb" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="dialog_mask">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" id="myModalLabel">
+                                            选择图片
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-xs-12 column">
+                                            <div class="img_list"></div>
+                                            <a href="javascript:void(0)" class="load_more hidden" onclick="load_more(this)" data-load="thumb">加载更多…</a>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button data-type="thumb_ensure" class="btn btn-primary disabled">确定</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--从素材库选择视频弹窗-->
+        <div class="container material_container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="modal fade" id="modal-container-video" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="dialog_mask">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" >
+                                            选择视频
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-xs-12 column video_list">
+                                        </div>
+                                        <a href="javascript:void(0)" class="load_more hidden" onclick="load_more(this)" data-load="video">加载更多…</a>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button data-type="ensure" class="btn btn-primary disabled">确定</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--从素材库选择图文弹窗-->
+        <div class="container material_container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="modal fade" id="modal-container-news" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="dialog_mask">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" >
+                                            选择图文
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-xs-12 column news_list">
+                                            <!--<div class="col-xs-4 column cell" data-type="data_box_cell">
+                                                <div class="col-xs-12 column news_box">
+                                                    <div class="news_header_more">
+                                                        <h5>2016年10月28</h5>
+                                                    </div>
+                                                    <div class="col-xs-12 column news_body">
+                                                        <div class="first data_box">
+                                                            <img src="" width="100%" height="120px">
+                                                            <p>title</p>
+                                                        </div>
+                                                        <div class="col-xs-12 column data_box">
+                                                            <div class="col-xs-8 column">
+                                                                <h5>title</h5>
+                                                            </div>
+                                                            <div class="col-xs-4 column">
+                                                                <img src="" width="100%" height="70">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 column data_box">
+                                                            <div class="col-xs-8 column">
+                                                                <h5>title</h5>
+                                                            </div>
+                                                            <div class="col-xs-4 column">
+                                                                <img src="" width="100%" height="70px">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4 column cell" data-type="data_box_cell">
+                                                <div class="col-xs-12 column news_box">
+                                                    <div class="news_header_single">
+                                                        <h5>2016年10月28</h5>
+                                                    </div>
+                                                    <div class="col-xs-12 column news_body">
+                                                        <div class="col-xs-12 column data_box">
+                                                            <p>title</p>
+                                                            <img src="" width="100%" height="150px">
+                                                            <p>discription</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4 column cell" data-type="data_box_cell">
+                                                <div class="col-xs-12 column news_box">
+                                                    <div class="news_header_single">
+                                                        <h5>2016年10月28</h5>
+                                                    </div>
+                                                    <div class="col-xs-12 column news_body">
+                                                        <div class="col-xs-12 column data_box">
+                                                            <p>title</p>
+                                                            <img src="" width="100%" height="150px">
+                                                            <p>discription</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                        </div>
+                                        <a href="javascript:void(0)" class="load_more hidden" onclick="load_more(this)" data-load="news">加载更多…</a>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button data-type="ensure" class="btn btn-primary disabled">确定</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--add video-->
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="modal fade" id="modal-add-video" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="dialog_mask">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title">
+                                            添加视频
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div role="form">
+                                            <div class="form-group">
+                                                <label>标题</label><input type="text" class="form-control" name="title" id="title" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>视频描述</label><input type="text" class="form-control" name="introduction" id="introduction" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>视频文件</label><input type="file"  name="file" id="video_file" /><hr/>
+                                                <p class="help-block">
+                                                    视频不能超过20M，超过20M的视频可至<a href="http://v.qq.com/u/upload.html"> 腾讯视频</a>上传后添加，也可通过添加视频详情页链接以及公众号文章链接插入视频，视频时长不少于1秒，不多于10小时，支持大部分主流视频格式
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button class="btn btn-primary" id="add_video">保存</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--footer-->
+        <include file="./Common:footer" />
+        <!--备用替换模板从素材库选择-->
+        <div class="material_select sl" style="display:none;" data-type="sel_mat_model">
+            <p class="text-center"><span class="glyphicon glyphicon-plus"></span></p>
+            <p class="text-center"><a  href="#modal-container-voice" data-toggle="modal" onclick="get_material(this)" data-type="select_from_material">从素材库选择</a></p>
+        </div>
+        <!--备用替换模板从上传|新建-->
+        <div class="material_select" style="display:none;" data-type="upload_model">
+            <p class="text-center"><span class="glyphicon glyphicon-upload"></span></p>
+            <p class="text-center"><a href="javascript:void(0)" onclick="upload_file(this)">上传</a></p>
+            <div class="progress progress-striped">
+                <div class="progress-bar progress-success" id="">
+                </div>
+            </div>
+        </div>
+        <!--音乐在线播放的内联窗口-->
+        <iframe class="hidden" id="iframe"></iframe>
+        <!--文件上传的公共选择条-->
+        <input class="hidden" type="file" id="file"/>
+    </body>
+<include file="./Common:bottom_js" />
+<import type='js' file="Home.js.project_center" />
+<import type='js' file="Home.js.pd_auto_response" />
+</html>

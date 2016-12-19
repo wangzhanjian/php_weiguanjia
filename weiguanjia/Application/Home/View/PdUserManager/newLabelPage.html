@@ -1,0 +1,83 @@
+<include file="./Common:header" />
+<import type='css' file="Home.css.project_center" />
+<import type='css' file="Home.css.pd_user_manager" />
+</head>
+<body>
+<!--navbar-->
+<include file="./Common:top_navbar" />
+<!--content-->
+<div class="container main_content">
+    <div class="row clearfix">
+        <!--项目开发左侧导航栏-->
+        <include file="./Common:project_sidebar_wrap" />
+        <!--项目开发右侧开发区-->
+        <div class="col-sm-10 col-xs-8 column right_content">
+            <h4>用户管理</h4>
+            <button href="index" class="btn btn-default btn-sm">用户列表</button> | <button href="newLabelPage" class="btn btn-default btn-sm active">标签管理</button>
+            <hr/>
+            <div class="col-xs-12 column label_header">
+                <button href="#modal-container-87020" type="button" class="btn btn-success btn-primary add_label" data-toggle="modal">新建标签</button>
+            </div>
+            <div class="col-xs-12 column label_list">
+                <volist name="labels" id="label">
+                    <div class="col-md-4 column label_cell">
+                        <div class="col-xs-12 column data_box">
+                            <form class="form-horizontal" role="form" action="labelPage" method="post">
+                            <div class="caption">
+                                <h3>
+                                    {$label.name}
+                                </h3>
+                                <p>
+                                    <input class="hidden" type="text" name="group_id" value="{$label.id}"/>
+                                    <input class="hidden" type="text" name="group_name" value="{$label.name}"/>
+                                    <input class="hidden" type="submit">
+                                    <a class="btn btn-primary in_group" href="javascript:void(0)">
+                                        进入分组</a>
+                                    <input class="hidden" type="text" name="delete_id" value="{$label.id}"/>
+                                    <input class="hidden" type="submit">
+                                    <a class="btn del_group" href="javascript:void(0)" value="{$label.id}">移除分组</a>
+                                </p>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </volist>
+            </div>
+        </div>
+    </div>
+</div>
+<!--新建标签弹框-->
+<div class="modal fade" id="modal-container-87020" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="form-horizontal" role="form" action="createLabel" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        新建标签
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label type="text" class="col-sm-2 control-label">标签名：</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="labelname"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary" value="submit">保存</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--hidden nav-->
+<include file="./Common:project_hidden_nav" />
+<!--footer-->
+<include file="./Common:footer" />
+</body>
+<include file="./Common:bottom_js" />
+<import type='js' file="Home.js.project_center" />
+<import type='js' file="Home.js.pd_user_manager" />
