@@ -65,7 +65,7 @@ class ProjectManagerController extends BasisController
 
     //项目配置信息提示页面
     Protected function configPrompt(){
-        $this->assign('GLOBAL_INFO',session());
+        $this->assignProjectCenterCommonInfo();
         $this->display('configPrompt');
     }
 

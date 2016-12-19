@@ -15,7 +15,7 @@
         <!--navbar-->
         <div class="row clearfix">
     <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
+        <div class="container-fluid top_navbar">
             <div class="col-xs-3 col-sm-3 col-md-2 column">
                 <div class="logo"></div>
             </div>

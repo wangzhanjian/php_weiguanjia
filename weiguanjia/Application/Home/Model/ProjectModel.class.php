@@ -23,7 +23,5 @@ class ProjectModel extends Model
         array('app_id','','公众号已经存在！',1,'unique',3),
         array('app_secret','require','app_secret必须填写！'),
         array('app_secret',32,'app_id长度不正确！',1,'length',3),
-        array('token','require','token必须填写！'),
-        array('token','3,32','token长度位3-32位！',1,'length',3)
     );
 }
