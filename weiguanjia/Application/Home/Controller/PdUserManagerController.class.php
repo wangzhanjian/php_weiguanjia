@@ -14,7 +14,6 @@ use Wechat\UsersManager;
 
 class PdUserManagerController extends BasisController
 {
-//    用户管理页
     //显示用户管理主界面
     public function index(){
         //获取用户信息
@@ -33,6 +32,7 @@ class PdUserManagerController extends BasisController
         $this->assign("userinfo",$userinfo["user_info_list"]);
         //获取用户的标签分配到下拉列表
         $userlabel = $this->allLabel();
+        $this->assignProjectCenterCommonInfo();
         $this->assign("userlabel",$userlabel);
         $this->display();
     }
@@ -73,7 +73,7 @@ class PdUserManagerController extends BasisController
             ),
             "tagid" => $labelname["label"]
         );
-        $canceluserlabel = $usermanager->cancelLabels(json_encode($changelabel));
+        $usermanager->cancelLabels(json_encode($changelabel));
         $newlabel_json = array(
             "openid_list" => array(
                 $labelname["openid"]
@@ -95,8 +95,7 @@ class PdUserManagerController extends BasisController
             "openid" => $data["openid"],
             "remark" => $data["remark"]
         );
-        $remarkname = $usermanager->updateNode(json_encode($remark_json));
-        echo $remarkname;
+        $usermanager->updateNode(json_encode($remark_json,JSON_UNESCAPED_UNICODE));
     }
 
     //获取用户的标签列表(o)
@@ -107,8 +106,7 @@ class PdUserManagerController extends BasisController
             'openid' : 'oNwgwxBHzlyCRHEtkj4TzuthNr5E'
         }
         ";
-        $labellist = $usermanager->getUserLabel($list_json);
-        dump($labellist);
+        $usermanager->getUserLabel($list_json);
     }
 
     //将用户加入黑名单
@@ -122,7 +120,7 @@ class PdUserManagerController extends BasisController
                 $openid['openid']
             )
         );
-        $users = $usermanager->shieldUsers(json_encode($user));
+        $usermanager->shieldUsers(json_encode($user));
         echo "success";
     }
 
@@ -137,15 +135,15 @@ class PdUserManagerController extends BasisController
                 $openid['openid']
             )
         );
-        $undousers = $usermanager->undoUsers(json_encode($user));
+        $usermanager->undoUsers(json_encode($user));
         echo "success";
     }
 
-    //新建标签
     //显示新建标签页
     public function newLabelPage(){
         $labels = $this->allLabel();
         $this->assign("labels",$labels);
+        $this->assignProjectCenterCommonInfo();
         $this->display();
     }
 
@@ -172,7 +170,7 @@ class PdUserManagerController extends BasisController
                 \"name\" : \"".$labelname['labelname']."\"//标签名
                       }
                    }";
-        $newlabel = $usermanager->createLabel($label_json);
+        $usermanager->createLabel($label_json);
         $this->redirect("/Home/PdUserManager/newLabelPage",0);
     }
 
@@ -190,6 +188,7 @@ class PdUserManagerController extends BasisController
         $deletelabel = $usermanager->deleteLabel(json_encode($deletelabel_json));
         return $deletelabel;
     }
+
     //取消用户标签
     public function cancelLabels(){
         $usermanager = new UsersManager();
@@ -204,7 +203,7 @@ class PdUserManagerController extends BasisController
         );
         $canceluserlabel = $usermanager->cancelLabels(json_encode($changelabel));
     }
-//标签页
+
     //进入标签 显示标签对应页面
     public function labelPage(){
         $usermanager = new UsersManager();
@@ -220,9 +219,10 @@ class PdUserManagerController extends BasisController
         $userinfo = $usermanager->userInfo($post_list);
         //输出内容
         $userinfo = json_decode($userinfo,true);
-        //dump($userinfo);
+        //dump($userinfo['user_info_list']);
         $this->assign("userinfo",$userinfo);
         $this->assign("labelname",$group);//labelPage
+        $this->assignProjectCenterCommonInfo();
         $this->display();
     }
 
@@ -246,6 +246,5 @@ class PdUserManagerController extends BasisController
         );
         $deletelabel = $usermanager->getBlackList(json_encode($deletelabel_json));
     }
-
 
 }

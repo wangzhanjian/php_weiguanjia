@@ -4,6 +4,9 @@
 * @Last Modified by:   anchen
 * @Last Modified time: 2016-11-20 20:01:20
 */
+.container-fluid{
+    padding:0 5%;
+}
 .logo{
     width: 100%;
     height: 50px;
@@ -12,7 +15,7 @@
 }
 
 .show_panel{
-    padding: 30px 15px;
+    padding: 30px 7%;
 }
 
 .more{
@@ -30,10 +33,11 @@
 }
 .bottom_bar{
     background-color: #eee;
-    width: 100%;
-    padding: 25px;
+   padding: 25px;
 }
-
+.bottom_bar .row div{
+    height: 211px;
+}
 .bottom_bar h4{
     width: 50%;
     border-bottom: 1px solid #aaa;
