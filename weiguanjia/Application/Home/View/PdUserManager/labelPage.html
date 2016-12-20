@@ -37,7 +37,11 @@
                             </div>
                             <div class="col-md-8 column">
                                 <h4>
-                                    {$val.nickname}<span class="user_info">【{$val.remark}】</span>
+                                    <empty name="val.remark">
+                                        {$val.nickname}
+                                        <else/>
+                                        {$val.nickname}<span class="user_info">【{$val.remark}】</span>
+                                    </empty>
                                 </h4>
                                 <p>
                                     所在地： <span class="user_info">{$val.country} {$val.province} {$val.city}</span>

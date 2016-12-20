@@ -23,7 +23,11 @@
                             </div>
                         <div class="col-md-7 column">
                                 <h4>
-                                    {$info.nickname} <span class="user_info">【{$info.remark}】</span>
+                                    <empty name="info.remark">
+                                        {$info.nickname}
+                                        <else/>
+                                        {$info.nickname} <span class="user_info">【{$info.remark}】</span>
+                                    </empty>
                                 </h4>
                                 <p>
                                     所在地： <span class="user_info">{$info.country} {$info.province} {$info.city}</span>

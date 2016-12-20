@@ -242,13 +242,10 @@ class PdUserManagerController extends BasisController
     //获取黑名单列表(暂无)
     public function blackUserList(){
         $usermanager = new UsersManager();
-        //获取
-
-        //封装数组
         $deletelabel_json = array(
             "begin_openid" => "OPENID1"
         );
-        $deletelabel = $usermanager->getBlackList(json_encode($deletelabel_json));
+        $usermanager->getBlackList(json_encode($deletelabel_json));
     }
 
 }

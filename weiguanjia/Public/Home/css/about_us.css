@@ -10,8 +10,13 @@
 }
 
 .tab-content{
-    height: 300px;
     border: 1px solid #ddd;
     border-style: none solid solid solid;
-    overflow: auto;
+    padding:0 15px 30px 15px;
+    margin-bottom: 30px;
+}
+.jumbotron{
+    padding:48px 40px;
+    background: url('../images/bg_jumbotron.png');
+    color:#fff;
 }
