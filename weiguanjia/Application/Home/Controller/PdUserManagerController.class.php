@@ -182,11 +182,13 @@ class PdUserManagerController extends BasisController
         //封装数组
         $deletelabel_json = array(
             "tag" => array(
-                "id" => $labelid
+                "id" => $labelid["openid"]
             )
         );
         $deletelabel = $usermanager->deleteLabel(json_encode($deletelabel_json));
-        return $deletelabel;
+        if (json_decode($deletelabel,true)["errcode"]==0){
+            echo "ok";
+        }
     }
 
     //取消用户标签

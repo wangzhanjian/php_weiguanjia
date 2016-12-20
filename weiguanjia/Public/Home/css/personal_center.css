@@ -5,10 +5,8 @@
 * @Last Modified time: 2016-11-19 19:41:29
 */
 .main_content{
-    padding: 20px;
-    border: 1px solid #ddd;
-    margin: 30px auto;
-    box-shadow: 0 0 10px #555;
+    padding-top: 20px;
+    padding-bottom: 42px;
 }
 
 .left_nav{
