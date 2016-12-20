@@ -70,7 +70,24 @@ $(function () {
             }
         })
     })
-
+    $(".remove_user").click(function () {
+        $(this).parents(".label_cell").addClass("active_user");
+        $openid = $(this).attr("user_id");
+        $tagid = $(this).attr("group_id");
+        $data_post = {
+            "openid" : $openid,
+            "tag_id" : $tagid
+        }
+        $.post("cancelLabels",$data_post,function (data) {
+            if (data == "ok"){
+                alert("删除成功");
+                $(".active_user").remove();
+            }else
+            {
+                alert("删除失败");
+            }
+        })
+    })
 })
 function add_black_user_list(ele) {
     $(ele).addClass("active-button");

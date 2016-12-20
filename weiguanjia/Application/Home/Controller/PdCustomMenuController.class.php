@@ -53,30 +53,30 @@ class PdCustomMenuController extends BasisController
         $menu_json=I();
         $menu = htmlspecialchars_decode(json_encode($menu_json,JSON_UNESCAPED_UNICODE));
         $MenuManager = new MenuManager();
-        $MenuManager->CreateMenu($menu);
-        dump($menu);
+        $response = $MenuManager->CreateMenu($menu);
+        dump($response);
     }
     //保存key和其对应的text
-    public function saveKeyText(){
-        $data_json = I();
-        $data = htmlspecialchars_decode(json_encode($data_json,JSON_UNESCAPED_UNICODE));
-        $data = json_decode($data,true);
-        $app_source_id = session(C("SESSION_APP_INFO"))["app_source_id"];
-        $db = M("event_text_response");
-        foreach($data as $key=>$val) {
-            $result = $db->field("id")->where("app_source_id='%s' and event='click' and key='%d'",$app_source_id,$data[$key]["key"])->select();
-            $insert["app_source_id"] = $app_source_id;
-            $insert["event"] = "click";
-            $insert["event_key"] = $data[$key]["key"];
-            $insert["content"] = $data[$key]["text"];
-            if ($result == null){
-                $db->data($insert)->add();
-            }else{
-                $db->save($insert);
-            }
-        }
-        echo "success";
-    }
+//    public function saveKeyText(){
+//        $data_json = I();
+//        $data = htmlspecialchars_decode(json_encode($data_json,JSON_UNESCAPED_UNICODE));
+//        $data = json_decode($data,true);
+//        $app_source_id = session(C("SESSION_APP_INFO"))["app_source_id"];
+//        $db = M("event_text_response");
+//        foreach($data as $key=>$val) {
+//            $result = $db->field("id")->where("app_source_id='%s' and event='click' and key='%d'",$app_source_id,$data[$key]["key"])->select();
+//            $insert["app_source_id"] = $app_source_id;
+//            $insert["event"] = "click";
+//            $insert["event_key"] = $data[$key]["key"];
+//            $insert["content"] = $data[$key]["text"];
+//            if ($result == null){
+//                $db->data($insert)->add();
+//            }else{
+//                $db->save($insert);
+//            }
+//        }
+//        echo "success";
+//    }
     //删除自定义菜单
     public function delete(){
         $MenuManager = new MenuManager();

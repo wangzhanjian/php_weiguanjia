@@ -16,8 +16,9 @@ class MenuManager extends AccessToken
         $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token={$accessToken}";
         $curl=new Curl();
         $curl->post($url,$menuInfo);
+        $response = $curl->response;
         $curl->close();
-        return true;
+        return $response;
     }
     //查看菜单
     public function ViewMenu(){

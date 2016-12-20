@@ -4,10 +4,16 @@
 $keys = Array();
 $(document).ready(function() {
     //选中第一个菜单
-    $(".pre_menu_list").children(".main_menu:first").addClass("menu_button_select active_menu");
+    $(".pre_menu_list").children(".main_menu:first").addClass("menu_button_select");
+    if ($(".menu_button_select").find(".menu_childlist_li").length > 1){
+        $(".menu_button_select").find(".menu_childlist_li:first").addClass("active_menu");
+    }else {
+        $(".menu_button_select").addClass("active_menu");
+    }
     $(".menu_button_select").children(".menu_childlist").addClass("child_select");
+    $(".global_info").text($(".active_menu").children("a").children("span").text());
     //加载成功时右边的菜单名的显示
-    var title = $(".menu_button_select").children(".menu_link").children(".menu_button").html();
+    var title = $(".active_menu").children(".menu_link").children(".menu_button").html();
     if (title == null) {
         $(".global_mod").add(".menu_form_bd").css("display", "none");
     }
@@ -18,7 +24,7 @@ $(document).ready(function() {
     }
     ;
     //根据默认点击的菜单判断菜单编辑区显示的内容
-    var default_menu_class = $(".menu_button_select").children(".menu_link").attr('class');
+    var default_menu_class = $(".active_menu").children(".menu_link").attr('class');
     if (default_menu_class != null) {
         if (default_menu_class.indexOf("button") != -1) {
             $(".tips_global").css("display", "none");
@@ -31,7 +37,7 @@ $(document).ready(function() {
         }
     }
     //根据默认点击的菜单的菜单类型显示对应内容（未完成）
-    var default_menu_type = $(".menu_button_select").children(".menu_link").attr("active_type");
+    var default_menu_type = $(".active_menu").children(".menu_link").attr("active_type");
     $(".select_menu_active").val(default_menu_type);
     switch (default_menu_type) {
         case "view":
@@ -46,7 +52,6 @@ $(document).ready(function() {
     $(".click").each(function () {
         $keys.push($(this).attr("message"));
     })
-    // console.log($keys);
     //当用户点击菜单时修改菜单的样式类，显示菜单
     $('.pre_menu_list').on("click", '.main_menu', function () {
         //当用户点击一级菜单时
@@ -64,8 +69,8 @@ $(document).ready(function() {
         if (count >= 5) {
             $("#mymodal").modal("toggle");
         } else {
-            $(".active_menu").removeClass("active_menu")
-            $(this).before("<li class='menu_childlist_li active_menu'><a href='javascript:void(0)' class='menu_link button menu' active_type='text'><span class='menu_button child_button'>新建菜单</span></a></li>");
+            alert("1");
+            $(this).before("<li class='menu_childlist_li child_menu'><a href='javascript:void(0)' class='menu_link button menu' active_type='text'><span class='menu_button child_button'>新建菜单</span></a></li>");
             $(this).parents(".menu_list").children(".menu_link.button.menu").attr("class", "menu_link list menu").trigger("click");
             $(".global_info").text("新建菜单");
             $(".js_menu_name").val("新建菜单");
@@ -372,9 +377,9 @@ $(document).ready(function() {
             $n = $n + 1;
         })
         console.log($menu);
-        $.post('saveKeyText',$text , function (data) {
-            console.log(data);
-        });
+        // $.post('saveKeyText',$text , function (data) {
+        //     console.log(data);
+        // });
         $.post('create', $menu, function (data) {
             console.log(data);
         });
