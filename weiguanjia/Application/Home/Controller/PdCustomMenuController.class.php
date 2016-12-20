@@ -54,7 +54,9 @@ class PdCustomMenuController extends BasisController
         $menu = htmlspecialchars_decode(json_encode($menu_json,JSON_UNESCAPED_UNICODE));
         $MenuManager = new MenuManager();
         $response = $MenuManager->CreateMenu($menu);
-        dump($response);
+        if (json_decode($response,true)["errcode"]==0){
+            echo "ok";
+        }
     }
     //保存key和其对应的text
 //    public function saveKeyText(){

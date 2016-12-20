@@ -376,12 +376,13 @@ $(document).ready(function() {
             }
             $n = $n + 1;
         })
-        console.log($menu);
         // $.post('saveKeyText',$text , function (data) {
         //     console.log(data);
         // });
         $.post('create', $menu, function (data) {
-            console.log(data);
+            if (data == "ok"){
+                $("#create_success").modal("toggle");
+            }
         });
     })
 })
