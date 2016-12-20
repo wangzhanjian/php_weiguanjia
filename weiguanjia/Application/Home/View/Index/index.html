@@ -61,10 +61,10 @@
                         <a href="#"><span>>></span>更多</a>
                         </div>
                     </h4>
-                    <ul class="list-unstyled nav">
+                    <ul class="list-unstyled nav index_list">
                         <volist name="latestDynamic" id="vo">
                             <li>
-                                <a href="">{$vo['title']} <span class="time">{$vo['createtime']|time=###|date="Y-m-d",###}</span></a>
+                                <a href="">{$vo['title']}<span class="time">{$vo['createtime']|time=###|date="Y-m-d",###}</span></a>
                             </li>
                         </volist>
 
@@ -75,7 +75,7 @@
                         特色推荐<div class="more">
                         <a href="#"><span>>></span>更多</a></div>
                     </h4>
-                    <ul class="list-unstyled nav">
+                    <ul class="list-unstyled nav index_list">
                         <volist name="specialRecommendation" id="vo">
                             <li>
                                 <a href="">{$vo['title']}<span class="time">{$vo['createtime']|time=###|date="Y-m-d",###}</span></a>

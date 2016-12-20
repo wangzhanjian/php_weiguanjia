@@ -25,7 +25,7 @@
                 <div class="col-sm-9 col-md-9 col-lg-9 column">
                     <div class="right_content">
                         <div class="date">
-                            <span><i>2016 年 11 月 22 日</i></span>
+                            <span id="time"><i>2016 年 11 月 22 日</i></span>
                             <span>梦 &nbsp;很 &nbsp;浅 ，万 &nbsp;物 &nbsp;皆 &nbsp;自 &nbsp;然</span>
                         </div>
                         <div class="content">
@@ -49,35 +49,5 @@
     <include file="./Common:footer" />
     </body>
 <include file="./Common:bottom_js" />
-<script>
-    $(function () {
-        $('#modify_nickname').click(function () {
-
-            $('#td_nickname').html('<input type=text name=new_nickname value='+$('#td_nickname').text()+'>');
-            $(this).text('提交').attr('id','update_nickname').addClass('disabled');
-
-            $('[name=new_nickname]').change(function () {
-                $val=$(this).val();
-                if($val.length <=10){
-                    $('#update_nickname').removeClass('disabled').click(function () {
-                        $url='updateInfoAjax';
-                        $data={"nickname":$val};
-                        $.get($url,$data,function (data) {
-                            if(data=='success'){
-                                $('#td_nickname').html($val);
-                                $('#navbar_nickname').text($val);
-                                $('#update_nickname').attr('id','modify_nickname').html('<del>&nbsp; 修改 &nbsp;</del>');
-                            }else{
-                                alert(data);
-                            }
-                        });
-                    });
-                }else{
-                    alert('昵称必须在10个字符以内！');
-                }
-            });
-        });
-
-    })
-</script>
+<import type='js' file="Home.js.personal_center" />
 </html>

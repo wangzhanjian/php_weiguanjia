@@ -182,26 +182,31 @@ class PdUserManagerController extends BasisController
         //封装数组
         $deletelabel_json = array(
             "tag" => array(
-                "id" => $labelid
+                "id" => $labelid["openid"]
             )
         );
         $deletelabel = $usermanager->deleteLabel(json_encode($deletelabel_json));
-        return $deletelabel;
+        if (json_decode($deletelabel,true)["errcode"]==0){
+            echo "ok";
+        }
     }
 
     //取消用户标签
     public function cancelLabels(){
         $usermanager = new UsersManager();
         //获取
-        //$labelname_json = I('post.');
+        $labelname_json = I('post.');
         $labelname = json_decode(htmlspecialchars_decode(json_encode($labelname_json,JSON_UNESCAPED_UNICODE)),true);
         $changelabel = array(
             "openid_list" => array(
                 $labelname["openid"]
             ),
-            "tagid" => $labelname["label"]
+            "tagid" => $labelname["tag_id"]
         );
         $canceluserlabel = $usermanager->cancelLabels(json_encode($changelabel));
+        if (json_decode($canceluserlabel,true)["errcode"]==0){
+            echo "ok";
+        }
     }
 
     //进入标签 显示标签对应页面
@@ -219,7 +224,6 @@ class PdUserManagerController extends BasisController
         $userinfo = $usermanager->userInfo($post_list);
         //输出内容
         $userinfo = json_decode($userinfo,true);
-        //dump($userinfo['user_info_list']);
         $this->assign("userinfo",$userinfo);
         $this->assign("labelname",$group);//labelPage
         $this->assignProjectCenterCommonInfo();
@@ -238,13 +242,10 @@ class PdUserManagerController extends BasisController
     //获取黑名单列表(暂无)
     public function blackUserList(){
         $usermanager = new UsersManager();
-        //获取
-
-        //封装数组
         $deletelabel_json = array(
             "begin_openid" => "OPENID1"
         );
-        $deletelabel = $usermanager->getBlackList(json_encode($deletelabel_json));
+        $usermanager->getBlackList(json_encode($deletelabel_json));
     }
 
 }

@@ -1,0 +1,140 @@
+<include file="./Common:header" />
+<import type='css' file="Home.css.project_center" />
+</head>
+<body>
+<!--navbar-->
+<include file="./Common:top_navbar" />
+<!--content-->
+<div class="container-fluid main_content">
+    <div class="row clearfix">
+        <include file="./Common:project_sidebar_wrap" />
+        <div class="col-xs-10 column right_content">
+            <h4>消息群发</h4>
+            <button type="button" class="btn btn-default btn-success" href="batchSend" style="float: right;;" id="back"> &nbsp;&nbsp;返回&nbsp;&nbsp; </button>
+            <div class="col-md-12 column">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>
+                            消息类型
+                        </th>
+                        <th>
+                            添加时间
+                        </th>
+                        <th>
+                            发送时间
+                        </th>
+                        <th>
+                            事件剩余
+                        </th>
+                        <th>
+                            操作
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            文字消息
+                        </td>
+                        <td>
+                            2016年12月18日 8:00
+                        </td>
+                        <td>
+                            2016年12月20日 8:00
+                        </td>
+                        <td>
+                            1天10小时53分
+                        </td>
+                        <td>
+                            <a href="#">移除</a> <a href="#">立即发送</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            图片消息
+                        </td>
+                        <td>
+                            2016年12月18日 13:00
+                        </td>
+                        <td>
+                            2016年12月20日 8:00
+                        </td>
+                        <td>
+                            1天10小时53分
+                        </td>
+                        <td>
+                            <a href="#">移除</a> <a href="#">立即发送</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            图文消息
+                        </td>
+                        <td>
+                            2016年12月18日 13:00
+                        </td>
+                        <td>
+                            2016年12月20日 8:00
+                        </td>
+                        <td>
+                            1天10小时53分
+                        </td>
+                        <td>
+                            <a href="#">移除</a> <a href="#">立即发送</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            视频消息
+                        </td>
+                        <td>
+                            2016年12月18日 13:00
+                        </td>
+                        <td>
+                            2016年12月20日 8:00
+                        </td>
+                        <td>
+                            1天10小时53分
+                        </td>
+                        <td>
+                            <a href="#">移除</a> <a href="#">立即发送</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            语音消息
+                        </td>
+                        <td>
+                            2016年12月18日 13:00
+                        </td>
+                        <td>
+                            2016年12月20日 8:00
+                        </td>
+                        <td>
+                            1天10小时53分
+                        </td>
+                        <td>
+                            <a href="#">移除</a> <a href="#">立即发送</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--hidden nav-->
+<include file="./Common:project_hidden_nav" />
+<!--footer-->
+<include file="./Common:footer" />
+</body>
+<include file="./Common:bottom_js" />
+<script>
+    $(function () {
+        $('#back').click(function () {
+            window.location.href=$(this).attr('href');
+        })
+    })
+</script>
+</html>

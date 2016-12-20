@@ -25,7 +25,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 column">
-                    <button type="button" class="btn btn-danger btn-default btn-block">删除分组</button>
+                    <button type="button" class="btn btn-danger btn-default btn-block del_this_group" group_id="{$labelname.group_id}">删除分组</button>
                 </div>
             </div>
             <div class="col-xs-12 column label_list">
@@ -37,13 +37,17 @@
                             </div>
                             <div class="col-md-8 column">
                                 <h4>
-                                    {$val.nickname}<span class="user_info">【{$val.remark}】</span>
+                                    <empty name="val.remark">
+                                        {$val.nickname}
+                                        <else/>
+                                        {$val.nickname}<span class="user_info">【{$val.remark}】</span>
+                                    </empty>
                                 </h4>
                                 <p>
                                     所在地： <span class="user_info">{$val.country} {$val.province} {$val.city}</span>
                                 </p>
                                 <p>
-                                    <a class="btn" href="javascript:void(0)" value="{$val['tagid_list'][0]}">从分组移除</a>
+                                    <a class="btn remove_user" href="javascript:void(0)" user_id="{$val.openid}" group_id="{$labelname.group_id}">从分组移除</a>
                                 </p>
                             </div>
                         </div>
