@@ -1,17 +1,17 @@
 <include file="./Common:header" />
+<import type='css' file="Home.css.project_center" />
 <import type='css' file="Home.css.pd_material" />
     </head>
     <body>
         <!--navbar-->
         <include file="./Common:top_navbar" />
-        
         <!--content-->
-        <div class="container">
+        <div class="container-fluid">
             <div class="row clearfix main_content news_create_main_content">
                     <div class="col-xs-12 column cur_path_bar">
-                        <h5> <a href="newsList"><span class="glyphicon glyphicon-chevron-left"></span> 素材管理 </a><span data-where="create">/ 新建图文素材</span></h5>
+                        <h5> <a href="newsList" style="color:#fff"><span class="glyphicon glyphicon-chevron-left"></span> 素材管理 </a><span data-where="create"  style="color:#fff">/ 新建图文素材</span></h5>
                     </div>
-                    <div class="col-md-3 column left">
+                    <div class="col-xs-3 column left">
                         <h5 class="text-center">图文列表</h5>
                         <div class="col-xs-12 column cell">
                             <div class="col-xs-12 column news_box">
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9 column center">
+                    <div class="col-xs-9 column center">
                         <form class="form-horizontal" role="form">
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">标 题</label>
@@ -86,8 +86,7 @@
                 <div class="col-xs-6 col-xs-offset-3 column">
                     <button class="btn btn-success btn-sm" id="save">保 存</button><button class="btn btn-success btn-sm" id="save_as_draft">保存为草稿</button>
                 </div> 
-            </div>  
-
+            </div>
         <!--从素材库选择图片-->
         <div class="container material_container">
             <div class="row clearfix">
@@ -121,11 +120,12 @@
                 </div>
             </div>
         </div>
-
         <!--footer-->
         <include file="./Common:footer" />
     </body>
 <include file="./Common:bottom_js" />
 <import type='js' file="Home.js.ckeditor.ckeditor" />
+<import type='js' file="Home.js.project_center" />
 <import type='js' file="Home.js.create_news" />
+
 </html>

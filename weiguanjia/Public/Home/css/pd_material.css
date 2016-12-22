@@ -74,9 +74,9 @@
     margin-bottom: 30px;
 }
 .cur_path_bar{
-    border:1px solid #ddd;
     padding:8px 15px;
-    background-color: #ddd;
+    background-color: #252525;
+    opacity: 0.6;
 }
 .news_content{
     padding: 5px 0;

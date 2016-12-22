@@ -8,11 +8,9 @@
 .menu_preview_area{
     float: left;
     width: 350px;
-    height: auto;
 }
 .mobile_menu_preview{
     width: 320px;
-    height: auto;
     border: 1px solid #e7e7eb;
     margin-right: 10px;
 }

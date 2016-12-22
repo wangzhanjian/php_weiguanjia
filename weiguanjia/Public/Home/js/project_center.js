@@ -5,6 +5,15 @@
 * @Last Modified time: 2016-11-19 23:41:48
 */
 $(document).ready(function() {
+    var window_x=window.innerWidth<1200?1200:window.innerWidth;
+    var window_y=window.innerHeight<610?610:window.innerHeight;
+    $('.container-fluid').css('width',window_x-17);
+    window.onresize=function(){
+        var window_x=window.innerWidth<1200?1200:window.innerWidth;
+        $('.container-fluid').css('width',window_x-17);
+    }
+
+    $('.left_menu').css('height',$('.left_menu').parent().height());
     $(".right_label").click(function(){
         if($(this).attr('data-click-count') === 'odd'){
             $(this).attr('data-click-count', 'even');

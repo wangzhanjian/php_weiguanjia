@@ -8,7 +8,9 @@
 .bottom_content{
     margin-top: 100px;
 }
-
+.main_content{
+    margin:30px auto;
+}
 .tab-content{
     border: 1px solid #ddd;
     border-style: none solid solid solid;

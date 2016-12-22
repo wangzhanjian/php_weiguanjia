@@ -6,12 +6,12 @@
 <!--navbar-->
 <include file="./Common:top_navbar" />
 <!--content-->
-<div class="container main_content">
+<div class="container-fluid main_content">
     <div class="row clearfix">
         <!--项目开发左侧导航栏-->
         <include file="./Common:project_sidebar_wrap" />
         <!--项目开发右侧开发区-->
-        <div class="col-sm-10 col-xs-8 column right_content">
+        <div class="col-xs-10 column right_content">
             <h4>用户管理</h4>
             <button href="index" class="btn btn-default btn-sm">用户列表</button> | <button href="newLabelPage" class="btn btn-default btn-sm active">标签管理</button>
             <hr/>
@@ -20,7 +20,7 @@
             </div>
             <div class="col-xs-12 column label_list">
                 <volist name="labels" id="label">
-                    <div class="col-md-4 column label_cell">
+                    <div class="col-xs-4 column label_cell">
                         <div class="col-xs-12 column data_box">
                             <form class="form-horizontal" role="form" action="labelPage" method="post">
                             <div class="caption">
@@ -59,8 +59,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label type="text" class="col-sm-2 control-label">标签名：</label>
-                        <div class="col-sm-10">
+                        <label type="text" class="col-xs-2 control-label">标签名：</label>
+                        <div class="col-xs-10">
                             <input type="text" class="form-control" name="labelname"/>
                         </div>
                     </div>

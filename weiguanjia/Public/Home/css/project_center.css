@@ -4,24 +4,24 @@
 * @Last Modified by:   anchen
 * @Last Modified time: 2016-11-20 12:46:36
 */
-.glyphicon{
+.main_content{
+    margin:30px 0;
+    padding:0 5%;
+}
+.main_content .row{
+    padding: 0;
+    margin: 0;
+}
+.left_menu.glyphicon{
     color: #888;
 }
-
 .glyphicon_left{
     color: #fff;
     font-size: 150%;
 }
-
-.main_content{
-   margin:30px auto;
-}
-
 .left_menu{
     border-right:1px solid #8c8c8c;
-    /*padding-left: 5%;**/
 }
-
 .left_menu li{
     color: #888;
 }
@@ -29,21 +29,17 @@
     color: #000;
     padding-left: 20%;
 }
-
 .left_menu_gzh{
     border-style: none;
 }
-
 .left_menu_gzh li a{
     color: #888;
 }
-
 .right_content_gzh{
     padding-left: 5%;
     border-left: 1px solid #8c8c8c;
     margin-left: -15px;
 }
-
 .right_content_gzh p{
     padding-left: 30px;
     line-height: 30px;
@@ -97,14 +93,4 @@
 
 .create_help{
     float: right;
-}
-.title1{
-    font-family: 楷体;
-    font-size:20px;
-    font-weight: 600;
-
-}
-p{
-    font-family: 微软雅黑;
-    font-size: 15px;
 }

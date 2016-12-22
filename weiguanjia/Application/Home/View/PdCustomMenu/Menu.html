@@ -1,261 +1,195 @@
     <include file="./Common:header" />
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script type="text/javascript" src="__PUBLIC__/Home/js/jquery3.js"></script>
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script type="text/javascript" src="__PUBLIC__/Home/js/bootstrap.min.js"></script>
-    <import type='js' file="Home.js.project_center" />
     <import type="css" file="Home.css.project_center" />
     <import type="css" file="Home.css.pd_auto_response" />
-    <import type="js" file="Home.js.pd_auto_response" />
-    <import type="js" file="Home.js.pd_custom_menu" />
     <import type="css" file="Home.css.custom_menu" />
 </head>
 <body>
 <!--navbar-->
 <include file="./Common:top_navbar" />
 <!--content-->
-<div class="container main_content">
+<div class="container-fluid main_content">
     <div class="row clearfix">
         <include file="./Common:project_sidebar_wrap" />
         <!--整个右侧区 -->
-        <div class="menu_setting_area js_editBox">
+        <div class="col-xs-10 column right_content">
+            <div class="menu_setting_area js_editBox">
             <!--手机区-->
-            <div class="menu_preview_area">
-                <div class="mobile_menu_preview">
-                    <div class="mobile_hd tc">{$GLOBAL_INFO.app_info.app_name}</div>
-                    <div class="mobile_bd">
-                        <ul class="pre_menu_list grid_line" id='menuList'>
-                            <volist name="menu" id="main_menu">
-                                <li class="menu_list main_menu">
-                                    <a href="javascript:void(0);" class="menu_link {$main_menu.category} menu" active_type="{$main_menu.type}" message="{$main_menu.key}{$main_menu.url}{$main_menu.media_id}"><span class="menu_button">{$main_menu.name}</span></a>
-                                    <div class="menu_childlist">
-                                        <ul class="menu_childlist_ul">
-                                            <volist name="main_menu.sub_button" id="children_menu">
-                                                <li class="menu_childlist_li child_menu"><a href="javascript:void(0)" class="menu_link button menu" active_type="{$children_menu.type}" message="{$children_menu.key}{$children_menu.url}" text=""><span class="menu_button child_button">{$children_menu.name}</span></a></li>
-                                            </volist>
-                                            <li class="menu_childlist_li add_menu"><a href="javascript:void(0)" class="menu_link"><span class="menu_button">+</span></a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </volist>
-                            <!--<li class="menu_list main_menu">-->
-                                <!--<a href="javascript:void(0);" class="menu_link button menu" active_type="text" message="文本回复"><span class="menu_button">按钮1</span></a>-->
-                                <!--<div class="menu_childlist">-->
-                                    <!--<ul class="menu_childlist_ul">-->
-                                        <!--<li class="menu_childlist_li add_menu"><a href="javascript:void(0)" class="menu_link"><span class="menu_button">+</span></a></li>-->
-                                    <!--</ul>-->
-                                <!--</div>-->
-                            <!--</li>-->
-                            <!--<li class="menu_list main_menu menu_button_select active_menu">-->
-                                <!--<a href="javascript:void(0)" class="menu_link list menu"><span class="menu_button">主菜单1</span></a>-->
-                                <!--<div class="menu_childlist child_select">-->
-                                    <!--<ul class="menu_childlist_ul">-->
-                                        <!--<li class="menu_childlist_li child_menu"><a href="javascript:void(0)" class="menu_link button menu" active_type="view_limited" message="1"><span class="menu_button child_button">内容1</span></a></li>-->
-                                        <!--<li class="menu_childlist_li child_menu"><a href="javascript:void(0)" class="menu_link button menu" active_type="media_id" message="2"><span class="menu_button child_button">内容2</span></a></li>-->
-                                        <!--<li class="menu_childlist_li add_menu"><a href="javascript:void(0)" class="menu_link"><span class="menu_button">+</span></a></li>-->
-                                    <!--</ul>-->
-                                <!--</div>-->
-                            <!--</li>-->
-                            <li class="menu_list add_main_menu">
-                                <a href="javascript:void(0)" class="menu_link"><span class="menu_button">+</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!--菜单修改区-->
-            <div class="menu_form_area">
-                <div id='js_none' class="menu_initial_tips tips_global" style="display:none;"></div>
-                <div id='js_rightBox' class="portable_editor to_left" style="display:block;">
-                    <div class="editor_inner">
-                        <div class="global_mod float_layout menu_form_hd js_second_title_bar">
-                            <h4 class="global_info">工作日志</h4>
-                            <div class="global_extra">
-                                <a href="javascript:void(0);" id='jsDelBt'>删除菜单</a>
+                <div class="col-xs-6 column">
+                    <div class="menu_preview_area">
+                        <div class="mobile_menu_preview">
+                            <div class="mobile_hd tc">{$GLOBAL_INFO.app_info.app_name}</div>
+                            <div class="mobile_bd">
+                                <ul class="pre_menu_list grid_line" id='menuList'>
+                                    <volist name="menu" id="main_menu">
+                                        <li class="menu_list main_menu">
+                                            <a href="javascript:void(0);" class="menu_link {$main_menu.category} menu" active_type="{$main_menu.type}" message="{$main_menu.key}{$main_menu.url}{$main_menu.media_id}"><span class="menu_button">{$main_menu.name}</span></a>
+                                            <div class="menu_childlist">
+                                                <ul class="menu_childlist_ul">
+                                                    <volist name="main_menu.sub_button" id="children_menu">
+                                                        <li class="menu_childlist_li child_menu"><a href="javascript:void(0)" class="menu_link button menu" active_type="{$children_menu.type}" message="{$children_menu.key}{$children_menu.url}" text=""><span class="menu_button child_button">{$children_menu.name}</span></a></li>
+                                                    </volist>
+                                                    <li class="menu_childlist_li add_menu"><a href="javascript:void(0)" class="menu_link"><span class="menu_button">+</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </volist>
+                                    <li class="menu_list add_main_menu">
+                                        <a href="javascript:void(0)" class="menu_link"><span class="menu_button">+</span></a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="menu_form_bd" id='view'>
-                            <div style='display:none;' class="msg_sender_tips tips_global">
-                                已添加子菜单，仅可设置菜单名称
-                            </div>
-                            <div class="frm_control_group js_setNameBox">
-                                <label class="frm_label">
-                                    <strong class="title js_menuTitle">菜单名称</strong>
-                                </label>
-                                <div class="frm_controls">
+                    </div>
+                </div>
+            <!--菜单修改区-->
+                <div class="col-xs-6 column">
+                    <div class="menu_form_area">
+                        <div id='js_none' class="menu_initial_tips tips_global" style="display:none;"></div>
+                        <div id='js_rightBox' class="portable_editor to_left" style="display:block;">
+                            <div class="editor_inner">
+                                <div class="global_mod float_layout menu_form_hd js_second_title_bar">
+                                    <h4 class="global_info">工作日志</h4>
+                                    <div class="global_extra">
+                                        <a href="javascript:void(0);" id='jsDelBt'>删除菜单</a>
+                                    </div>
+                                </div>
+                                <div class="menu_form_bd" id='view'>
+                                    <div style='display:none;' class="msg_sender_tips tips_global">
+                                        已添加子菜单，仅可设置菜单名称
+                                    </div>
+                                    <div class="frm_control_group js_setNameBox">
+                                        <label class="frm_label">
+                                            <strong class="title js_menuTitle">菜单名称</strong>
+                                        </label>
+                                        <div class="frm_controls">
 										<span class="frm_input_box with_counter counter_in append">
 											<input type="text" class="frm_input js_menu_name" onkeyup="this.value=this.value.replace(/[, ]/g,'')">
 										</span>
-                                    <p class="frm_msg fail js_titleEorTips dn">字数超过上限</p>
-                                    <p class="frm_msg fail js_titlenoTips dn">请输入菜单名称</p>
-                                    <p class="frm_tips js_titleNolTips">字数不超过4个汉字或8个字母</p>
-                                </div>
-                            </div>
-                            <div class="frm_control_group menu_content">
-                                <label class="frm_label">
-                                    <strong class="title js_menuContent">菜单内容</strong>
-                                </label>
-                                <select class="select_menu_active form-control">
-                                    <option value="media_id">发送多媒体信息</option>
-                                    <option value="view_limited">发送图文信息</option>
-                                    <option value="view">跳转链接</option>
-                                    <option value="click">发送文本信息</option>
-                                    <option value="scancode_push">调用扫一扫工具</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!--发送多媒体信息-->
-                        <div class="tabbable edit_tabbable media_id menu_response" id="tabs-635277">
-                            <ul class="nav nav-tabs">
-                                <li class="image active" media_type="image">
-                                    <a href="#panel-image" data-toggle="tab"><span class="glyphicon glyphicon-picture"></span> 图片</a>
-                                </li>
-                                <li class="voice" media_type="voice">
-                                    <a href="#panel-voice" data-toggle="tab"><span class="glyphicon glyphicon-volume-up"></span> 语音</a>
-                                </li>
-                                <li class="music" media_type="music">
-                                    <a href="#panel-music" data-toggle="tab"><span class="glyphicon glyphicon-music"></span> 音乐</a>
-                                </li>
-                                <li class="video" media_type="video">
-                                    <a href="#panel-video" data-toggle="tab"><span class="glyphicon glyphicon-facetime-video"></span> 视频</a>
-                                </li>
-                            </ul>
-                            <div class="col-xs-12 column tab-content">
-                                <div class="col-xs-12 column tab-pane active" id="panel-image">
-                                    <div class="col-xs-6 column material_select sl">
-                                        <p class="text-center"><span class="glyphicon glyphicon-plus"></span></p>
-                                        <p class="text-center"><a  href="#modal-container-image" onclick="get_material(this)" data-toggle="modal" data-type="select_from_material">从素材库选择</a></p>
-                                    </div>
-                                    <div class="col-xs-6 column material_select">
-                                        <p class="text-center"><span class="glyphicon glyphicon-upload"></span></p>
-                                        <p class="text-center"><a href="javascript:void(0)" onclick="upload_file(this)">上传</a></p>
-                                        <div class="progress progress-striped">
-                                            <div class="progress-bar progress-success" id="progressBarImage">
-                                            </div>
+                                            <p class="frm_msg fail js_titleEorTips dn">字数超过上限</p>
+                                            <p class="frm_msg fail js_titlenoTips dn">请输入菜单名称</p>
+                                            <p class="frm_tips js_titleNolTips">字数不超过4个汉字或8个字母</p>
                                         </div>
+                                    </div>
+                                    <div class="frm_control_group menu_content">
+                                        <label class="frm_label">
+                                            <strong class="title js_menuContent">菜单内容</strong>
+                                        </label>
+                                        <select class="select_menu_active form-control">
+                                            <option value="media_id">发送多媒体信息</option>
+                                            <option value="view_limited">发送图文信息</option>
+                                            <option value="view">跳转链接</option>
+                                            <option value="click">发送文本信息</option>
+                                            <option value="scancode_push">调用扫一扫工具</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 column tab-pane" id="panel-voice">
-                                    <div class="col-xs-6 column material_select sl">
-                                        <p class="text-center"><span class="glyphicon glyphicon-plus"></span></p>
-                                        <p class="text-center"><a  href="#modal-container-voice" onclick="get_material(this)" data-toggle="modal" data-type="select_from_material">从素材库选择</a></p>
-                                    </div>
-                                    <div class="col-xs-6 column material_select">
-                                        <p class="text-center"><span class="glyphicon glyphicon-upload"></span></p>
-                                        <p class="text-center"><a href="javascript:void(0)" onclick="upload_file(this)">本地上传</a></p>
-                                        <div class="progress progress-striped">
-                                            <div class="progress-bar progress-success" id="progressBarVoice">
+                                <!--发送多媒体信息-->
+                                <div class="tabbable edit_tabbable media_id menu_response" id="tabs-635277">
+                                    <ul class="nav nav-tabs">
+                                        <li class="image active" media_type="image">
+                                            <a href="#panel-image" data-toggle="tab"><span class="glyphicon glyphicon-picture"></span> 图片</a>
+                                        </li>
+                                        <li class="voice" media_type="voice">
+                                            <a href="#panel-voice" data-toggle="tab"><span class="glyphicon glyphicon-volume-up"></span> 语音</a>
+                                        </li>
+                                        <li class="video" media_type="video">
+                                            <a href="#panel-video" data-toggle="tab"><span class="glyphicon glyphicon-facetime-video"></span> 视频</a>
+                                        </li>
+                                    </ul>
+                                    <div class="col-xs-12 column tab-content">
+                                        <div class="col-xs-12 column tab-pane active" id="panel-image">
+                                            <div class="col-xs-6 column material_select sl">
+                                                <p class="text-center"><span class="glyphicon glyphicon-plus"></span></p>
+                                                <p class="text-center"><a  href="#modal-container-image" onclick="get_material(this)" data-toggle="modal" data-type="select_from_material">从素材库选择</a></p>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 column tab-pane" id="panel-music">
-                                    <div class="form-horizontal" >
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label">标题</label>
-                                            <div class="col-md-10">
-                                                <input type="text" class="form-control" name="title" placeholder="标题在15个字符以内（选填）"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label">描述</label>
-                                            <div class="col-md-10">
-                                                <input type="text" class="form-control" name="description" placeholder="描述在30个字符以内（选填）" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label">音乐链接url</label>
-                                            <div class="col-md-10">
-                                                <input type="url" class="form-control" name="music_url" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label">高质量音乐链接</label>
-                                            <div class="col-md-10">
-                                                <input type="url" class="form-control" name="hq_music_url" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label">音乐贴图</label>
-                                            <div class="col-md-2">
-                                                <img class="thumb" src="" width="100%" height="70px;" />
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="col-md-3">
-                                                    <a  href="#modal-container-thumb" onclick="get_material(this)" style="line-height:28px;" data-toggle="modal" data-type="select_from_material">从素材库选择</a>
-                                                </div>
-                                                <button class="col-md-2 btn btn-success btn-sm upload" onclick="upload_file(this)">上传</button><br/><br/>
+                                            <div class="col-xs-6 column material_select">
+                                                <p class="text-center"><span class="glyphicon glyphicon-upload"></span></p>
+                                                <p class="text-center"><a href="javascript:void(0)" onclick="upload_file(this)">上传</a></p>
                                                 <div class="progress progress-striped">
-                                                    <div class="progress-bar progress-success" id="progressBarThumb">
+                                                    <div class="progress-bar progress-success" id="progressBarImage">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 column tab-pane" id="panel-voice">
+                                            <div class="col-xs-6 column material_select sl">
+                                                <p class="text-center"><span class="glyphicon glyphicon-plus"></span></p>
+                                                <p class="text-center"><a  href="#modal-container-voice" onclick="get_material(this)" data-toggle="modal" data-type="select_from_material">从素材库选择</a></p>
+                                            </div>
+                                            <div class="col-xs-6 column material_select">
+                                                <p class="text-center"><span class="glyphicon glyphicon-upload"></span></p>
+                                                <p class="text-center"><a href="javascript:void(0)" onclick="upload_file(this)">本地上传</a></p>
+                                                <div class="progress progress-striped">
+                                                    <div class="progress-bar progress-success" id="progressBarVoice">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 column tab-pane" id="panel-video">
+                                            <div class="col-xs-6 column material_select sl">
+                                                <p class="text-center"><span class="glyphicon glyphicon-plus"></span></p>
+                                                <p class="text-center"><a  href="#modal-container-video" onclick="get_material(this)" data-toggle="modal" data-type="select_from_material">从素材库选择</a></p>
+                                            </div>
+                                            <div class="col-xs-6 column material_select">
+                                                <p class="text-center"><span class="glyphicon glyphicon-upload"></span></p>
+                                                <p class="text-center"><a href="#modal-add-video" data-toggle="modal">本地上传</a></p>
+                                                <div class="progress progress-striped">
+                                                    <div class="progress-bar progress-success" id="progressBarVideo">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 column tab-pane" id="panel-video">
+                                <!--发送图文消息-->
+                                <div class="col-xs-12 column tab-pane menu_response view_limited" id="panel-news">
                                     <div class="col-xs-6 column material_select sl">
                                         <p class="text-center"><span class="glyphicon glyphicon-plus"></span></p>
-                                        <p class="text-center"><a  href="#modal-container-video" onclick="get_material(this)" data-toggle="modal" data-type="select_from_material">从素材库选择</a></p>
+                                        <p class="text-center"><a  href="#modal-container-news" onclick="get_material(this)" data-toggle="modal" data-type="select_from_material">从素材库选择</a></p>
                                     </div>
                                     <div class="col-xs-6 column material_select">
                                         <p class="text-center"><span class="glyphicon glyphicon-upload"></span></p>
-                                        <p class="text-center"><a href="#modal-add-video" data-toggle="modal">本地上传</a></p>
-                                        <div class="progress progress-striped">
-                                            <div class="progress-bar progress-success" id="progressBarVideo">
-                                            </div>
-                                        </div>
+                                        <p class="text-center"><a href="/Home/PdMaterial/addNewsPage" target="_blank">新建图文</a></p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <!--发送图文消息-->
-                        <div class="col-xs-12 column tab-pane menu_response view_limited" id="panel-news">
-                            <div class="col-xs-6 column material_select sl">
-                                <p class="text-center"><span class="glyphicon glyphicon-plus"></span></p>
-                                <p class="text-center"><a  href="#modal-container-news" onclick="get_material(this)" data-toggle="modal" data-type="select_from_material">从素材库选择</a></p>
-                            </div>
-                            <div class="col-xs-6 column material_select">
-                                <p class="text-center"><span class="glyphicon glyphicon-upload"></span></p>
-                                <p class="text-center"><a href="/Home/PdMaterial/addNewsPage" target="_blank">新建图文</a></p>
-                            </div>
-                        </div>
-                        <!-- 跳转链接 -->
-                        <div class="view menu_response">
-                            <form action="">
-                                <p class="menu_content_tips tips_global">订阅者点击该子菜单会跳到以下链接</p>
-                                <div class="frm_control_group">
-                                    <label class="frm_label">页面地址</label>
-                                    <div class="frm_controls">
+                                <!-- 跳转链接 -->
+                                <div class="view menu_response">
+                                    <form action="">
+                                        <p class="menu_content_tips tips_global">订阅者点击该子菜单会跳到以下链接</p>
+                                        <div class="frm_control_group">
+                                            <label class="frm_label">页面地址</label>
+                                            <div class="frm_controls">
                                                 <span class="frm_input_box">
                                                     <input type="text" class="frm_input mes" id="urlText" name="urlText">
                                                 </span>
-                                        <p class="frm_tips" id="js_urlTitle" style="display: none;">
-                                            来自<span class="js_name"></span><span style=""> -《<span class="js_title"></span>》</span>
-                                        </p>
+                                                <p class="frm_tips" id="js_urlTitle" style="display: none;">
+                                                    来自<span class="js_name"></span><span style=""> -《<span class="js_title"></span>》</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- 发送文本信息 -->
+                                <div class="click menu_response">
+                                    <div class="tab-pane" id="panel-text">
+                                        <textarea class="textarea" name="response_content"></textarea>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <!-- 发送文本信息 -->
-                        <div class="click menu_response">
-                            <div class="tab-pane" id="panel-text">
-                                <textarea class="textarea" name="response_content"></textarea>
+                                <!--扫一扫事件-->
+                                <div class="scancode_push menu_response">
+                                    <img src="__PUBLIC__/Home/images/scanning.png" class="scanning">
+                                    <button type="button" class="btn btn-default btn-success open"> &nbsp;&nbsp;保存&nbsp;&nbsp; </button>
+                                </div>
                             </div>
-                        </div>
-                        <!--扫一扫事件-->
-                        <div class="scancode_push menu_response">
-                            <img src="__PUBLIC__/Home/images/scanning.png" class="scanning">
-                            <button type="button" class="btn btn-default btn-success open"> &nbsp;&nbsp;保存&nbsp;&nbsp; </button>
                         </div>
                     </div>
                 </div>
-            </div>
             <!--保存键-->
             <div class="col-xs-12 column auto_res_btn">
                 <button type="button" class="btn btn-default btn-success update"> &nbsp;&nbsp;保存&nbsp;&nbsp; </button>
                 <button type="button" class="btn btn-default btn-danger delete">&nbsp;&nbsp;删除&nbsp;&nbsp;</button>
             </div>
+        </div>
         </div>
     </div>
 </div>
@@ -276,34 +210,8 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<!--创建成功的弹窗-->
-<div class="modal" id="create_success">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">提示</h4>
-            </div>
-            <div class="modal-body">
-                <p>创建成功</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 <!--hidden nav-->
 <include file="./Common:project_hidden_nav" />
-<!--footer-->
-<div class="row clearfix footer">
-    <div class="col-sm-12 col-md-12 col-lg-12 column">
-        <p class="text-center">
-            Copyright © 2011-2016 www.weiguanjia.com. All Rights Reserved software college of Hebei Normal University
-        </p>
-        <p class="text-center">冀 ICP 备 2016110.3485A</p>
-    </div>
-</div>
 <!--备用替换模板从素材库选择-->
 <!--从素材库选择图片弹窗-->
 <div class="container material_container">
@@ -513,11 +421,16 @@
         </div>
     </div>
 </div>
+<!--footer-->
+<include file="./Common:footer" />
 <!--音乐在线播放的内联窗口-->
 <iframe class="hidden" id="iframe"></iframe>
 <!--文件上传的公共选择条-->
 <input class="hidden" type="file" id="file"/>
 </div>
 </body>
-
+    <include file="./Common:bottom_js" />
+    <import type='js' file="Home.js.project_center" />
+    <import type="js" file="Home.js.pd_auto_response" />
+    <import type="js" file="Home.js.pd_custom_menu" />
 </html>

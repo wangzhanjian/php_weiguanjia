@@ -1,17 +1,18 @@
 <include file="./Common:header" />
 <import type='css' file="Home.css.pd_material" />
+<import type='css' file="Home.css.project_center" />
     </head>
     <body>
         <!--navbar-->
         <include file="./Common:top_navbar" />
         
         <!--content-->
-        <div class="container">
+        <div class="container-fluid">
             <div class="row clearfix main_content news_create_main_content">
                     <div class="col-xs-12 column cur_path_bar">
-                        <h5> <a href="newsList"><span class="glyphicon glyphicon-chevron-left"></span> 素材管理 </a><span data-where="modify">/ 修改图文素材</span></h5>
+                        <h5> <a href="newsList"  style="color:#fff"><span class="glyphicon glyphicon-chevron-left"></span> 素材管理 </a><span data-where="modify"  style="color:#fff">/ 修改图文素材</span></h5>
                     </div>
-                    <div class="col-md-3 column left">
+                    <div class="col-xs-3 column left">
                         <h5 class="text-center">图文列表</h5>
                         <div class="col-xs-12 column cell">
                             <div class="col-xs-12 column news_box">
@@ -32,43 +33,43 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9 column center">
+                    <div class="col-xs-9 column center">
                         <form class="form-horizontal" role="form">
                             <div class="form-group">
-                                <label class="col-sm-1 control-label">标 题</label>
-                                <div class="col-sm-5">
+                                <label class="col-xs-1 control-label">标 题</label>
+                                <div class="col-xs-5">
                                     <input type="text" class="form-control" name='title' />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-1 control-label">作 者</label>
-                                <div class="col-sm-5">
+                                <label class="col-xs-1 control-label">作 者</label>
+                                <div class="col-xs-5">
                                     <input type="text" class="form-control" name='author' />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-1 control-label">摘 要</label>
-                                <div class="col-sm-11">
+                                <label class="col-xs-1 control-label">摘 要</label>
+                                <div class="col-xs-11">
                                     <input type="text" class="form-control" name="digest" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-12 control-label" style="text-align:center;padding:5px;">文 章 内 容</label>
-                                <div class="col-sm-12">
+                                <label class="col-xs-12 control-label" style="text-align:center;padding:5px;">文 章 内 容</label>
+                                <div class="col-xs-12">
                                     <textarea name="editor" id="editor" rows="10" cols="80">
                                         This is my textarea to be replaced with CKEditor.
                                     </textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><span class="glyphicon glyphicon-link"></span> 原 文 链 接</label>
-                                <div class="col-sm-10">
+                                <label class="col-xs-2 control-label"><span class="glyphicon glyphicon-link"></span> 原 文 链 接</label>
+                                <div class="col-xs-10">
                                     <input type="url" class="form-control" name="content_source_url" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><span class="glyphicon glyphicon-picture"></span> 图 文 封 面</label>
-                                <div class="col-sm-10">
+                                <label class="col-xs-2 control-label"><span class="glyphicon glyphicon-picture"></span> 图 文 封 面</label>
+                                <div class="col-xs-10">
                                     <a id="modal-347417" href="#modal-container-image" data-toggle="modal"><button class="btn btn-default btn-sm" data-type="select_from_material">从素材库选择</button></a>
                                     <button class="btn btn-default btn-sm" data-type="upload_thumb">本地上传</button><input class="hidden" type="file" id="thumb_file" />
                                     <span  class="help-block" >大图片建议尺寸：900像素 * 500像素</span>
@@ -127,6 +128,7 @@
         <newsData class="hidden" data-id="{$media_id}">{$news}</newsData>
     </body>
 <include file="./Common:bottom_js" />
+<import type='js' file="Home.js.project_center" />
 <import type='js' file="Home.js.ckeditor.ckeditor" />
 <import type='js' file="Home.js.create_news" />
 </html>

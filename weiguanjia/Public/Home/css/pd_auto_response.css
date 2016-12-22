@@ -148,6 +148,10 @@
 .rule_panel button{
     margin-right: 5%;
 }
+.rule_panel .input{
+    position: relative;
+    left: -90px;
+}
 .list_cell{
     padding:0;
 }
