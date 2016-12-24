@@ -69,7 +69,6 @@ $(document).ready(function() {
         if (count >= 5) {
             $("#mymodal").modal("toggle");
         } else {
-            alert("1");
             $(this).before("<li class='menu_childlist_li child_menu'><a href='javascript:void(0)' class='menu_link button menu' active_type='text'><span class='menu_button child_button'>新建菜单</span></a></li>");
             $(this).parents(".menu_list").children(".menu_link.button.menu").attr("class", "menu_link list menu").trigger("click");
             $(".global_info").text("新建菜单");
