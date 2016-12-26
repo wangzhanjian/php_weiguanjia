@@ -39,7 +39,7 @@ $(function () {
     })
 
     $(".del_group").click(function(){
-        $(this).parents(".data_box").addClass("active_group");
+        $(this).parents(".label_cell").addClass("active_group");
         $openid = $(this).attr("value");
         $openid_post = {
             "openid" : $openid
