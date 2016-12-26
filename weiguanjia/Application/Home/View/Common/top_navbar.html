@@ -16,14 +16,15 @@
                             <a href="__ROOT__/Home/ProjectManager/centerPage">项目中心</a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" onclick="alert('该功能暂未开发，敬请期待！')">产品中心</a>
+                            <a href="javascript:void(0)" onclick="alert('该功能暂未开发，敬请期待！');$(this).css('background-color','#252525');"
+                               onmouseover="$(this).css('background','#41dbeb')" onmouseout="$(this).css('background','#252525')">产品中心</a>
                         </li>
                         <li>
                             <a href="__ROOT__/Home/Index/aboutUs">关于我们</a>
                         </li>
                     </ul>
                     <ul class="nav right">
-                        <notempty name="GLOBAL_INFO">
+                        <notempty name="GLOBAL_INFO['user_nickname']">
                             <li>
                                 <a href="__ROOT__/Home/UserManager/info"><span class="glyphicon glyphicon-user"></span><span id="navbar_nickname">{$GLOBAL_INFO['user_nickname']}</span></a>
                             </li>

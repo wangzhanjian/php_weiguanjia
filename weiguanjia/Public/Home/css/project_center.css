@@ -5,12 +5,15 @@
 * @Last Modified time: 2016-11-20 12:46:36
 */
 .main_content{
-    margin:30px 0;
     padding:0 5%;
 }
 .main_content .row{
     padding: 0;
     margin: 0;
+}
+.obj_balnk_tip{
+    margin: 0 auto;
+    margin-top:150px ;
 }
 .left_menu.glyphicon{
     color: #888;
