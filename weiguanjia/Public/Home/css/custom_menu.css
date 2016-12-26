@@ -112,22 +112,19 @@
     line-height: 48px;
 }
 .menu_button_select{
-    border: 1px solid #44b549;
     line-height: 48px;
     background-color: #fff;
-    color: #44b549;
 }
 .menu_childlist{
     position: absolute;
     bottom: 50px;
     width: 28%;
-    border: 1px solid #d0d0d0;
     background-color: #fff;
     text-align: center;
     background-color: #fafafa;
 }
 .menu_childlist_li{
-    border: 1px solid #d0d0d0;
+    border:1px solid #ddd;
     line-height: 45px;
     cursor: pointer;
 }
@@ -136,6 +133,9 @@
 }
 .menu_childlist_ul{
     padding-left: 0px;
+}
+.add_menu{
+    border:1px solid #ddd;
 }
 .child_select{
     display: block;
@@ -185,8 +185,15 @@
     width: 300px;
     height: 300px;
 }
-.open{
+button.open{
     width: 150px;
     margin-top: 20px;
     display: block;
+}
+#panel-video{
+    height: 231px;
+    overflow: auto;
+}
+.active_menu{
+    border: 1px solid #0f0;
 }

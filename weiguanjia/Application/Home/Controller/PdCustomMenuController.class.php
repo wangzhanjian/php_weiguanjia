@@ -22,6 +22,9 @@ class PdCustomMenuController extends BasisController
         if(!$this->isLogin()){  //用户使用该类的任何方法必须已经登录（前置条件）
             $this->error('请先登录！','/Home/UserManager/loginPage',2);
         }
+        if(!session(C('SESSION_APP_INFO'))){
+            $this->error('请先创建项目！','/Home/ProjectManager/centerPage',2);
+        }
     }
     //显示自定义菜单界面
     public function menu(){
@@ -41,51 +44,48 @@ class PdCustomMenuController extends BasisController
     }
     //按照media_id获取素材
     public function getFromId(){
-//        $media_id = I();
         $media_id = "QhJW5PvuJhXvjV1NwwVYLaOif3dIFJM36tdhjEUV1kc";
         $get_from_id = new MaterialManager();
         $responce = $get_from_id->getPermanentMaterial($media_id);
         header("Content-type:image/jpeg");
         echo $responce;
     }
-    //创建自定义菜单
+
+    //创建自定义菜单 ok
     public function create(){
         $menu_json=I();
         $menu = htmlspecialchars_decode(json_encode($menu_json,JSON_UNESCAPED_UNICODE));
+        dump($menu);
         $MenuManager = new MenuManager();
-        $response = $MenuManager->CreateMenu($menu);
-        if (json_decode($response,true)["errcode"]==0){
-            echo "ok";
-        }
+        $result=$MenuManager->CreateMenu($menu);
+        echo $result;
     }
+
     //保存key和其对应的text
-//    public function saveKeyText(){
-//        $data_json = I();
-//        $data = htmlspecialchars_decode(json_encode($data_json,JSON_UNESCAPED_UNICODE));
-//        $data = json_decode($data,true);
-//        $app_source_id = session(C("SESSION_APP_INFO"))["app_source_id"];
-//        $db = M("event_text_response");
-//        foreach($data as $key=>$val) {
-//            $result = $db->field("id")->where("app_source_id='%s' and event='click' and key='%d'",$app_source_id,$data[$key]["key"])->select();
-//            $insert["app_source_id"] = $app_source_id;
-//            $insert["event"] = "click";
-//            $insert["event_key"] = $data[$key]["key"];
-//            $insert["content"] = $data[$key]["text"];
-//            if ($result == null){
-//                $db->data($insert)->add();
-//            }else{
-//                $db->save($insert);
-//            }
-//        }
-//        echo "success";
-//    }
+    public function saveKeyText(){
+        $data = I();
+        $app_source_id = session(C("SESSION_APP_INFO"))["app_source_id"];
+        foreach ($data as $k=>$value){      //数据匹配转换
+            $data[$k]['app_source_id']=$app_source_id;
+            $data[$k]['event_key']=$data[$k]['key'];
+        }
+        $eventTable=M('event_table');
+        $delMap=array(
+            'app_source_id'=>$app_source_id,
+            'event'=>'click'
+        );
+        $eventTable->where($delMap)->select();
+        $response=M('event_text_response');
+        $response->where($delMap)->delete();    //删除回复表中旧的回复信息
+        $eventTable->where($delMap)->delete();  //删除事件标中旧的回复设置
+        $eventTable->addAll($data);     //将新的回复设置添加至事件表
+        $response=M('event_text_response');
+        $response->addAll($data);       //将新的回复信息写入事件回复表
+    }
     //删除自定义菜单
     public function delete(){
         $MenuManager = new MenuManager();
-        $json = I();
-        $delete = $json["delete"];
         $response = $MenuManager->DeleteMenu();
-        error_log($response,3,"./log.txt");
         echo $response;
     }
     //获取自定义菜单

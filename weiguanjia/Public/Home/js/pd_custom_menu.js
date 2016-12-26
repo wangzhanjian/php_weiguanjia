@@ -1,8 +1,31 @@
 /**
  * Created by 天昊 on 2016/12/13.
  */
-$keys = Array();
+var keys = new Array();
+where='create_menu';
+function save_menu() {
+    $last_menu = $(".active_menu");
+    //获取内容
+    var mes = $('.'+$last_menu.children("a").attr("active_type")).attr("message");
+    //将内容保存到选中中的a标签
+    $last_menu.children("a").attr("message", mes);
+    //如果是media_类型的按钮，保存数据类型
+    if ($last_menu.children("a").attr("active_type") == "media_id") {
+        var media_type = $(".nav-tabs").find('.active').attr("media_type");
+        $last_menu.children("a").attr("media_type", media_type);
+    }
+    //如果是click类型的按钮，保存内容
+    if ($last_menu.children("a").attr("active_type") == "click"){
+        $(".click").attr("message",null);
+        $text = $('.'+$last_menu.children("a").attr("active_type")).attr("text");
+        $last_menu.children("a").attr("text", $text);
+    }
+}
+$last_menu = new Object();
 $(document).ready(function() {
+    $('.main_content').find('.right_content').css('height',638);
+    $('.main_content').children('.row').css('height',$('.right_content').height());
+    $('.main_content').find('.left_menu').css('height',$('.main_content').children('.row').height());
     //选中第一个菜单
     $(".pre_menu_list").children(".main_menu:first").addClass("menu_button_select");
     if ($(".menu_button_select").find(".menu_childlist_li").length > 1){
@@ -49,8 +72,8 @@ $(document).ready(function() {
     $(".menu_response").addClass("hidden");
     $('.' + default_menu_type).removeClass("hidden").css("display", "block");
     //获取当前菜单中所有的kay值
-    $(".click").each(function () {
-        $keys.push($(this).attr("message"));
+    $("[active_type=click]").each(function () {
+        keys.push(parseInt($(this).attr("message")));
     })
     //当用户点击菜单时修改菜单的样式类，显示菜单
     $('.pre_menu_list').on("click", '.main_menu', function () {
@@ -65,7 +88,6 @@ $(document).ready(function() {
     //添加子菜单
     $(".pre_menu_list").on("click", ".add_menu", function () {
         var count = $(this).siblings(".menu_childlist_li").length;
-        console.log(count);
         if (count >= 5) {
             $("#mymodal").modal("toggle");
         } else {
@@ -85,8 +107,11 @@ $(document).ready(function() {
     })
     //点击菜单时在右侧编辑区显示当前菜单名称
     $(".pre_menu_list").on('click', '.menu', function () {
+        $last_menu = $(".active_menu");
+        save_menu();
         $(".global_mod").add(".menu_form_bd").css("display", "block");
         var title = $(this).find("span").text();
+        $(this).parent("li").siblings();
         $(this).parent("li").addClass("active_menu");
         $(".menu_list").not($(this).parent("li")).removeClass("active_menu");
         $(".menu_childlist_li").not($(this).parent("li")).removeClass("active_menu");
@@ -149,11 +174,13 @@ $(document).ready(function() {
     //删除菜单操作
     $("#jsDelBt").click(function () {
         var last = $(".active_menu").siblings(".add_menu");
-        $("li").remove(".active_menu");
+        if($('.active_menu').children('a').attr('active_type')=='click'){
+            keys[$('.active_menu').children('a').attr('message')]=undefined;
+        }
+        $("li").remove(".active_menu");     //删除当前菜单
         if ($(".pre_menu_list").children(".main_menu").length < 3) {
             $(".add_main_menu").css("display", "block");
         }
-        ;
         if (last.siblings().length == 0) {
             last.parents(".menu_list").children(".menu_link.list.menu").attr("class", "menu_link button menu");
             last.parents(".menu_list").addClass("active_menu");
@@ -161,13 +188,12 @@ $(document).ready(function() {
         }
         if (last.siblings().size != 0) {
             last.siblings('.menu_childlist_li:eq(0)').children(".menu_link").trigger("click");
-            console.log(last.siblings('.menu_childlist_li:eq(0)').text());
+           // console.log(last.siblings('.menu_childlist_li:eq(0)').text());
         }
     })
     //根据选择修改右侧回复区的内容
     $(".select_menu_active").change(function () {
         var checkValue = $(this).val();
-        console.log(checkValue);
         $(".active_menu").children("a").attr("active_type", checkValue);
         $(".menu_response").addClass("hidden");
         $('.' + checkValue).removeClass("hidden").css("display", "block");
@@ -176,38 +202,62 @@ $(document).ready(function() {
     $(".delete").click(function () {
         $delete = new Object();
         $delete['0'] = "delete";
-        $.post('__ROOT__/Home/PdCustomMenu/delete', $delete, function (data) {
-            console.log(data);
+        $.post('delete', $delete, function (data) {
+            alert('删除成功！');
+            window.location.href='menu';
         })
     })
-    //跳转链接的输入框失去焦点时将内容保存到view的div里面
+    //跳转链接的输入框失去焦点时将内容保存到aview的div里面
     $("#urlText").blur(function () {
         $(this).parents(".view").attr("message", $(this).val());
     })
+
     //文本回复的文本域失去焦点时将内容保存click的div里面
     $(".textarea").blur(function () {
+        if ($(".active_menu").children("a").attr("message") != null){
+            $(".click").attr("message",$(".active_menu").children("a").attr("message"));
+        }
         $text = $(this).val();
-        $key = Math.max($keys);
-        if ($key < 14){
-            $keys[$key+1] = $key+1;
-            $(".click").attr("message",$key+1);
-        }else
+        $key = arr_max(keys);
+        if ($(".click").attr("message") == null)
         {
-            for ($i = 0;$i < 14;$i++){
-                if ($keys[$i] == null){
-                    $keys[$i] = $i;
-                    $(".click").attr("message",$i);
-                }
+            if ($key < 18) {
+                keys[$key+1] = $key + 1;
+                $(".click").attr("message", $key + 1);
+            } else {
+                console.log(keys);
+                for ($i = 0;$i < 18;$i++){
+                    if (keys[$i] == null){
+                        keys[$i] = $i;
+                        $(".click").attr("message",$i);
+                        break;
+                    }
+                 }
             }
         }
-        $(".click").attr("text",$text);
+        $(".click").attr("text", $text);
     })
+
     //当多媒体选择完成点击确定时将多媒体类型和内容保存到media的div里面
     $(".determine").click(function () {
         //获取内容
-        $media_id = $(this).parents(".modal-content").find(".column[data-selected='selected']").find("img").attr("data-id");
+        $type=$(this).parents('.modal').attr('id').substr(16);
+        switch ($type){
+            case 'image':
+                $media_id = $(this).parent().siblings('.modal-body').find("[data-selected='selected']").find("img").attr("data-id");
+                break;
+            case 'voice':
+                $media_id = $(this).parent().siblings(".modal-body").find("[data-selected='selected']").find(".data_box_voice").attr("data-id");
+                break;
+            case 'video':
+                $media_id = $(this).parent().siblings(".modal-body").find("[data-selected='selected']").find(".data_box_video").attr("data-id");
+                break;
+            case 'news':
+                $media_id = $(this).parent().siblings(".modal-body").find("[data-selected='selected']").find(".news_footer").attr("data-id");
+                break;
+        }
         //保存类型
-        $media_type = $(".nav-tabs").find(".active").attr("media_type");
+        //$media_type = $(".nav-tabs").find(".active").attr("media_type");
         $(".media_id").attr("media_type",$(".nav-tabs").find(".active").attr("media_type"));
         //保存内容
         $(".media_id").attr("message", $media_id);
@@ -215,51 +265,38 @@ $(document).ready(function() {
     //当图文选择完成点击确定时将图文信息的media_id保存到view_limited的div里面
     $(".news-select").click(function () {
         //获取内容
-        $media_id = $(this).parents(".modal-content").find(".column[data-selected='selected']").find("news-footer").attr("data-id");
+        $media_id = $(this).parents(".modal-content").find("[data-selected='selected']").find(".news_footer").attr("data-id");
         //保存内容
         $(".view_limited").attr("message", $media_id);
     })
     //当点击保存时，将扫一扫工具的key保存到scancode_push的div里面
     $(".open").click(function () {
-        $key = Math.max($keys);
-        if ($key < 14){
-            $keys[$key+1] = $key+1;
+        $key = Math.max(keys);
+        if ($key < 18){
+            keys[$key+1] = $key+1;
             $(".scancode_push").attr("message",$key+1);
         }else
         {
-            for ($i = 0;$i < 14;$i++){
-                if ($keys[$i] == null){
-                    $keys[$i] = $i;
+            for ($i = 0;$i < 18;$i++){
+                if (keys[$i] == null){
+                    keys[$i] = $i;
                     $(".scancode_push").attr("message",$i);
                 }
             }
         }
+        alert('扫一扫工具设置成功！');
     })
     //当点击并非正在编辑的标签或提交按钮时，保存当前标签的修改
-    function save_menu() {
-        //获取内容
-        var mes = $(".menu_response:not('.hidden')").attr("message");
-        //将内容保存到选中中的a标签
-        $(".active_menu").children("a").attr("message", mes);
-        //如果是media_类型的按钮，保存数据类型
-        if ($(".active_menu").children("a").attr("active_type") == "media_id") {
-            var media_type = $(".menu_response:not('.hidden')").attr("media_type");
-            $(".active_menu").children("a").attr("media_type", media_type);
-        }
-        //如果是click类型的按钮，保存内容
-        if ($(".active_menu").children("a").attr("active_type") == "click"){
-            $text = $(".menu_response:not('.hidden')").attr("text");
-            $(".active_menu").children("a").attr("text", $text);
-        }
-    }
-    $(".pre_menu_list").on("click",$("li").not($(".active_menu")),function () {
+    /*$(".pre_menu_list").on("click",$("li").not($(".active_menu")),function () {
         save_menu();
-    })
-    $(".update").click(function () {
+    })*/
+    /*$('.pre_menu_list').find('.menu').click(function () {
+        alert(1);
         save_menu();
-    })
+    });*/
     //组成json串并上传(新增bug待调试)
     $(".update").click(function () {
+        save_menu();
         //定义菜单菜单对象
         $menu = new Object();
         $n = 0;
@@ -281,8 +318,10 @@ $(document).ready(function() {
                             "key": $message,
                         }
                         $text[$c] = {
+                            "event":'click',
+                            'response_type':'text',
                             "key" : $message,
-                            "text" : $(this).children("a").attr("text")
+                            "content" : $(this).children("a").attr("text")
                         }
                         $c++
                         break;
@@ -336,8 +375,10 @@ $(document).ready(function() {
                                 "key": $message
                             };
                             $text[$c] = {
+                                "event":'click',
+                                'response_type':'text',
                                 "key" : $message,
-                                "text" : $(this).children("a").attr("text")
+                                "content" : $(this).children("a").attr("text")
                             }
                             $c++
                             break;
@@ -363,7 +404,7 @@ $(document).ready(function() {
                             };
                             break;
                         case "scancode_push":
-                            $menu['button'][$n] = {
+                            $menu['button'][$n]['sub_button'][$i] = {
                                 "type":$button_type,
                                 "name":$name,
                                 "key":$message
@@ -375,13 +416,23 @@ $(document).ready(function() {
             }
             $n = $n + 1;
         })
-        // $.post('saveKeyText',$text , function (data) {
-        //     console.log(data);
-        // });
+        //console.log($menu);
+        $.post("saveKeyText",$text,function (data) {
+        })
         $.post('create', $menu, function (data) {
-            if (data == "ok"){
-                $("#create_success").modal("toggle");
-            }
+           alert('创建成功！');
         });
     })
+
+
 })
+
+function arr_max(arr)
+{
+    var temp=0;
+    $len=arr.length;
+    for($i=0;$i<$len;++$i){
+        temp=temp<arr[$i]?arr[$i]:temp;
+    }
+    return  temp;
+}

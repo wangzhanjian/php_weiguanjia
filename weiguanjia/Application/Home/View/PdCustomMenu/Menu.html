@@ -26,7 +26,7 @@
                                             <div class="menu_childlist">
                                                 <ul class="menu_childlist_ul">
                                                     <volist name="main_menu.sub_button" id="children_menu">
-                                                        <li class="menu_childlist_li child_menu"><a href="javascript:void(0)" class="menu_link button menu" active_type="{$children_menu.type}" message="{$children_menu.key}{$children_menu.url}" text=""><span class="menu_button child_button">{$children_menu.name}</span></a></li>
+                                                        <li class="menu_childlist_li child_menu"><a href="javascript:void(0)" class="menu_link button menu" active_type="{$children_menu.type}" message="{$children_menu.key}{$children_menu.url}{$children_menu.media_id}" text=""><span class="menu_button child_button">{$children_menu.name}</span></a></li>
                                                     </volist>
                                                     <li class="menu_childlist_li add_menu"><a href="javascript:void(0)" class="menu_link"><span class="menu_button">+</span></a></li>
                                                 </ul>
@@ -76,7 +76,6 @@
                                         </label>
                                         <select class="select_menu_active form-control">
                                             <option value="media_id">发送多媒体信息</option>
-                                            <option value="view_limited">发送图文信息</option>
                                             <option value="view">跳转链接</option>
                                             <option value="click">发送文本信息</option>
                                             <option value="scancode_push">调用扫一扫工具</option>
@@ -94,6 +93,9 @@
                                         </li>
                                         <li class="video" media_type="video">
                                             <a href="#panel-video" data-toggle="tab"><span class="glyphicon glyphicon-facetime-video"></span> 视频</a>
+                                        </li>
+                                        <li class="news" media_type="news">
+                                            <a href="#panel-news" data-toggle="tab"><span class="glyphicon glyphicon-list-alt"></span> 图文</a>
                                         </li>
                                     </ul>
                                     <div class="col-xs-12 column tab-content">
@@ -139,17 +141,16 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!--发送图文消息-->
-                                <div class="col-xs-12 column tab-pane menu_response view_limited" id="panel-news">
-                                    <div class="col-xs-6 column material_select sl">
-                                        <p class="text-center"><span class="glyphicon glyphicon-plus"></span></p>
-                                        <p class="text-center"><a  href="#modal-container-news" onclick="get_material(this)" data-toggle="modal" data-type="select_from_material">从素材库选择</a></p>
-                                    </div>
-                                    <div class="col-xs-6 column material_select">
-                                        <p class="text-center"><span class="glyphicon glyphicon-upload"></span></p>
-                                        <p class="text-center"><a href="/Home/PdMaterial/addNewsPage" target="_blank">新建图文</a></p>
+                                        <div class="col-xs-12 column tab-pane" id="panel-news">
+                                            <div class="col-xs-6 column material_select sl">
+                                                <p class="text-center"><span class="glyphicon glyphicon-plus"></span></p>
+                                                <p class="text-center"><a  href="#modal-container-news" onclick="get_material(this)" data-toggle="modal" data-type="select_from_material">从素材库选择</a></p>
+                                            </div>
+                                            <div class="col-xs-6 column material_select">
+                                                <p class="text-center"><span class="glyphicon glyphicon-upload"></span></p>
+                                                <p class="text-center"><a href="/Home/PdMaterial/addNewsPage" target="_blank">新建图文</a></p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- 跳转链接 -->
@@ -264,38 +265,7 @@
                                 <a href="javascript:void(0)" class="load_more hidden" data-load="voice" onclick="load_more(this)">加载更多…</a>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button data-type="ensure" class="btn btn-primary disabled">确定</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--从素材库选择音乐消息缩略图-->
-<div class="container material_container">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <div class="modal fade" id="modal-container-thumb" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="dialog_mask">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title" id="myModalLabel">
-                                    选择图片
-                                </h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="col-xs-12 column">
-                                    <div class="img_list"></div>
-                                    <a href="javascript:void(0)" class="load_more hidden" onclick="load_more(this)" data-load="thumb">加载更多…</a>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button data-type="thumb_ensure" class="btn btn-primary disabled">确定</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button data-type="ensure" class="btn btn-primary determine disabled">确定</button>
                             </div>
                         </div>
 
@@ -325,7 +295,7 @@
                                 <a href="javascript:void(0)" class="load_more hidden" onclick="load_more(this)" data-load="video">加载更多…</a>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button data-type="ensure" class="btn btn-primary disabled">确定</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button data-type="ensure" class="btn btn-primary determine disabled">确定</button>
                             </div>
                         </div>
 
@@ -355,7 +325,7 @@
                                 <a href="javascript:void(0)" class="load_more hidden" onclick="load_more(this)" data-load="news">加载更多…</a>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button data-type="ensure" class="btn btn-primary disabled news-select">确定</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button data-type="ensure" class="btn btn-primary disabled determine">确定</button>
                             </div>
                         </div>
 
@@ -431,6 +401,6 @@
 </body>
     <include file="./Common:bottom_js" />
     <import type='js' file="Home.js.project_center" />
-    <import type="js" file="Home.js.pd_auto_response" />
     <import type="js" file="Home.js.pd_custom_menu" />
+    <import type="js" file="Home.js.pd_auto_response" />
 </html>
