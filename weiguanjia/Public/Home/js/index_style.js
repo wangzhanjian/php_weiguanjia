@@ -7,7 +7,9 @@ $(function(){
     $('.bg_wall').css('height',window_y-74);
     $('.nav_blank').css('height',window_y-74);
     $('.show_panel').css('height',window_y-74);
+    $('.show_panel').css('padding-top',window_y-74-$('.show_panel').children('.container-fluid').height()-40);
     $('.bottom_bar').css('height',window_y-74);
+    $('.bottom_bar').css('padding-top',window_y-74- $('.bottom_bar').children('.content').height()-$('.bottom_bar').children('.index_footer').height()-50);
     //添加页面初始动画
     $('.hid').slideToggle();
     $('.act').children('span').slideToggle(0).slideToggle(1500);
