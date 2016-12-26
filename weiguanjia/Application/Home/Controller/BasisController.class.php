@@ -35,4 +35,11 @@ class BasisController extends Controller
         $this->assign('GLOBAL_INFO',session());
     }
 
+    //图片反倒连破解
+    public function openImage(){
+        $url=I('get.url');
+        header('Content-type:image/jpeg');
+        echo file_get_contents($url);
+    }
+
 }
