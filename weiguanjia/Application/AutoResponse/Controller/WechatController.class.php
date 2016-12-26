@@ -16,14 +16,14 @@ class WechatController
         include APP_PATH."AutoResponse/Common/functions.php";
     }
 
-    protected function msgHandle($postStr){
+    protected function msgHandle(){
         if(isset($_GET["echostr"])){
             $wechatObj = new VerifyToken();
             $wechatObj->valid();
         }else {
-            if (MsgManager::create($postStr)) {
+            if (MsgManager::create()) {
                 $msgController=new MsgController();
-                $msgController->Init($postStr);
+                $msgController->Init();
                 $msgController->MsgAutoHandle();
             } else {
                 echo "success";
@@ -32,8 +32,8 @@ class WechatController
         }
     }
 
-    public function appRun($postStr){
+    public function appRun(){
         $this->load_file();
-        $this->msgHandle($postStr);
+        $this->msgHandle();
     }
 }

@@ -13,8 +13,8 @@ class MsgController
 {
     protected $_msgManager;
 
-    public function Init($postStr){
-        $this->_msgManager=MsgManager::create($postStr);
+    public function Init(){
+        $this->_msgManager=MsgManager::create();
     }
 
     //消息自动回复处理 ok
@@ -49,7 +49,9 @@ class MsgController
             'keyword'=>'wgj_default'
         );
         // 查询关键字信息
-        $ruleInfo=$keyTable->where($map || $mapDefault)->field(array('rule','response_type'))->find();
+        if(!$ruleInfo=$keyTable->where($map)->field(array('rule','response_type'))->find()){
+            $ruleInfo=$keyTable->where($mapDefault)->field(array('rule','response_type'))->find();
+        }
         if($ruleInfo){      //如果存在该关键字或默认回复信息
             $response=M($ruleInfo['response_type'].'_response');
             //获取关键字对应的回复信息
