@@ -9,46 +9,53 @@
             <div class="row clearfix">
                 <include file="./Common:project_sidebar_wrap" />
                 <div class="col-xs-10 column right_content">
-                    <h2 style="font-family: 'Adobe 楷体 Std R'">当前公众号: <span style="color:#888;font-size: 90%">{$current_app_name}</span></h2>
-                    <div class="col-xs-12 column">
-                        <h3>详情:</h3>
-                        <div class="col-md-12 column">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <th>名称</th>
-                                    <td>{$current_app_name}</td>
-                                </tr>
-                                <tr>
-                                    <th>app_id</th>
-                                    <td>{$GLOBAL_INFO.app_info.app_source_id}</td>
-                                </tr>
-                                <tr>
-                                    <th>token</th>
-                                    <td>weiguanjjia</td>
-                                </tr>
-                                <tr>
-                                    <th>服务器地址</th>
-                                    <td>http://www.wangzhanjian.cn/</td>
-                                </tr>
-                                <tr>
-                                    <th>已被托管时间</th>
-                                    <td>720天</td>
-                                </tr>
-                                <tr>
-                                    <th>累计被访问次数</th>
-                                    <td>10 万次</td>
-                                </tr>
-                                <tr>
-                                    <th>用户关注量</th>
-                                    <td>10 万</td>
-                                </tr>
-                                <tr>
-                                    <th>微享认证状态</th>
-                                    <td>已认证</td>
-                                </tr>
-                            </table>
+                    <empty name="current_app_name">
+                        <div class="obj_balnk_tip">
+                            <h2 class="text-center">您还没有创建过项目哦！</h2>
+                            <p class="text-center">点击屏幕右侧隐藏菜单创建项目</p>
                         </div>
-                    </div>
+                        <else/>
+                        <h2 style="font-family: 'Adobe 楷体 Std R'">当前公众号: <span style="color:#888;font-size: 90%">{$current_app_name}</span></h2>
+                        <div class="col-xs-12 column">
+                            <h3>详情:</h3>
+                            <div class="col-md-12 column">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>名称</th>
+                                        <td>{$current_app_name}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>app_id</th>
+                                        <td>{$GLOBAL_INFO.app_info.app_id}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>token</th>
+                                        <td>weiguanjjia</td>
+                                    </tr>
+                                    <tr>
+                                        <th>服务器地址</th>
+                                        <td><a href="javascript:void(0)" onclick="alert('http://www.wangzhanjian.cn/AutoResponse/')">点击查看</a> </td>
+                                    </tr>
+                                    <tr>
+                                        <th>已被托管时间</th>
+                                        <td>720天</td>
+                                    </tr>
+                                    <tr>
+                                        <th>累计被访问次数</th>
+                                        <td>10 万次</td>
+                                    </tr>
+                                    <tr>
+                                        <th>用户关注量</th>
+                                        <td>10 万</td>
+                                    </tr>
+                                    <tr>
+                                        <th>微信认证状态</th>
+                                        <td>已认证</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </empty>
                 </div>
             </div>
         </div>
