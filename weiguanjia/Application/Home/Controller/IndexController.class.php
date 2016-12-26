@@ -34,7 +34,7 @@ class IndexController extends BasisController {
     //获取最新动态资源
     protected function latestDynamic(){
         $dynamic=M('dynamic');
-        $data=$dynamic->where(1)->field('title,createtime')->order('Id desc')->limit(5)->select();
+        $data=$dynamic->where(1)->field('title,createtime')->order('Id desc')->limit(3)->select();
         return $data;
 
     }
@@ -42,7 +42,7 @@ class IndexController extends BasisController {
     //获取特色推荐资源
     protected function specialRecommendation(){
         $recommendation=M('features');
-        $data=$recommendation->where(1)->field('title,createtime')->order('Id desc')->limit(5)->select();
+        $data=$recommendation->where(1)->field('title,createtime')->order('Id desc')->limit(3)->select();
         return $data;
 
     }
