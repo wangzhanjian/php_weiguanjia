@@ -18,7 +18,7 @@ $(function(){
         $activeIndex=$('.news_body').find('.active').attr('data-index');
         if($curData=$data.articles[$activeIndex]){
             $('.news_body').find('.active').find('img').attr('data-id',$curData.thumb_media_id);
-            $('.news_body').find('.active').find('img').attr('src','http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+$curData.thumb_url);
+            $('.news_body').find('.active').find('img').attr('src','openImage?url='+$curData.thumb_url);
             $('.news_body').find('.active').find('h5').text($curData.title);
             $('[name=title]').val($curData.title);
             $('[name=author]').val($curData.author);
@@ -28,7 +28,7 @@ $(function(){
         }
         for($i=1;$i;$i+=1){
             if($data.articles[$i]){
-                $ele=$('<div class="col-xs-12 column data_box" data-index="'+$i+'"><div class="col-xs-8 column"><h5>'+$data.articles[$i].title+'</h5></div><div class="col-xs-4 column"><img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+$data.articles[$i].thumb_url+'" width="100%" height="70px" data-id="'+$data.articles[$i].thumb_media_id+'"></div></div>');
+                $ele=$('<div class="col-xs-12 column data_box" data-index="'+$i+'"><div class="col-xs-8 column"><h5>'+$data.articles[$i].title+'</h5></div><div class="col-xs-4 column"><img src="openImage?url='+$data.articles[$i].thumb_url+'" width="100%" height="70px" data-id="'+$data.articles[$i].thumb_media_id+'"></div></div>');
                 //为左边列表块元素添加新元素和动作特效
                 add_active_and_ele_for_left_list();
                 //将摘要隐藏
@@ -45,7 +45,7 @@ $(function(){
             $activeIndex=$('.news_body').find('.active').attr('data-index');
             if($curData=$data.articles[$activeIndex]){
                 $('.news_body').find('.active').find('img').attr('data-id',$curData.thumb_media_id);
-                $('.news_body').find('.active').find('img').attr('src','http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+$curData.thumb_url);
+                $('.news_body').find('.active').find('img').attr('src','openImage?url='+$curData.thumb_url);
                 $('.news_body').find('.active').find('h5').text($curData.title);
                 $('[name=title]').val($curData.title);
                 $('[name=author]').val($curData.author);
@@ -55,7 +55,7 @@ $(function(){
             }
             for($i=1;$i;$i+=1){
                 if($data.articles[$i]){
-                    $ele=$('<div class="col-xs-12 column data_box" data-index="'+$i+'"><div class="col-xs-8 column"><h5>'+$data.articles[$i].title+'</h5></div><div class="col-xs-4 column"><img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+$data.articles[$i].thumb_url+'" width="100%" height="70px" data-id="'+$data.articles[$i].thumb_media_id+'"></div></div>');
+                    $ele=$('<div class="col-xs-12 column data_box" data-index="'+$i+'"><div class="col-xs-8 column"><h5>'+$data.articles[$i].title+'</h5></div><div class="col-xs-4 column"><img src="openImage?url='+$data.articles[$i].thumb_url+'" width="100%" height="70px" data-id="'+$data.articles[$i].thumb_media_id+'"></div></div>');
                     //为左边列表块元素添加新元素和动作特效
                     add_active_and_ele_for_left_list();
                     //将摘要隐藏
@@ -141,7 +141,7 @@ $(function(){
                     $len=$imgs.item.length;
                     if($len){
                         for($i=0;$i<$len;$i+=1){
-                            $ele='<div class="col-sm-3 column cell" data-type="data_box_cell"><div class="col-sm-12 column data_box_img"><img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+$imgs.item[$i].url+'" height="117" width="100%" data-id="'+$imgs.item[$i].media_id+'"/><p class="text-center">'+$imgs.item[$i].name.substr($imgs.item[$i].name.lastIndexOf('/')+1,15)+'</p></div></div>';
+                            $ele='<div class="col-xs-3 column cell" data-type="data_box_cell"><div class="col-xs-12 column data_box_img"><img src="openImage?url='+$imgs.item[$i].url+'" height="117" width="100%" data-id="'+$imgs.item[$i].media_id+'"/><p class="text-center">'+$imgs.item[$i].name.substr($imgs.item[$i].name.lastIndexOf('/')+1,15)+'</p></div></div>';
                             $('.modal-body').find('.img_list').append($ele);
                         }
                         //为新增的元素添加动作特效
@@ -171,7 +171,7 @@ $(function(){
                 $len=$imgs.item.length;
                 if($len){
                     for($i=0;$i<$len;$i+=1){
-                        $ele='<div class="col-sm-3 column cell" data-type="data_box_cell"><div class="col-sm-12 column data_box_img"><img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+$imgs.item[$i].url+'" height="117" width="100%" data-id="'+$imgs.item[$i].media_id+'"/><p class="text-center">'+$imgs.item[$i].name.substr($imgs.item[$i].name.lastIndexOf('/')+1,15)+'</p></div></div>';
+                        $ele='<div class="col-xs-3 column cell" data-type="data_box_cell"><div class="col-xs-12 column data_box_img"><img src="openImage?url='+$imgs.item[$i].url+'" height="117" width="100%" data-id="'+$imgs.item[$i].media_id+'"/><p class="text-center">'+$imgs.item[$i].name.substr($imgs.item[$i].name.lastIndexOf('/')+1,15)+'</p></div></div>';
                         $('.modal-body').find('.img_list').append($ele);
                     }
                     //为新增的元素添加动作特效
@@ -230,7 +230,7 @@ $(function(){
                             $('#progressBar').css('width','0%');
                             $json=JSON.parse($result);
                             $('.news_body').find('.active').find('img').attr({
-                                'src': 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+$json.url,
+                                'src': 'openImage?url='+$json.url,
                                 'data-id': $json.media_id
                             });
                             alert('上传成功！');
@@ -345,7 +345,7 @@ function add_active_and_ele_for_left_list() {
 
             if($curData=$data.articles[$curIndex]){      //如果存在缓存数据
                 $('.news_body').find('.active').find('img').attr('data-id',$curData.thumb_media_id);
-                $('.news_body').find('.active').find('img').attr('src','http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+$curData.thumb_url);
+                $('.news_body').find('.active').find('img').attr('src','openImage?url='+$curData.thumb_url);
                 $('[name=title]').val($curData.title);
                 $('[name=author]').val($curData.author);
                 $('[name=digest]').val($curData.digest);
