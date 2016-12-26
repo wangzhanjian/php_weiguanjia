@@ -13,9 +13,9 @@ class MsgManager
     protected $_postObj;
 
     //create a single instance of class
-    public static function create($postStr){
+    public static function create(){
         //get post data, May be due to the different environments
-        //$postStr =file_get_contents("php://input");
+        $postStr =file_get_contents("php://input");
         //extract post data
         if (!empty($postStr)) {
             /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
