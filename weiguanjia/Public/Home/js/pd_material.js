@@ -10,52 +10,100 @@ $(function () {
         check_load_more('tbody');
     }
 
+    $('#img_file').change(function(){
+        if($(this).val().length){
+            var xhr = new XMLHttpRequest();
+            var filesObj = document.getElementById('img_file').files[0];
+            var formData = new FormData();
+            formData.append('files', filesObj);
+            xhr.open("POST", 'addImage', true);
+            //设定下载progress事件的处理函数，该事件在数据下载时触发
+            xhr.onprogress = updateProgress;
+            //设定上传progress事件的处理函数，该事件在数据上传时触发
+            xhr.upload.onprogress = updateProgress;
+            var progressBar = document.getElementById('progressBar');
+            function updateProgress(event){
+                //判断服务器是否提供数据长度信息
+                if(event.lengthComputable){
+                    //计算得到进度数值
+                    var percentComplete = event.loaded/event.total;
+                    //在控制台记录进度数值
+                    //console.log(percentComplete);
+                    progressBar.style.width = percentComplete*100+'%';
+                }
+            }
+            xhr.send(formData);
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState==4 && xhr.status==200){
+                    $result= xhr.responseText;
+                    if($result=='error'){
+                        $('#progressBar').css('width','0%');
+                        alert('上传失败！');
+                    }else{
+                        $('#progressBar').css('width','0%');
+                        $json=JSON.parse($result);
+                        $ele='<div class="col-xs-3 column cell"> <div class="col-xs-12 column image_box"> <img src="openImage?url='+$json.url+'" data-id="'+$json.media_id+'" width="100%" height="120px"> <p>'+filesObj.name.substr(0,15)+'</p> <button class="btn btn-default btn-block" data-type="image_del"><span class="glyphicon glyphicon-remove"></span></button> </div> </div>';
+                        $('#image_list').prepend($ele);
+                        image_del_event();
+                    }
+                }
+            }
+        }
+    })
+
+    $('#voice_file').change(function () {
+        if($(this).val().length){
+            var xhr = new XMLHttpRequest();
+            var filesObj = document.getElementById('voice_file').files[0];
+            var formData = new FormData();
+            formData.append('files', filesObj);
+            xhr.open("POST", 'addVoice', true);
+            //设定下载progress事件的处理函数，该事件在数据下载时触发
+            xhr.onprogress = updateProgress;
+            //设定上传progress事件的处理函数，该事件在数据上传时触发
+            xhr.upload.onprogress = updateProgress;
+            var progressBar = document.getElementById('progressBar');
+            function updateProgress(event){
+                //判断服务器是否提供数据长度信息
+                if(event.lengthComputable){
+                    //计算得到进度数值
+                    var percentComplete = event.loaded/event.total;
+                    //在控制台记录进度数值
+                    //console.log(percentComplete);
+                    //更改进度条进度
+                    progressBar.style.width = percentComplete*100+'%';
+                }
+            }
+            xhr.send(formData);
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState==4 && xhr.status==200){
+                    $result= xhr.responseText;
+                    if($result=='error'){
+                        $('#progressBar').css('width','0%');
+                        alert('上传失败！');
+                    }else{
+                        $time=new Date();
+                        $json=JSON.parse($result);
+                        $ele='<div class="col-xs-4 column cell"> <div class="col-xs-12 column voice_box" data-id="'+$json.media_id+'"> <div class="col-xs-4 column"> <img src="getVoiceDisplayImg" width="100%" height="70"/> </div> <div class="col-xs-8 column"> <p>'+filesObj.name.substr(0,15)+'</p> <p>'+$time.getFullYear()+'年'+($time.getMonth()+1)+'月'+$time.getDate()+'日'+'</p> </div> <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-download-alt"></span></button><button class="btn btn-default btn-sm" data-type="voice_del"><span class="glyphicon glyphicon-remove"></span></button> </div> </div>';
+                        $('#voice_list').prepend($ele);
+                        voice_del_event();      //添加删除事件
+                        voice_download_event(); //添加下载事件
+                        voice_listen_online_animate(); //添加在线播放动画
+                        voice_listen_online();      //绑定在线播放事件
+                        $('#progressBar').css('width','0%');
+                        alert('上传成功！');
+                    }
+                }
+            }
+        }
+    });
+
     //图文消息删除操作
     news_del_event();
 
     //上传图片处理 ok
     $('#img_upload').click(function(){
         $('#img_file').click();
-        $('#img_file').change(function(){
-            if($(this).val().length){
-                var xhr = new XMLHttpRequest();
-                var filesObj = document.getElementById('img_file').files[0];
-                var formData = new FormData();
-                formData.append('files', filesObj);
-                xhr.open("POST", 'addImage', true);
-                //设定下载progress事件的处理函数，该事件在数据下载时触发
-                xhr.onprogress = updateProgress;
-                //设定上传progress事件的处理函数，该事件在数据上传时触发
-                xhr.upload.onprogress = updateProgress;
-                var progressBar = document.getElementById('progressBar');
-                function updateProgress(event){
-                    //判断服务器是否提供数据长度信息
-                    if(event.lengthComputable){
-                        //计算得到进度数值
-                        var percentComplete = event.loaded/event.total;
-                        //在控制台记录进度数值
-                        //console.log(percentComplete);
-                        progressBar.style.width = percentComplete*100+'%';
-                    }
-                }
-                xhr.send(formData);
-                xhr.onreadystatechange = function(){
-                    if(xhr.readyState==4 && xhr.status==200){
-                        $result= xhr.responseText;
-                        if($result=='error'){
-                            $('#progressBar').css('width','0%');
-                            alert('上传失败！');
-                        }else{
-                            $('#progressBar').css('width','0%');
-                            $json=JSON.parse($result);
-                            $ele='<div class="col-xs-6 col-sm-4  col-md-3 column cell"> <div class="col-xs-12 column image_box"> <img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+$json.url+'" data-id="'+$json.media_id+'" width="100%" height="120px"> <p>'+filesObj.name.substr(0,15)+'</p> <button class="btn btn-default btn-block" data-type="image_del"><span class="glyphicon glyphicon-remove"></span></button> </div> </div>';
-                            $('#image_list').prepend($ele);
-                            image_del_event();
-                        }
-                    }
-                }
-            }
-        })
     });
 
     //删除图片操作 ok
@@ -64,52 +112,6 @@ $(function () {
     //上传语音发送操作 ok
     $('#voice_upload').click(function () {
         $('#voice_file').click();
-        $('#voice_file').change(function () {
-            if($(this).val().length){
-                var xhr = new XMLHttpRequest();
-                var filesObj = document.getElementById('voice_file').files[0];
-                var formData = new FormData();
-                formData.append('files', filesObj);
-                xhr.open("POST", 'addVoice', true);
-                //设定下载progress事件的处理函数，该事件在数据下载时触发
-                xhr.onprogress = updateProgress;
-                //设定上传progress事件的处理函数，该事件在数据上传时触发
-                xhr.upload.onprogress = updateProgress;
-                var progressBar = document.getElementById('progressBar');
-                function updateProgress(event){
-                    //判断服务器是否提供数据长度信息
-                    if(event.lengthComputable){
-                        //计算得到进度数值
-                        var percentComplete = event.loaded/event.total;
-                        //在控制台记录进度数值
-                        //console.log(percentComplete);
-                        //更改进度条进度
-                        progressBar.style.width = percentComplete*100+'%';
-                    }
-                }
-                xhr.send(formData);
-                xhr.onreadystatechange = function(){
-                    if(xhr.readyState==4 && xhr.status==200){
-                        $result= xhr.responseText;
-                        if($result=='error'){
-                            $('#progressBar').css('width','0%');
-                            alert('上传失败！');
-                        }else{
-                            $time=new Date();
-                            $json=JSON.parse($result);
-                            $ele='<div class="col-xs-12 col-sm-6 col-md-4 column cell"> <div class="col-xs-12 column voice_box" data-id="'+$json.media_id+'"> <div class="col-xs-4 column"> <img src="getVoiceDisplayImg" width="100%" height="60"/> </div> <div class="col-xs-8 column"> <p>'+filesObj.name.substr(0,15)+'</p> <p>'+$time.getFullYear()+'年'+($time.getMonth()+1)+'月'+$time.getDate()+'日'+'</p> </div> <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-download-alt"></span></button><button class="btn btn-default btn-sm" data-type="voice_del"><span class="glyphicon glyphicon-remove"></span></button> </div> </div>';
-                            $('#voice_list').prepend($ele);
-                            voice_del_event();      //添加删除事件
-                            voice_download_event(); //添加下载事件
-                            voice_listen_online_animate(); //添加在线播放动画
-                            voice_listen_online();      //绑定在线播放事件
-                            $('#progressBar').css('width','0%');
-                            alert('上传成功！');
-                        }
-                    }
-                }
-            }
-        });
     });
 
     //删除语音操作 ok
@@ -213,20 +215,20 @@ $(function () {
                             for($i=0;$i<$len;$i+=1){
                                 if($list.item[$i].content.news_item[1]){    //多图文素材
                                     $date=new Date($list.item[$i].update_time*1000);
-                                    $ele=$('<div class="col-xs-10 col-sm-6 col-md-4 column cell"><div class="col-xs-12 column news_box"><div class="news_header_more"> <h5>'+ $date.getFullYear()+'年'+$date.getMonth()+'月'+$date.getDate()+'日'+'</h5></div><div class="col-xs-12 column news_body"></div><div class="col-xs-12 column news_footer" data-id="'+$list.item[$i].media_id+'"><button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-default btn-sm" data-type="news_del"><span class="glyphicon glyphicon-remove"></span></button></div></div></div>');
+                                    $ele=$('<div class="col-xs-4 column cell"><div class="col-xs-12 column news_box"><div class="news_header_more"> <h5>'+ $date.getFullYear()+'年'+$date.getMonth()+'月'+$date.getDate()+'日'+'</h5></div><div class="col-xs-12 column news_body"></div><div class="col-xs-12 column news_footer" data-id="'+$list.item[$i].media_id+'"><button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-default btn-sm" data-type="news_del"><span class="glyphicon glyphicon-remove"></span></button></div></div></div>');
                                     $childLen=$list.item[$i].content.news_item.length;
                                     for($k=0;$k<$childLen;$k+=1){
                                         if($k==0){
-                                            $childEle='<a href="'+$list.item[$i].content.news_item[$k].url+'" target="_blank"><div class="first data_box"><img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+auto_thumb_url($list.item[$i].content.news_item[$k].thumb_url)+'" width="100%" height="120px"> <h5 class="sm">'+$list.item[$i].content.news_item[$k].title.substr(0,15)+'</h5></div></a>';
+                                            $childEle='<a href="'+$list.item[$i].content.news_item[$k].url+'" target="_blank"><div class="first data_box"><img src="openImage?url='+auto_thumb_url($list.item[$i].content.news_item[$k].thumb_url)+'" width="100%" height="120px"> <h5 class="sm">'+$list.item[$i].content.news_item[$k].title.substr(0,15)+'</h5></div></a>';
                                             $ele.find('.news_body').append($childEle);
                                         }else{
-                                            $childEle='<a href="'+$list.item[$i].content.news_item[$k].url+'" target="_blank"><div class="col-xs-12 column data_box"><div class="col-xs-8 column"><h5>'+$list.item[$i].content.news_item[$k].title.substr(0,15)+'</h5></div><div class="col-xs-4 column"><img width="100%" height="70" src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+auto_thumb_url($list.item[$i].content.news_item[$k].thumb_url)+'"></div></div></a>'
+                                            $childEle='<a href="'+$list.item[$i].content.news_item[$k].url+'" target="_blank"><div class="col-xs-12 column data_box"><div class="col-xs-8 column"><h5>'+$list.item[$i].content.news_item[$k].title.substr(0,15)+'</h5></div><div class="col-xs-4 column"><img width="100%" height="70" src="openImage?url='+auto_thumb_url($list.item[$i].content.news_item[$k].thumb_url)+'"></div></div></a>'
                                             $ele.find('.news_body').append($childEle);
                                         }
                                     }
                                 }else{  //单图文素材
                                     $date=new Date($list.item[$i].update_time*1000);
-                                    $ele='<a href="'+$list.item[$i].content.news_item[0].url+'" target="_blank"><div class="col-xs-10 col-sm-6 col-md-4 column cell"><div class="col-xs-12 column news_box"><div class="news_header_single"><h5>'+ $date.getFullYear()+'年'+$date.getMonth()+'月'+$date.getDate()+'日'+'</h5></div> <div class="col-xs-12 column news_body"> <div class="col-xs-12 column data_box"> <p>'+$list.item[$i].content.news_item[0].title.substr(0,15)+'</p><img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+auto_thumb_url($list.item[$i].content.news_item[0].thumb_url)+'" width="100%" height="150px"><p>'+$list.item[$i].content.news_item[0].digest+'</p></div></div><div class="col-xs-12 column news_footer" data-id="'+$list.item[$i].media_id+'"><button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-default btn-sm" data-type="news_del"><span class="glyphicon glyphicon-remove"></span></button></div></div></div></a>';
+                                    $ele='<a href="'+$list.item[$i].content.news_item[0].url+'" target="_blank"><div class="col-xs-4 column cell"><div class="col-xs-12 column news_box"><div class="news_header_single"><h5>'+ $date.getFullYear()+'年'+$date.getMonth()+'月'+$date.getDate()+'日'+'</h5></div> <div class="col-xs-12 column news_body"> <div class="col-xs-12 column data_box"> <p>'+$list.item[$i].content.news_item[0].title.substr(0,15)+'</p><img src="openImage?url='+auto_thumb_url($list.item[$i].content.news_item[0].thumb_url)+'" width="100%" height="150px"><p>'+$list.item[$i].content.news_item[0].digest+'</p></div></div><div class="col-xs-12 column news_footer" data-id="'+$list.item[$i].media_id+'"><button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-default btn-sm" data-type="news_del"><span class="glyphicon glyphicon-remove"></span></button></div></div></div></a>';
                                 }
                                 $('#news_list').append($ele);
                             }
@@ -255,7 +257,7 @@ $(function () {
                         $len=$list.item.length;
                         if($len){
                             for($i=0;$i<$len;$i+=1){
-                                $ele='<div class="col-xs-6 col-sm-4  col-md-3 column cell"> <div class="col-xs-12 column image_box"> <img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl='+$list.item[$i].url+'" data-id="'+$list.item[$i].media_id+'" width="100%" height="120px"> <p>'+$list.item[$i].name.substr($list.item[$i].name.lastIndexOf('/')+1,15)+'</p> <button class="btn btn-default btn-block" data-type="image_del"><span class="glyphicon glyphicon-remove"></span></button> </div> </div>';
+                                $ele='<div class="col-xs-3 column cell"> <div class="col-xs-12 column image_box"> <img src="openImage?url='+$list.item[$i].url+'" data-id="'+$list.item[$i].media_id+'" width="100%" height="120px"> <p>'+$list.item[$i].name.substr($list.item[$i].name.lastIndexOf('/')+1,15)+'</p> <button class="btn btn-default btn-block" data-type="image_del"><span class="glyphicon glyphicon-remove"></span></button> </div> </div>';
                                 $('#image_list').append($ele);
                             }
                             image_del_event();
@@ -278,7 +280,7 @@ $(function () {
                         if($len){
                             for($i=0;$i<$len;$i+=1){
                                 $date=new Date($list.item[$i].update_time*1000);
-                                $ele='<div class="col-xs-12 col-sm-6 col-md-4 column cell"><div class="col-xs-12 column voice_box" data-id="'+$list.item[$i].media_id+'"><div class="col-xs-4 column"><img src="getVoiceDisplayImg" alt="点击播放" title="点击播放" width="100%" height="70"/> </div> <div class="col-xs-8 column"><p data-type="file_name"></p>'+$list.item[$i].name.substr($list.item[$i].name.lastIndexOf('/')+1,15)+'<p>'+$date.getFullYear()+'年'+$date.getMonth()+'月'+$date.getDate()+'日'+'</p></div><button class="btn btn-default btn-sm" data-type="voice_download"><span class="glyphicon glyphicon-download-alt"></span></button><button class="btn btn-default btn-sm" data-type="voice_del"><span class="glyphicon glyphicon-remove"></span></button></div></div>';
+                                $ele='<div class="col-xs-4 column cell"><div class="col-xs-12 column voice_box" data-id="'+$list.item[$i].media_id+'"><div class="col-xs-4 column"><img src="getVoiceDisplayImg" alt="点击播放" title="点击播放" width="100%" height="70"/> </div> <div class="col-xs-8 column"><p data-type="file_name"></p>'+$list.item[$i].name.substr($list.item[$i].name.lastIndexOf('/')+1,15)+'<p>'+$date.getFullYear()+'年'+$date.getMonth()+'月'+$date.getDate()+'日'+'</p></div><button class="btn btn-default btn-sm" data-type="voice_download"><span class="glyphicon glyphicon-download-alt"></span></button><button class="btn btn-default btn-sm" data-type="voice_del"><span class="glyphicon glyphicon-remove"></span></button></div></div>';
                                 $('#voice_list').append($ele);
                             }
                             //删除语音操作 ok

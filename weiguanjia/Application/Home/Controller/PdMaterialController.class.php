@@ -24,6 +24,9 @@ class PdMaterialController extends BasisController
         if(!$this->isLogin()){  //用户使用该类的任何方法必须已经登录（前置条件）
             $this->error('请先登录！','/Home/UserManager/loginPage',2);
         }
+        if(!session(C('SESSION_APP_INFO'))){
+            $this->error('请先创建项目！','/Home/ProjectManager/centerPage',2);
+        }
     }
 
     //显示图文素材管理页面 ok
@@ -77,10 +80,10 @@ class PdMaterialController extends BasisController
         $manager=new MaterialManager();
         $list=$manager->getPermanentMaterialList('image',0,20);     //获取图片素材列表
         $list=json_decode($list,true);
-        $urePrefix='http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=';
-        foreach ($list['item'] as $key=>$val){      //解决图片防盗链问题
+        //$urePrefix='http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=';
+        /*foreach ($list['item'] as $key=>$val){      //解决图片防盗链问题
             $list['item'][$key]['url']=$urePrefix.$val['url'];
-        }
+        }*/
         $this->assign('list',$list);
         $this->assignProjectCenterCommonInfo();
         $this->display();
@@ -108,6 +111,7 @@ class PdMaterialController extends BasisController
                 unlink($filePath);      //删除缓存文件
                 echo $result;
             }else{
+                unlink($filePath);
                 echo 'error';
             }
         }
@@ -164,6 +168,7 @@ class PdMaterialController extends BasisController
                 unlink($filePath);      //删除缓存文件
                 echo $result;
             }else{
+                unlink($filePath);
                 echo 'error';
             }
         }
@@ -229,6 +234,7 @@ class PdMaterialController extends BasisController
                 unlink($filePath);      //删除缓存文件
                 echo $result;
             }else{
+                echo $result;
                 echo 'error';
             }
         }
