@@ -18,7 +18,6 @@ class LatestDynamicController extends Controller
     Public function add(){
         $data['title'] = I('post.title');
         $data['content'] = I('post.content');
-        $data['createtime'] = time();
         $db = M('dynamic');
         $result = $db->data($data)->add();
         if($result){

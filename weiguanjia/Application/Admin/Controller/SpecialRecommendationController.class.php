@@ -19,7 +19,6 @@ class SpecialRecommendationController extends Controller
     Public function add(){
         $data['title'] = I('post.title');
         $data['content'] = I('post.content');
-        $data['createtime'] = time();
         $db = M('features');
         $result = $db->data($data)->add();
         if($result){
